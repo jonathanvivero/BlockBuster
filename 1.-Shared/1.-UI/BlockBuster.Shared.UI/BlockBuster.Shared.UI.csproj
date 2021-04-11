@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="JsonApiSerializer" Version="1.7.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="2.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\2.-Application\BlockBuster.Shared.Application\BlockBuster.Shared.Application.csproj" />
+    <ProjectReference Include="..\..\3.-Infrastructure\BlockBuster.Shared.Infrastructure.Bus\BlockBuster.Shared.Infrastructure.Bus.csproj" />
+  </ItemGroup>
+
+</Project>

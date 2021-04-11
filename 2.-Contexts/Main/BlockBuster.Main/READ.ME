@@ -1,0 +1,33 @@
+﻿CREATE TABLE `country` (
+	`id` VARCHAR(40) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`code` VARCHAR(3) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`tax` DOUBLE NOT NULL DEFAULT '0',
+	`created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+	`updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP()
+)
+COLLATE='utf8mb4_0900_ai_ci'
+ENGINE=InnoDB
+;
+
+CREATE TABLE `user` (
+	`id` VARCHAR(40) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`country_id` VARCHAR(40) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`email` VARCHAR(60) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`password` VARCHAR(100) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`first_name` VARCHAR(15) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`last_name` VARCHAR(30) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`role` VARCHAR(20) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`created_at` TIMESTAMP NOT NULL,
+	`updated_at` TIMESTAMP NOT NULL,
+	PRIMARY KEY (`id`) USING BTREE
+)
+COLLATE='utf8mb4_0900_ai_ci'
+ENGINE=InnoDB
+;
+
+INSERT INTO `country` (`id`, `code`, `tax`) VALUES ('d5a29699-eff3-448c-986a-10e06a1753b4', 'ESP', 21);
+INSERT INTO `country` (`id`, `code`, `tax`) VALUES ('2217f2c6-6a84-4f4f-9c33-c410cd72d9ce', 'USA', 10);
+INSERT INTO `country` (`id`, `code`, `tax`) VALUES ('a74f0d2a-3098-4a29-9ee1-6d68b01de3b6', 'FRA', 8);
+INSERT INTO `country` (`id`, `code`, `tax`) VALUES ('1c067a88-4f12-4e8f-ac06-17d0986ae1ce', 'GBR', 25);
+INSERT INTO `country` (`id`, `code`, `tax`) VALUES ('32be99d1-266a-430b-b986-fdbe49675d4b', 'POR', 20);
+

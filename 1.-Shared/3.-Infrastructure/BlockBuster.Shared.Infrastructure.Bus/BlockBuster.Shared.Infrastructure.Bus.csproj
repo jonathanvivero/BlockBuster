@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="2.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\2.-Application\BlockBuster.Shared.Application\BlockBuster.Shared.Application.csproj" />
+    <ProjectReference Include="..\..\4.-Domain\BlockBuster.Shared.Domain\BlockBuster.Shared.Domain.csproj" />
+    <ProjectReference Include="..\Persistence\BlockBuster.Shared.Infrastructure.Persistence\BlockBuster.Shared.Infrastructure.Persistence.csproj" />
+  </ItemGroup>
+
+</Project>

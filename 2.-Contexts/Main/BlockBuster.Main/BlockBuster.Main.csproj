@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="JsonApiSerializer" Version="1.7.4" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.1.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="2.4.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="4.5.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\1.-Shared\1.-UI\BlockBuster.Shared.UI.ContextStartup\BlockBuster.Shared.UI.ContextStartup.csproj" />
+    <ProjectReference Include="..\..\..\1.-Shared\3.-Infrastructure\Extensions\BlockBuster.Shared.Infrastructure.Extensions\BlockBuster.Shared.Infrastructure.Extensions.csproj" />
+    <ProjectReference Include="..\..\..\1.-Shared\3.-Infrastructure\Persistence\BlockBuster.Shared.Infrastructure.Persistence\BlockBuster.Shared.Infrastructure.Persistence.csproj" />
+    <ProjectReference Include="..\..\IAM\BlockBuster.IAM\BlockBuster.IAM.csproj" />
+  </ItemGroup>
+
+</Project>

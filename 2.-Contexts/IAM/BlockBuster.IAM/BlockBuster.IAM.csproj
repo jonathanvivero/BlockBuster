@@ -1,0 +1,66 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>    
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="JsonApiSerializer" Version="1.7.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.1" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\1.-Shared\1.-UI\BlockBuster.Shared.UI.ContextStartup\BlockBuster.Shared.UI.ContextStartup.csproj" />
+    <ProjectReference Include="..\..\..\1.-Shared\1.-UI\BlockBuster.Shared.UI\BlockBuster.Shared.UI.csproj" />
+    <ProjectReference Include="..\..\..\1.-Shared\2.-Application\BlockBuster.Shared.Application\BlockBuster.Shared.Application.csproj" />
+    <ProjectReference Include="..\..\..\1.-Shared\3.-Infrastructure\BlockBuster.Shared.Infrastructure.Bus\BlockBuster.Shared.Infrastructure.Bus.csproj" />
+    <ProjectReference Include="..\..\..\1.-Shared\3.-Infrastructure\Persistence\BlockBuster.Shared.Infrastructure.Persistence\BlockBuster.Shared.Infrastructure.Persistence.csproj" />
+    <ProjectReference Include="..\..\..\1.-Shared\3.-Infrastructure\Security\BlockBuster.Shared.Infrastructure.Security\BlockBuster.Shared.Infrastructure.Security.csproj" />
+    <ProjectReference Include="..\..\..\1.-Shared\4.-Domain\BlockBuster.Shared.Domain\BlockBuster.Shared.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Domain\TokenAggregate\Resources\TokenResources.Designer.cs">
+      <DependentUpon>TokenResources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Domain\UserAggregate\Resources\CountryResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CountryResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Domain\UserAggregate\Resources\UserResources.Designer.cs">
+      <DependentUpon>UserResources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Infrastructure\Resources\IAMResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>IAMResources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Domain\TokenAggregate\Resources\TokenResources.resx">
+      <LastGenOutput>TokenResources.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Domain\UserAggregate\Resources\CountryResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>CountryResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Domain\UserAggregate\Resources\UserResources.resx">
+      <LastGenOutput>UserResources.Designer.cs</LastGenOutput>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Infrastructure\Resources\IAMResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>IAMResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>
