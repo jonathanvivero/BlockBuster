@@ -4,7 +4,7 @@ using Microsoft.Extensions.Primitives;
 using Moq;
 using NUnit.Framework;
 
-namespace BlockBuster.Shared.Testing
+namespace BlockBuster.Shared.Testing.Application.Bus.UseCase
 {
     public class Tests
     {
