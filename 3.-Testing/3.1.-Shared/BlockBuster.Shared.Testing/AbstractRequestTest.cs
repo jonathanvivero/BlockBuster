@@ -8,6 +8,9 @@ namespace BlockBuster.Shared.Testing
 {
     public class Tests
     {
+        const string size = "size";
+        const string number = "number";
+
         [SetUp]
         public void Setup()
         {
@@ -18,8 +21,6 @@ namespace BlockBuster.Shared.Testing
         {
             var pageNumber = 3;
             var pageSize = 25;
-            var number = "number";
-            var size = "size";
 
             var query = new Mock<IQueryCollection>();
             query.SetupGet(q => q["page[number]"]).Returns(new StringValues(pageNumber.ToString()));
@@ -35,5 +36,66 @@ namespace BlockBuster.Shared.Testing
             Assert.AreEqual(pageProps[size], pageSize);
             Assert.Pass();
         }
+
+        [Test]
+        public void GetPageSizeOnlyFromRequestUrlQuery()
+        {
+            var pageSize = 25;
+            var pageNumber = 1;
+            
+            var query = new Mock<IQueryCollection>();
+            query.SetupGet(q => q["page[size]"]).Returns(new StringValues(pageSize.ToString()));
+
+            var abstractRequest = new AbstractRequest(query.Object);
+            var pageProps = abstractRequest.Page();
+
+            Assert.AreEqual(pageProps.Keys.Count, 2);
+            Assert.IsTrue(pageProps.ContainsKey(number));
+            Assert.IsTrue(pageProps.ContainsKey(size));
+            Assert.AreEqual(pageProps[number], pageNumber);
+            Assert.AreEqual(pageProps[size], pageSize);
+            Assert.Pass();
+        }
+
+        [Test]
+        public void GetPageNumberOnlyFromRequestUrlQuery()
+        {
+            var pageSize = 1;
+            var pageNumber = 3;
+
+            var query = new Mock<IQueryCollection>();
+            query.SetupGet(q => q["page[number]"]).Returns(new StringValues(pageNumber.ToString()));
+
+            var abstractRequest = new AbstractRequest(query.Object);
+            var pageProps = abstractRequest.Page();
+
+            Assert.AreEqual(pageProps.Keys.Count, 2);
+            Assert.IsTrue(pageProps.ContainsKey(number));
+            Assert.IsTrue(pageProps.ContainsKey(size));
+            Assert.AreEqual(pageProps[number], pageNumber);
+            Assert.AreEqual(pageProps[size], pageSize);
+            Assert.Pass();
+        }
+
+        [Test]
+        public void GetNoPageInformationFromRequestUrlQuery()
+        {
+            var pageSize = 1;
+            var pageNumber = 1;
+
+            var query = new Mock<IQueryCollection>();
+
+            var abstractRequest = new AbstractRequest(query.Object);
+            var pageProps = abstractRequest.Page();
+
+            Assert.AreEqual(pageProps.Keys.Count, 2);
+            Assert.IsTrue(pageProps.ContainsKey(number));
+            Assert.IsTrue(pageProps.ContainsKey(size));
+            Assert.AreEqual(pageProps[number], pageNumber);
+            Assert.AreEqual(pageProps[size], pageSize);
+            Assert.Pass();
+        }
+
+
     }
 }
