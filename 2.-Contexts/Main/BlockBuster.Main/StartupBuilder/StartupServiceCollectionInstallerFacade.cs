@@ -127,9 +127,7 @@ namespace BlockBuster.Main.StartupBuilder
                         serializerSettings,
                         ArrayPool<Char>.Shared,
                         objectPoolProvider,
-                        opt, jsonMvcOptions);
-
-                    //jsonApiInputFormatter = new JsonInputFormatter();
+                        opt, jsonMvcOptions);                    
 
                     opt.InputFormatters.RemoveType<JsonInputFormatter>();
                     opt.InputFormatters.Insert(0, jsonApiInputFormatter);
