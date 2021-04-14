@@ -19,7 +19,7 @@ namespace BlockBuster.IAM.UI.REST.Controllers.User
         public UserPutController(
             IUseCaseBus useCaseBus,
             IBlockBusterIAMContext context)
-           : base(useCaseBus, context) { }
+           : base(useCaseBus) { }
 
         [AllowAnonymous]
         [HttpPut(Name = nameof(SignUp))]

@@ -70,6 +70,15 @@ namespace BlockBuster.IAM.Domain.UserAggregate.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Country.
+        /// </summary>
+        public static string FieldCountry {
+            get {
+                return ResourceManager.GetString("FieldCountry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a CountryCode.
         /// </summary>
         public static string FieldCountryCode {

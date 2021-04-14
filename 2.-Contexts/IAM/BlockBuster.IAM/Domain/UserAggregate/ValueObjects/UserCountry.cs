@@ -1,4 +1,5 @@
-﻿using BlockBuster.IAM.Application.UseCases.User.SignUp;
+﻿using BlockBuster.GEO.Country.Domain.CountryAggregate;
+using BlockBuster.IAM.Application.UseCases.User.SignUp;
 using BlockBuster.IAM.Domain.UserAggregate.Exceptions;
 using BlockBuster.IAM.Domain.UserAggregate.Resources;
 using BlockBuster.Shared.Domain.ValueObjects;
@@ -10,16 +11,11 @@ namespace BlockBuster.IAM.Domain.UserAggregate.ValueObjects
     {
         private const int CODE_LENGTH = 3;        
         public UserCountry(Country value): base(value)
-        {            
-            var code = value.Code.GetValue() ?? "";
+        {                        
 
-            if (code.Length < CODE_LENGTH)
+            if (value == null)
                 throw InvalidUserAttributeException
-                    .FromMinLength(UserResources.FieldCountryCode, CODE_LENGTH);
-
-            if (code.Length > CODE_LENGTH)
-                throw InvalidUserAttributeException
-                    .FromMaxLength(UserResources.FieldCountryCode, CODE_LENGTH);
+                    .FromMinLength(UserResources.FieldCountry, CODE_LENGTH);            
         }       
     }
 }

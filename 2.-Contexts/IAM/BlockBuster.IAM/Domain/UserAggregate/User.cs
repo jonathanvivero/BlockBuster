@@ -19,8 +19,8 @@ namespace BlockBuster.IAM.Domain.UserAggregate
         public UserRole Role { get; private set; }
         public UserCreatedAt CreatedAt { get; private set; }
         public UserUpdatedAt UpdatedAt { get; private set; }
-        public UserCountry Country { get; private set; }
-        public CountryId CountryId { get; private set; }
+        public UserCountry Country { get; private set; }        
+        public UserCountryId CountryId { get; private set; }        
 
         public User() { }
         private User(UserId userId,
@@ -28,8 +28,8 @@ namespace BlockBuster.IAM.Domain.UserAggregate
             UserHashedPassword userHashedPassword,
             UserFirstName userFirstName,
             UserLastName userLastName,
-            UserRole userRole,
-            UserCountry userCountry,
+            UserRole userRole,            
+            UserCountryId userCountryId,
             UserCreatedAt userCreatedAt,
             UserUpdatedAt userUpdatedAt
             )
@@ -40,8 +40,7 @@ namespace BlockBuster.IAM.Domain.UserAggregate
             this.FirstName = userFirstName;
             this.LastName = userLastName;
             this.Role = userRole;
-            this.Country = userCountry;
-            this.CountryId = userCountry.GetValue().Id;
+            this.CountryId = userCountryId;            
             this.CreatedAt = userCreatedAt;
             this.UpdatedAt = userUpdatedAt;
         }
@@ -51,7 +50,7 @@ namespace BlockBuster.IAM.Domain.UserAggregate
             UserFirstName userFirstName,
             UserLastName userLastName,
             UserRole userRole,
-            UserCountry userCountry)
+            UserCountryId userCountryId)
         {
             var userCreatedAt = new UserCreatedAt(DateTime.Now);
             var userUpdatedAt = new UserUpdatedAt(DateTime.Now);
@@ -62,7 +61,7 @@ namespace BlockBuster.IAM.Domain.UserAggregate
                 userFirstName,
                 userLastName,
                 userRole,
-                userCountry,
+                userCountryId,
                 userCreatedAt,
                 userUpdatedAt);
 

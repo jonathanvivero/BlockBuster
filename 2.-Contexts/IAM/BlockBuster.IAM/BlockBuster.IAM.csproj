@@ -19,6 +19,7 @@
     <ProjectReference Include="..\..\..\1.-Shared\3.-Infrastructure\Persistence\BlockBuster.Shared.Infrastructure.Persistence\BlockBuster.Shared.Infrastructure.Persistence.csproj" />
     <ProjectReference Include="..\..\..\1.-Shared\3.-Infrastructure\Security\BlockBuster.Shared.Infrastructure.Security\BlockBuster.Shared.Infrastructure.Security.csproj" />
     <ProjectReference Include="..\..\..\1.-Shared\4.-Domain\BlockBuster.Shared.Domain\BlockBuster.Shared.Domain.csproj" />
+    <ProjectReference Include="..\..\GEO\BlockBuster.GEO\BlockBuster.GEO.csproj" />
   </ItemGroup>
 
   <ItemGroup>

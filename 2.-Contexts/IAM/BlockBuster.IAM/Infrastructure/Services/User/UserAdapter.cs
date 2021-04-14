@@ -1,7 +1,4 @@
-﻿using BlockBuster.IAM.Domain.UserAggregate;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using BlockBuster.IAM.Domain.UserAggregate.ValueObjects;
 
 namespace BlockBuster.IAM.Infrastructure.Services.User
 {
@@ -14,7 +11,7 @@ namespace BlockBuster.IAM.Infrastructure.Services.User
             _userFacade = userFacade;            
         }
 
-        public Country FindCountryFromCountryCode(string countryCode)
+        public UserCountryId FindCountryFromCountryCode(string countryCode)
         {
             return _userFacade.FindCountryFromCountryCode(countryCode);
         }

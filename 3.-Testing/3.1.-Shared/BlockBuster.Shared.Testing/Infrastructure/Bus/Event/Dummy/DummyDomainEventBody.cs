@@ -1,8 +1,5 @@
 ﻿using BlockBuster.Shared.Domain.Events;
 using BlockBuster.Shared.Domain.ValueObjects;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BlockBuster.Shared.Testing.Infrastructure.Bus.Event.Dummy
 {
@@ -10,8 +7,8 @@ namespace BlockBuster.Shared.Testing.Infrastructure.Bus.Event.Dummy
     {
         public DummyDomainEventBody()
         {
-            var svo = new StringValueObject(string.Empty);
-            Add("test", typeof(StringValueObject));
+            var svo = new DummyStringValueObject(string.Empty);
+            Add<string>("test", svo);
         }
     }
 }

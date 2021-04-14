@@ -46,6 +46,7 @@ namespace BlockBuster.Shared.UI.ContextStartup
             var useCases = AppDomain.CurrentDomain.GetAssemblies()
                 .SelectMany(s => s.GetTypes())
                 .Where(p => useCaseInterfaceType.IsAssignableFrom(p)
+                    && !p.IsInterface && !p.IsAbstract
                     && p.Name != UseCaseResources.UseCaseInterfaceName);
 
             foreach (Type useCase in useCases)
@@ -53,7 +54,7 @@ namespace BlockBuster.Shared.UI.ContextStartup
                 useCaseBus.Subscribe((IUseCase)_serviceProvider.GetService(useCase));
             }
 
-            IDictionary<IBlockBusterContext, IList<IMiddlewareHandler>> contextMiddlewares =
+            IDictionary<string, IList<IMiddlewareHandler>> contextMiddlewares =
                 GetContextMiddlewareAlongApp<IStartupContextMiddlewareInstaller>();
 
             IList<IMiddlewareHandler> middlewareHandlers = new List<IMiddlewareHandler>()
@@ -120,7 +121,7 @@ namespace BlockBuster.Shared.UI.ContextStartup
             return this;
         }
 
-        public IDictionary<IBlockBusterContext, IList<IMiddlewareHandler>> GetContextMiddlewareAlongApp<TInterface>(string contextPrefix = null)
+        public IDictionary<string, IList<IMiddlewareHandler>> GetContextMiddlewareAlongApp<TInterface>(string contextPrefix = null)
             where TInterface : IStartupContextMiddlewareInstaller
         {
             var paramList = new object[] { this };
@@ -128,7 +129,13 @@ namespace BlockBuster.Shared.UI.ContextStartup
 
             var contextMiddlewareHandlers = installers
                 .Select(s => s.GetContextMiddlewares())
-                .ToDictionary(k => k.Key, v => v.Value);                
+                .ToDictionary(
+                    k => k.Key
+                        .GetType()
+                        .FullName
+                        .Split('.')
+                        .LastOrDefault(), 
+                    v => v.Value);
             
             return contextMiddlewareHandlers;
         }
