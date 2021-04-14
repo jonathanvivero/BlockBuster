@@ -120,6 +120,9 @@
   <data name="Email" xml:space="preserve">
     <value>Email</value>
   </data>
+  <data name="FieldCountry" xml:space="preserve">
+    <value>Country</value>
+  </data>
   <data name="FieldCountryCode" xml:space="preserve">
     <value>CountryCode</value>
   </data>

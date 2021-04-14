@@ -15,12 +15,12 @@ namespace BlockBuster.Shared.Infrastructure.Bus.UseCase
     {
         private IDictionary<string, UseCaseMiddleware> _useCases;
         private IList<IMiddlewareHandler> _middlewareHandlers;
-        private IDictionary<IBlockBusterContext, IList<IMiddlewareHandler>> _contextMiddlewareHandlers;
+        private IDictionary<string, IList<IMiddlewareHandler>> _contextMiddlewareHandlers;
         private readonly UseCaseBusValidator _useCaseBusValidator;
 
         public UseCaseBus(UseCaseBusValidator useCaseBusValidator)
         {
-            _contextMiddlewareHandlers = new Dictionary<IBlockBusterContext, IList<IMiddlewareHandler>>();
+            _contextMiddlewareHandlers = new Dictionary<string, IList<IMiddlewareHandler>>();
             _useCaseBusValidator = useCaseBusValidator;
             _useCases = new Dictionary<string, UseCaseMiddleware>();
         }
@@ -30,7 +30,7 @@ namespace BlockBuster.Shared.Infrastructure.Bus.UseCase
             _middlewareHandlers = middlewareHandlers;
         }
 
-        public void SetContextMiddlewares(IDictionary<IBlockBusterContext, IList<IMiddlewareHandler>> contextMiddlewareHandlers)            
+        public void SetContextMiddlewares(IDictionary<string, IList<IMiddlewareHandler>> contextMiddlewareHandlers)            
         {
             _contextMiddlewareHandlers = contextMiddlewareHandlers;
         }
@@ -41,26 +41,24 @@ namespace BlockBuster.Shared.Infrastructure.Bus.UseCase
             _useCases.Add(className, new UseCaseMiddleware(useCase));
         }
 
-        public IResponse Dispatch(IRequest req, IBlockBusterContext context = null)
+        public IResponse Dispatch(IRequest req)
         {
             IMiddlewareHandler handler;
             string useCaseName = req.GetUseCaseName();
 
             _useCaseBusValidator.UseCaseExists(_useCases, useCaseName);
 
-            handler = _useCases[useCaseName];
+            var useCase = _useCases[useCaseName];
+            handler = (IMiddlewareHandler)useCase;
 
-            if (context != null && _contextMiddlewareHandlers.ContainsKey(context))
-            {
-                var middlewareHandlers = _contextMiddlewareHandlers[context];
-                foreach (IMiddlewareHandler middlewareHandler in middlewareHandlers)
-                {
-                    middlewareHandler.SetNext(handler);
-                    handler = middlewareHandler;
-                }
-            }
+            var contextName = useCase.GetContextName();
 
-            foreach (IMiddlewareHandler middlewareHandler in _middlewareHandlers)
+            var middlewareHandlers = (List<IMiddlewareHandler>)_middlewareHandlers;
+            
+            if (_contextMiddlewareHandlers.ContainsKey(contextName))            
+                middlewareHandlers.InsertRange(0,_contextMiddlewareHandlers[contextName]);                
+
+            foreach (IMiddlewareHandler middlewareHandler in middlewareHandlers)
             {
                 middlewareHandler.SetNext(handler);
                 handler = middlewareHandler;

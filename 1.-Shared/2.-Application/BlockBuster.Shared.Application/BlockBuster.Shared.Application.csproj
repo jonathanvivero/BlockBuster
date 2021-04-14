@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\3.-Infrastructure\Persistence\BlockBuster.Shared.Infrastructure.Persistence\BlockBuster.Shared.Infrastructure.Persistence.csproj" />
     <ProjectReference Include="..\..\4.-Domain\BlockBuster.Shared.Domain\BlockBuster.Shared.Domain.csproj" />
   </ItemGroup>
 

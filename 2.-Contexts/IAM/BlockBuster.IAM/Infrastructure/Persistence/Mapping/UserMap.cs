@@ -27,7 +27,7 @@ namespace BlockBuster.IAM.Infrastructure.Presistence.Mapping
                             .HasColumnType("nvarchar(40)")
                             .HasConversion(
                                 v => v.GetValue(),
-                                v => new CountryId(v)
+                                v => new UserCountryId(v)
                             ).IsRequired();
 
             builder.Property(p => p.Email)

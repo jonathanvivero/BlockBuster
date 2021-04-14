@@ -49,9 +49,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.2.Contexts", "3.2.Context
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AIM", "AIM", "{5C1C21BC-0A1F-44F8-9DE7-943EFEC1EDB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlockBuster.Shared.Testing", "3.-Testing\3.1.-Shared\BlockBuster.Shared.Testing\BlockBuster.Shared.Testing.csproj", "{775EDC5E-0567-47A0-98C6-1D5118CB4FBF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlockBuster.Shared.Testing", "3.-Testing\3.1.-Shared\BlockBuster.Shared.Testing\BlockBuster.Shared.Testing.csproj", "{775EDC5E-0567-47A0-98C6-1D5118CB4FBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlockBuster.AIM.Testing", "3.-Testing\3.2.-Contexts\AIM\BlockBuster.AIM.Testing\BlockBuster.AIM.Testing.csproj", "{ECF72196-00F5-42B6-9C5F-5C9D565CC396}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlockBuster.AIM.Testing", "3.-Testing\3.2.-Contexts\AIM\BlockBuster.AIM.Testing\BlockBuster.AIM.Testing.csproj", "{ECF72196-00F5-42B6-9C5F-5C9D565CC396}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GEO", "GEO", "{3BF96AE5-4865-4C2B-B4F5-92562B2CA53E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlockBuster.GEO", "2.-Contexts\GEO\BlockBuster.GEO\BlockBuster.GEO.csproj", "{CD93F6FF-B174-4465-B186-BFFDB6E0A159}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -111,6 +115,10 @@ Global
 		{ECF72196-00F5-42B6-9C5F-5C9D565CC396}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ECF72196-00F5-42B6-9C5F-5C9D565CC396}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ECF72196-00F5-42B6-9C5F-5C9D565CC396}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD93F6FF-B174-4465-B186-BFFDB6E0A159}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD93F6FF-B174-4465-B186-BFFDB6E0A159}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD93F6FF-B174-4465-B186-BFFDB6E0A159}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD93F6FF-B174-4465-B186-BFFDB6E0A159}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -138,6 +146,8 @@ Global
 		{5C1C21BC-0A1F-44F8-9DE7-943EFEC1EDB8} = {401FF511-2336-4114-9CDD-D3B53EDE0842}
 		{775EDC5E-0567-47A0-98C6-1D5118CB4FBF} = {42F88355-7ECC-43C4-AE81-CD097F58296C}
 		{ECF72196-00F5-42B6-9C5F-5C9D565CC396} = {5C1C21BC-0A1F-44F8-9DE7-943EFEC1EDB8}
+		{3BF96AE5-4865-4C2B-B4F5-92562B2CA53E} = {AEC2DD3B-07FC-4528-B223-371ECC5D3C6F}
+		{CD93F6FF-B174-4465-B186-BFFDB6E0A159} = {3BF96AE5-4865-4C2B-B4F5-92562B2CA53E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {64821E33-4A8D-40DB-8483-3ADA8FFB4095}

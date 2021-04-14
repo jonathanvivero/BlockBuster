@@ -24,12 +24,6 @@ namespace BlockBuster.IAM.Infrastructure.Persistence.Seed
         }
         public override void SeedDatabase()
         {
-            Country mainCountry = _context
-                .Countries
-                .Where(w => w.Code.GetValue() == "ESP")
-                .FirstOrDefault();                
-            
-
             if (!_context.Users.Any())
             {
                 string id = new Guid().ToString();
@@ -47,7 +41,7 @@ namespace BlockBuster.IAM.Infrastructure.Persistence.Seed
                     fistName,
                     lastName,
                     role,
-                    mainCountry);
+                    "d5a29699-eff3-448c-986a-10e06a1753b4");
 
                 _userRepository.Add(user);
                 _context.SaveChanges();

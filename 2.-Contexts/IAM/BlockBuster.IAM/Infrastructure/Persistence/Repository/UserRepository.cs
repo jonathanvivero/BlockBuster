@@ -50,14 +50,5 @@ namespace BlockBuster.IAM.Infrastructure.Presistence.Repositories
                     .Take(page["size"]);
             }
         }
-
-        public Country FindCountryByCode(CountryCode countryCode)
-        {
-            using (var scope = this.serviceScopeFactory.CreateScope())
-            {
-                var dbContext = scope.ServiceProvider.GetRequiredService<IBlockBusterIAMContext>();
-                return dbContext.Countries.FirstOrDefault(w => w.Code.GetValue() == countryCode.GetValue());
-            }
-        }
     }
 }

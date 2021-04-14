@@ -15,7 +15,7 @@ namespace BlockBuster.Presentation.REST.Controllers.Tokens
         public TokenPostController(
             IUseCaseBus useCaseBus,
             IBlockBusterIAMContext context)
-            : base(useCaseBus, context) { }
+            : base(useCaseBus) { }
 
         [AllowAnonymous]
         [HttpPost(Name = nameof(Create))]

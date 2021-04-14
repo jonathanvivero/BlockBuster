@@ -7,16 +7,17 @@ namespace BlockBuster.Shared.Infrastructure.Bus.Middleware
 {
     public class UseCaseMiddleware : MiddlewareHandler
     {
-        private IUseCase useCase;
+        private IUseCase _useCase;        
 
         public UseCaseMiddleware(IUseCase useCase)
         {
-            this.useCase = useCase;
+            _useCase = useCase;
         }
 
         public override IResponse Handle(IRequest request)
-        {
-            return useCase.Execute(request);
-        }
+            => _useCase.Execute(request);
+        public string GetContextName() 
+            => _useCase.GetContextName();
+
     }
 }

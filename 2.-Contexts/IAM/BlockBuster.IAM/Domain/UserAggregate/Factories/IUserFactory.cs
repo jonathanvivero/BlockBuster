@@ -12,6 +12,6 @@ namespace BlockBuster.IAM.Domain.UserAggregate.Factories
             string firstName,
             string lastName,
             string role,
-            Country countryCode);
+            string countryId);
     }
 }
