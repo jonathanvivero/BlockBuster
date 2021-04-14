@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\1.-Shared\2.-Application\BlockBuster.Shared.Application\BlockBuster.Shared.Application.csproj" />
+    <ProjectReference Include="..\..\..\1.-Shared\3.-Infrastructure\BlockBuster.Shared.Infrastructure.Bus\BlockBuster.Shared.Infrastructure.Bus.csproj" />
   </ItemGroup>
 
 </Project>

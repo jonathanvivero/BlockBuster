@@ -12,7 +12,7 @@ namespace BlockBuster.AIM.Testing
         [Test]
         public void Test1()
         {
-            Assert.Pass();
+            //Assert.Pass("Ok");
         }
     }
 }
