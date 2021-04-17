@@ -34,14 +34,22 @@ namespace BlockBuster.Shared.Domain.Events.Validator
                 .Where(w => w.TypeIs(ruleValue))
                 .FirstOrDefault();
 
-            try
-            {
                 specificationValidator.IsValid(bodyValue, key, domainName);
-            }
-            catch (NullReferenceException)
-            { 
-                throw DomainEventException.FromInvalidRule(key, domainName);
-            }                        
+            //try
+            //{
+            //}
+            //catch (NullReferenceException)
+            //{
+            //    throw DomainEventException.FromInvalidRule(key, domainName);
+            //}
+            //catch(DomainEventException ex)
+            //{
+            //    throw ex;
+            //}
+            //catch (System.Exception ex)
+            //{
+            //    throw ex;
+            //}
         }
     }
 }

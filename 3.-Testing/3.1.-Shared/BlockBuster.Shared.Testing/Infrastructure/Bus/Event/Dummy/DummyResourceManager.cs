@@ -9,7 +9,7 @@ namespace BlockBuster.Shared.Testing.Infrastructure.Bus.Event.Dummy
     {
         public override string GetString(string name)
         {
-            return string.Empty;
+            return name;
         }
     }
 }

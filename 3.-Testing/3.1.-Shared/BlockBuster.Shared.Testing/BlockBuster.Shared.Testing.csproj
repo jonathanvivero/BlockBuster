@@ -18,4 +18,19 @@
     <ProjectReference Include="..\..\..\1.-Shared\3.-Infrastructure\BlockBuster.Shared.Infrastructure.Bus\BlockBuster.Shared.Infrastructure.Bus.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Infrastructure\Resources\TestingResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>TestingResources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Infrastructure\Resources\TestingResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>TestingResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>
