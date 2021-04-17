@@ -43,6 +43,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>IAMResources.resx</DependentUpon>
     </Compile>
+    <Compile Update="Infrastructure\Resources\MailTemplateResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MailTemplateResources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -61,6 +66,10 @@
     <EmbeddedResource Update="Infrastructure\Resources\IAMResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>IAMResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Infrastructure\Resources\MailTemplateResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MailTemplateResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 

@@ -1,5 +1,6 @@
 ﻿
 using BlockBuster.IAM.Application.Converters.User;
+using BlockBuster.IAM.Application.UseCases.Email;
 using BlockBuster.IAM.Domain.UserAggregate.Factories;
 using BlockBuster.IAM.Domain.UserAggregate.Repository;
 using BlockBuster.IAM.Domain.UserAggregate.Validators;
@@ -20,6 +21,7 @@ namespace BlockBuster.IAM.Application.UseCases.User.SignUp
         private readonly UserConverter _userConverter;
         private readonly IEventProvider _eventProvider;
         private readonly UserAdapter _userAdapter;
+        private readonly UserSendWelcomeEmailAdapter _userSendWelcomeEmailAdapter;
         
         public UserSignUpUseCase(
             IUserFactory userFactory,
@@ -29,6 +31,7 @@ namespace BlockBuster.IAM.Application.UseCases.User.SignUp
             UserConverter userConverter,
             IEventProvider eventProvider,
             UserAdapter userAdapter,
+            UserSendWelcomeEmailAdapter userSendWelcomeEmailAdapter,
             IBlockBusterIAMContext context)
             : base(context)
         {
@@ -38,6 +41,7 @@ namespace BlockBuster.IAM.Application.UseCases.User.SignUp
             _userConverter = userConverter;
             _eventProvider = eventProvider;
             _userAdapter = userAdapter;
+            _userSendWelcomeEmailAdapter = userSendWelcomeEmailAdapter;
         }
 
         public override IResponse Execute(IRequest req)
@@ -59,9 +63,12 @@ namespace BlockBuster.IAM.Application.UseCases.User.SignUp
                 request.Role,
                 countryId.GetValue());
 
+
             _eventProvider.RecordEvents(user.ReleaseEvents());
 
             _userRepository.Add(user);
+
+            _userSendWelcomeEmailAdapter.SendUserSignedUpWelcomeEmail(user);
 
             return _userConverter.Convert();
         }

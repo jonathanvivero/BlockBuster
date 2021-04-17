@@ -1,4 +1,5 @@
-﻿using BlockBuster.IAM.Domain.UserAggregate.ValueObjects;
+﻿using BlockBuster.IAM.Application.UseCases.Email;
+using BlockBuster.IAM.Domain.UserAggregate.ValueObjects;
 
 namespace BlockBuster.IAM.Infrastructure.Services.User
 {
@@ -15,5 +16,7 @@ namespace BlockBuster.IAM.Infrastructure.Services.User
         {
             return _userFacade.FindCountryFromCountryCode(countryCode);
         }
+
+       
     }
 }

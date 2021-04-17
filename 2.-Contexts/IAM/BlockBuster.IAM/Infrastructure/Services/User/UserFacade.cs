@@ -23,5 +23,6 @@ namespace BlockBuster.IAM.Infrastructure.Services.User
             IResponse response = _useCaseBus.Dispatch(request);
             return _userTranslator.FromFindCountryIdByCodeResponseToUserCountryId(response);
         }
+        
     }
 }
