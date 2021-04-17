@@ -12,7 +12,8 @@ namespace BlockBuster.Shared.Domain.Events
         protected IDictionary<string, string> _body;
         public int Count { get; private set; }
         public DomainEventBody()
-        {            
+        {
+            _body = new Dictionary<string, string>();
         }
 
         public DomainEventBody SetDomainName(string name)
