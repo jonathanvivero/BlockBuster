@@ -72,7 +72,7 @@ namespace BlockBuster.IAM.Domain.UserAggregate
                 )
             );
 
-            return user;
+            return user;    
         }
 
     }

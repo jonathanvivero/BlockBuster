@@ -18,6 +18,11 @@ namespace BlockBuster.Shared.Testing.Domain.UserAggregate.Stub
         {
             return Create(UserRole.ROLE_ADMIN);
         }
-        
+
+        public static UserRole NotExistingRole()
+        {
+            return Create("wrong_role");
+        }
+
     }
 }

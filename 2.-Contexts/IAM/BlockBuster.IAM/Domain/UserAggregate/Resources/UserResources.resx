@@ -151,7 +151,7 @@
     <value>Password</value>
   </data>
   <data name="PasswordPattern" xml:space="preserve">
-    <value>/^([a-zA-Z0-9]{8,20})$/</value>
+    <value>^([a-zA-Z0-9]{8,20})$</value>
   </data>
   <data name="ROLE_ADMIN" xml:space="preserve">
     <value />

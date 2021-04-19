@@ -160,7 +160,7 @@ namespace BlockBuster.IAM.Domain.UserAggregate.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a /^([a-zA-Z0-9]{8,20})$/.
+        ///   Busca una cadena traducida similar a ^([a-zA-Z0-9]{8,20})$.
         /// </summary>
         public static string PasswordPattern {
             get {

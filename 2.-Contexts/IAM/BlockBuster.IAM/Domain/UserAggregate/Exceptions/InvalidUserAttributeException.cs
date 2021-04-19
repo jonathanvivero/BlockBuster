@@ -1,4 +1,5 @@
-﻿using BlockBuster.Shared.Domain.Exceptions;
+﻿using BlockBuster.IAM.Domain.UserAggregate.Resources;
+using BlockBuster.Shared.Domain.Exceptions;
 
 namespace BlockBuster.IAM.Domain.UserAggregate.Exceptions
 {
@@ -8,5 +9,11 @@ namespace BlockBuster.IAM.Domain.UserAggregate.Exceptions
         {
 
         }
+
+        public static InvalidUserAttributeException FromMisMatchingPasswords()
+        {
+            return new InvalidUserAttributeException(UserResources.ValidationPasswordShouldMatchRepeatPassword);
+        }
+
     }
 }

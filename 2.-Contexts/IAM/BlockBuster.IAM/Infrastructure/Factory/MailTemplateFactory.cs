@@ -9,12 +9,7 @@ using System.Text;
 namespace BlockBuster.IAM.Infrastructure.Factory
 {
     public class MailTemplateFactory
-    {
-        private readonly IConfiguration _configuration;
-        public MailTemplateFactory(IConfiguration configuration)
-        {
-            _configuration = configuration;
-        }
+    {                
         public UserSignedUpWelcomeEmailTemplate CreateUserSignedUpWelcomeEmail(
             string userSignedUpEmail,
             string userSignedUpFirstName, 
@@ -34,5 +29,5 @@ namespace BlockBuster.IAM.Infrastructure.Factory
 
             return emailContent;
         }
-    }
+    }   
 }
