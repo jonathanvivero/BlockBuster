@@ -15,5 +15,10 @@ namespace BlockBuster.IAM.Domain.UserAggregate.Exceptions
             return new InvalidUserAttributeException(UserResources.ValidationPasswordShouldMatchRepeatPassword);
         }
 
+        public static InvalidUserAttributeException FromNullCountry()
+        { 
+            return new InvalidUserAttributeException(UserResources.ErrorCountryIsNull);
+        }
+
     }
 }

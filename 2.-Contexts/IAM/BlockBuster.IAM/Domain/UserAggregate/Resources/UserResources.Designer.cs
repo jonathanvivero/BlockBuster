@@ -70,6 +70,15 @@ namespace BlockBuster.IAM.Domain.UserAggregate.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a El País es nulo.
+        /// </summary>
+        public static string ErrorCountryIsNull {
+            get {
+                return ResourceManager.GetString("ErrorCountryIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Country.
         /// </summary>
         public static string FieldCountry {

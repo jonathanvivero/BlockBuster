@@ -17,11 +17,11 @@ namespace BlockBuster.IAM.Infrastructure.Services.User
             _userTranslator = userTranslator;
         }
 
-        public UserCountryId FindCountryFromCountryCode(string countryCode)
+        public UserCountry FindCountryFromCountryCode(string countryCode)
         {
-            var request = new FindCountryIdByCodeRequest(countryCode);
+            var request = new FindCountryByCodeRequest(countryCode);
             IResponse response = _useCaseBus.Dispatch(request);
-            return _userTranslator.FromFindCountryIdByCodeResponseToUserCountryId(response);
+            return _userTranslator.FromFindCountryByCodeResponseToUserCountry(response);
         }
         
     }

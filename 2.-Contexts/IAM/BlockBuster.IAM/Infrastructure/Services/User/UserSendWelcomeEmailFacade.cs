@@ -11,8 +11,7 @@ namespace BlockBuster.IAM.Infrastructure.Services.User
     {
         private readonly IUseCaseBus _useCaseBus;
        
-        public UserSendWelcomeEmailFacade(IUseCaseBus useCaseBus,
-            UserTranslator userTranslator)
+        public UserSendWelcomeEmailFacade(IUseCaseBus useCaseBus)
         {
             _useCaseBus = useCaseBus;        
         }

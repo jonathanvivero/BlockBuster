@@ -5,11 +5,11 @@ using System.Text;
 
 namespace BlockBuster.GEO.Country.Application.UseCase.FindByCode
 {
-    public class FindCountryIdByCodeRequest: IRequest
+    public class FindCountryByCodeRequest: IRequest
     {
         public string Code { get; }
 
-        public FindCountryIdByCodeRequest(string code)
+        public FindCountryByCodeRequest(string code)
         {
             this.Code = code;
         }

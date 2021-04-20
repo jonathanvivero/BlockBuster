@@ -12,7 +12,7 @@ namespace BlockBuster.IAM.Infrastructure.Services.User
             _userFacade = userFacade;            
         }
 
-        public UserCountryId FindCountryFromCountryCode(string countryCode)
+        public UserCountry FindCountryFromCountryCode(string countryCode)
         {
             return _userFacade.FindCountryFromCountryCode(countryCode);
         }

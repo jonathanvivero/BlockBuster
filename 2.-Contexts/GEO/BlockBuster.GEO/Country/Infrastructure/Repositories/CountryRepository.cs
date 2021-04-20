@@ -16,15 +16,14 @@ namespace BlockBuster.GEO.Country.Infrastructure.Repositories
         {
             this.serviceScopeFactory = serviceScopeFactory;
         }
-        public CountryId FindIdByCode(CountryCode countryCode)
+        public Domain.CountryAggregate.Country FindByCode(CountryCode countryCode)
         {
             using (var scope = this.serviceScopeFactory.CreateScope())
             {
                 var dbContext = scope.ServiceProvider.GetRequiredService<IBlockBusterCountryContext>();
-                return dbContext.Countries
-                    .Where(w => w.Code.GetValue() == countryCode.GetValue())
-                    .Select(s => s.Id)
-                    .FirstOrDefault();                    
+                return dbContext
+                    .Countries
+                    .FirstOrDefault(w => w.Code.GetValue() == countryCode.GetValue());
             }
         }
     }

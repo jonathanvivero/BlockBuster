@@ -1,7 +1,9 @@
-﻿using BlockBuster.IAM.Domain.UserAggregate;
+﻿using BlockBuster.GEO.Country.Domain.CountryAggregate;
+using BlockBuster.IAM.Domain.UserAggregate;
 using BlockBuster.IAM.Domain.UserAggregate.Factories;
 using BlockBuster.IAM.Domain.UserAggregate.ValueObjects;
 using BlockBuster.IAM.Infrastructure.Services.Hashing;
+using BlockBuster.IAM.Infrastructure.Services.User;
 
 namespace BlockBuster.IAM.Infrastructure.Factory
 {
@@ -22,14 +24,14 @@ namespace BlockBuster.IAM.Infrastructure.Factory
             string firstName,
             string lastName,
             string role,
-            string countryId)
+            string countryId,
+            Country country)
         {            
             UserId userId = new UserId(id);
             UserCountryId userCountryId = new UserCountryId(countryId);
-            UserEmail userEmail = new UserEmail(email);
-
+            UserEmail userEmail = new UserEmail(email);            
             UserPassword.Validate(password, repeatPassword);
-
+            UserCountry userCountry = new UserCountry(country);
             UserRole userRole = new UserRole(role);
             UserFirstName userFirstName = new UserFirstName(firstName);
             UserLastName userLastName = new UserLastName(lastName);
@@ -42,7 +44,8 @@ namespace BlockBuster.IAM.Infrastructure.Factory
                 userFirstName,
                 userLastName,
                 userRole,
-                userCountryId);
+                userCountryId,
+                userCountry);
         }
     }
 }

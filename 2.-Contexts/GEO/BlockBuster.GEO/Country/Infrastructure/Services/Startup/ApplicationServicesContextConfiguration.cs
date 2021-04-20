@@ -15,10 +15,10 @@ namespace BlockBuster.GEO.Country.Infrastructure.Services.Startup
         {
             _configureServicesInstaller
                 .GetServiceCollection()                
-                .AddScoped<FindCountryIdByCodeUseCase>()
+                .AddScoped<FindCountryByCodeUseCase>()
 
-                .AddScoped<FindCountryIdByCodeRequest>()
-                .AddScoped<FindCountryIdByCodeResponse>()
+                .AddScoped<FindCountryByCodeRequest>()
+                .AddScoped<FindCountryByCodeResponse>()
                 ;
         }
     }

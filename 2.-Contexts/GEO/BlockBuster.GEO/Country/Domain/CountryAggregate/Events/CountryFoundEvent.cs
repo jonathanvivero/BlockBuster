@@ -1,6 +1,5 @@
 ﻿using BlockBuster.GEO.Country.Infrastructure.Resources;
 using BlockBuster.Shared.Domain.Events;
-using System.Resources;
 
 namespace BlockBuster.GEO.Country.Domain.CountryAggregate.Events
 {

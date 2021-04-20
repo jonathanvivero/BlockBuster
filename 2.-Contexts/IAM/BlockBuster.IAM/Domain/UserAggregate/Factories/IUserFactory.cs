@@ -1,4 +1,5 @@
-﻿using BlockBuster.IAM.Application.UseCases.User.SignUp;
+﻿using BlockBuster.GEO.Country.Domain.CountryAggregate;
+using BlockBuster.IAM.Application.UseCases.User.SignUp;
 
 namespace BlockBuster.IAM.Domain.UserAggregate.Factories
 {
@@ -12,6 +13,7 @@ namespace BlockBuster.IAM.Domain.UserAggregate.Factories
             string firstName,
             string lastName,
             string role,
-            string countryId);
+            string countryId,
+            Country country);
     }
 }

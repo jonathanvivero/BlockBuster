@@ -14,7 +14,7 @@ namespace BlockBuster.GEO.Country.Application.Converters
         
         public IResponse Convert(CountryId countryId)
         {
-            var response = new FindCountryIdByCodeResponse(countryId);
+            var response = new FindCountryByCodeResponse(countryId);
 
             return response;
         }

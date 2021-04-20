@@ -9,10 +9,10 @@ namespace BlockBuster.IAM.Infrastructure.Services.User
 {
     public class UserTranslator
     {
-        public UserCountryId FromFindCountryIdByCodeResponseToUserCountryId(IResponse resp)
+        public UserCountry FromFindCountryByCodeResponseToUserCountry(IResponse resp)
         {
-            FindCountryIdByCodeResponse response = resp as FindCountryIdByCodeResponse;
-            return new UserCountryId(response.Id);
+            FindCountryByCodeResponse response = resp as FindCountryByCodeResponse;
+            return new UserCountry(response.Country);
         }
     }
 }

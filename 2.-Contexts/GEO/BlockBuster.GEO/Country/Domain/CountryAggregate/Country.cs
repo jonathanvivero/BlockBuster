@@ -1,8 +1,5 @@
 ﻿using BlockBuster.Shared.Domain.Aggregates;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace BlockBuster.GEO.Country.Domain.CountryAggregate
 {

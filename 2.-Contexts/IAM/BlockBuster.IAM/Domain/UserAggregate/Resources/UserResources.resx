@@ -120,6 +120,9 @@
   <data name="Email" xml:space="preserve">
     <value>Email</value>
   </data>
+  <data name="ErrorCountryIsNull" xml:space="preserve">
+    <value>El País es nulo</value>
+  </data>
   <data name="FieldCountry" xml:space="preserve">
     <value>Country</value>
   </data>

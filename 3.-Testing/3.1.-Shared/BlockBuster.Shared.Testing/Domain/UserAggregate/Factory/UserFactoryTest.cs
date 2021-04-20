@@ -64,7 +64,7 @@ namespace BlockBuster.Shared.Testing.Domain.UserAggregate.Factory
                 UserCountryIdStub.ByDefault().GetValue()
                 );
 
-            Assert.Throws<InvalidAttributeException>(dlg);
+            Assert.Throws<InvalidUserAttributeException>(dlg);
         }
 
         [Test]
@@ -107,7 +107,6 @@ namespace BlockBuster.Shared.Testing.Domain.UserAggregate.Factory
             var ex = Assert.Throws(typeof(InvalidAttributeException),dlg);
             Assert.IsTrue(ex.Message.Contains("Role"));         
         }
-
 
     }
 }
