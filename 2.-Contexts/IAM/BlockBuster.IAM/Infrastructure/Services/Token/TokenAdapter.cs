@@ -5,13 +5,13 @@ using System.Text;
 
 namespace BlockBuster.IAM.Infrastructure.Services.Token
 {
-    public class TokenAdapter
+    public class TokenAdapter : ITokenAdapter
     {
-        private readonly TokenFacade _tokenFacade;
-        private readonly TokenTranslator _tokenTranslator;
+        private readonly ITokenFacade _tokenFacade;
+        private readonly ITokenTranslator _tokenTranslator;
         public TokenAdapter(
-            TokenFacade tokenFacade,
-            TokenTranslator tokenTranslator)
+            ITokenFacade tokenFacade,
+            ITokenTranslator tokenTranslator)
         {
             _tokenFacade = tokenFacade;
             _tokenTranslator = tokenTranslator;

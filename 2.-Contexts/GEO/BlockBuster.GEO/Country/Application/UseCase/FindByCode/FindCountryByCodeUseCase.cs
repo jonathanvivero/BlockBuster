@@ -5,12 +5,12 @@ using BlockBuster.Shared.Application.Bus.UseCase;
 
 namespace BlockBuster.GEO.Country.Application.UseCase.FindByCode
 {
-    public class FindCountryIdByCodeUseCase : UseCaseBase
+    public class FindCountryByCodeUseCase : UseCaseBase
     {
         private readonly ICountryRepository _countryRepository;
         private readonly CountryConverter _countryConverter;        
         
-        public FindCountryIdByCodeUseCase(
+        public FindCountryByCodeUseCase(
             ICountryRepository countryRepository,
             CountryConverter countryConverter,
             IBlockBusterCountryContext context)
@@ -22,13 +22,13 @@ namespace BlockBuster.GEO.Country.Application.UseCase.FindByCode
 
         public override IResponse Execute(IRequest req)
         {
-            FindCountryIdByCodeRequest request = req as FindCountryIdByCodeRequest;
+            FindCountryByCodeRequest request = req as FindCountryByCodeRequest;
 
             CountryCode countryCode = new CountryCode(request.Code);
 
-            var countryId = _countryRepository.FindIdByCode(countryCode);                                    
+            var country = _countryRepository.FindByCode(countryCode);                                    
 
-            return _countryConverter.Convert(countryId);
+            return _countryConverter.Convert(country);
         }
         
     }

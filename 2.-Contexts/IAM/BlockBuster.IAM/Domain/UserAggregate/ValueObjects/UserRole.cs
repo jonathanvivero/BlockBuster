@@ -13,7 +13,6 @@ namespace BlockBuster.IAM.Domain.UserAggregate.ValueObjects
         {
             if (value != ROLE_ADMIN && value != ROLE_USER)
                 throw InvalidUserAttributeException.FromText(UserResources.ValidationRoleIsNotValid);
-        }
-        
+        }        
     }
 }

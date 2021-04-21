@@ -16,10 +16,11 @@ namespace BlockBuster.Shared.Domain.Events
         protected ResourceManager _resourceManager;
         protected string _classType;
 
-        public DomainEvent(string aggregateId, DomainEventBody body)
+        public DomainEvent(string aggregateId, DomainEventBody body, ResourceManager resourceManager)
         {
             _aggregateId = aggregateId;
             _classType = this.GetType().Name;
+            _resourceManager = resourceManager;
             SetBody(
                 body.SetDomainName(
                     SetEventName()
@@ -50,8 +51,7 @@ namespace BlockBuster.Shared.Domain.Events
         }
 
         // protected abstract IDictionary<string, string> Rules();
-        protected abstract DomainEventRules Rules();
-        protected abstract void SetResourceManager();
+        protected abstract DomainEventRules Rules();        
         protected string SetEventName()
         { 
             _eventName = _resourceManager.GetString(_classType);

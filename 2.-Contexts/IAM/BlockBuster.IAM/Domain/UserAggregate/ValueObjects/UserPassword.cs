@@ -29,9 +29,7 @@ namespace BlockBuster.IAM.Domain.UserAggregate.ValueObjects
         public static void Validate(string password, string repeatPassword)
         {
             if (password != repeatPassword)
-                throw InvalidUserAttributeException.FromText(
-                    UserResources.ValidationPasswordShouldMatchRepeatPassword
-                );
+                throw InvalidUserAttributeException.FromMisMatchingPasswords();
         }
     }
 }

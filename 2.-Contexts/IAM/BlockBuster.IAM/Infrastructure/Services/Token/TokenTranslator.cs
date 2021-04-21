@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BlockBuster.IAM.Infrastructure.Services.Token
 {
-    public class TokenTranslator
+    public class TokenTranslator: ITokenTranslator
     {
         public TokenTranslator()
         {

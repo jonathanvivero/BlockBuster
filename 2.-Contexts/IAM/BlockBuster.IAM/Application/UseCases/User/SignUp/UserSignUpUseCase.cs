@@ -50,8 +50,8 @@ namespace BlockBuster.IAM.Application.UseCases.User.SignUp
             
             _userSignUpEmailDoesNotExistValidator.Validate(request.Email);
 
-            UserCountryId countryId = _userAdapter.FindCountryFromCountryCode(request.Country.Code);
-            _userSignUpCountryExistsValidator.Validate(countryId, request.Country.Code);
+            UserCountry country = _userAdapter.FindCountryFromCountryCode(request.Country.Code);
+            _userSignUpCountryExistsValidator.Validate(country, request.Country.Code);
 
             var user = _userFactory.Create(
                 request.Id,
@@ -61,7 +61,8 @@ namespace BlockBuster.IAM.Application.UseCases.User.SignUp
                 request.FirstName,
                 request.LastName,
                 request.Role,
-                countryId.GetValue());
+                country.GetValue().Id.GetValue(), 
+                country.GetValue());
 
 
             _eventProvider.RecordEvents(user.ReleaseEvents());

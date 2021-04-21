@@ -9,14 +9,13 @@ namespace BlockBuster.IAM.Domain.TokenAggregate.Events
 {
     public class TokenCreatedEvent : DomainEvent
     {
-        public TokenCreatedEvent(string aggregatId, DomainEventBody body) : base(aggregatId, body) { }
+        public TokenCreatedEvent(
+            string aggregatId, 
+            DomainEventBody body) 
+            : base(aggregatId, body, IAMResources.ResourceManager) { }
 
         protected override DomainEventRules Rules()
             => new TokenCreatedEventRules(Name());
-
-
-        protected override void SetResourceManager()
-            => _resourceManager = IAMResources.ResourceManager;
 
     }
 }

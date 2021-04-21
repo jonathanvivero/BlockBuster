@@ -4,6 +4,6 @@ namespace BlockBuster.GEO.Country.Domain.CountryAggregate
 {
     public interface ICountryRepository
     {        
-        CountryId FindIdByCode(CountryCode countryCode);
+        Country FindByCode(CountryCode countryCode);
     }
 }

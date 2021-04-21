@@ -6,11 +6,11 @@ using System.Text;
 
 namespace BlockBuster.IAM.Infrastructure.Services.User
 {
-    public class UserSendWelcomeEmailAdapter
+    public class UserSendWelcomeEmailAdapter: IUserSendWelcomeEmailAdapter
     {
-        private readonly UserSendWelcomeEmailFacade _userFacade;
+        private readonly IUserSendWelcomeEmailFacade _userFacade;
 
-        public UserSendWelcomeEmailAdapter(UserSendWelcomeEmailFacade userFacade)
+        public UserSendWelcomeEmailAdapter(IUserSendWelcomeEmailFacade userFacade)
         {
             _userFacade = userFacade;
         }

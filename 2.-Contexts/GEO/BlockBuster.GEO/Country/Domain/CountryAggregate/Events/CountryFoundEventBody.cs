@@ -1,7 +1,7 @@
 ﻿using BlockBuster.GEO.Country.Infrastructure.Resources;
 using BlockBuster.Shared.Domain.Events;
 
-namespace BlockBuster.GEO.Country.Domain.UserAggregate.Events
+namespace BlockBuster.GEO.Country.Domain.CountryAggregate.Events
 {
     public class CountryFoundEventBody : DomainEventBody
     {

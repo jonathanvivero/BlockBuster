@@ -6,12 +6,12 @@ using System.Text;
 
 namespace BlockBuster.GEO.Country.Application.UseCase.FindByCode
 {
-    public class FindCountryIdByCodeResponse : IResponse
+    public class FindCountryByCodeResponse : IResponse
     {
-        public string Id { get; }        
-        public FindCountryIdByCodeResponse(CountryId id)
-        {            
-            this.Id = id.GetValue();         
+        public Domain.CountryAggregate.Country Country { get; private set; }
+        public FindCountryByCodeResponse(Domain.CountryAggregate.Country country)
+        {
+            this.Country = country;
         }
     }
 }

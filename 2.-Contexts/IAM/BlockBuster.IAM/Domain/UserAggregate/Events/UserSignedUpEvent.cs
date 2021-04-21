@@ -9,13 +9,12 @@ namespace BlockBuster.IAM.Domain.UserAggregate.Events
 {
     public class UserSignedUpEvent : DomainEvent
     {
-        public UserSignedUpEvent(string aggregatId, DomainEventBody body) : base(aggregatId, body) { }
+        public UserSignedUpEvent(
+            string aggregatId, 
+            DomainEventBody body) 
+            : base(aggregatId, body, IAMResources.ResourceManager) { }
 
         protected override DomainEventRules Rules()
             => new UserSignedUpEventRules(Name());
-
-
-        protected override void SetResourceManager()
-            => _resourceManager = IAMResources.ResourceManager;
     }
 }

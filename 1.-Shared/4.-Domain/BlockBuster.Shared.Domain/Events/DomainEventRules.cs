@@ -13,6 +13,7 @@ namespace BlockBuster.Shared.Domain.Events
         public DomainEventRules(string name)
         {
             _domainEventName = name;
+            _rules = new Dictionary<string, string>();
         }
 
         protected void Add(string rule, string type)

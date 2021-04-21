@@ -1,4 +1,6 @@
 ﻿using BlockBuster.Shared.Domain.Events;
+using BlockBuster.Shared.Infrastructure.Resources;
+using BlockBuster.Shared.Testing.Infrastructure.Resources;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,7 +12,7 @@ namespace BlockBuster.Shared.Testing.Infrastructure.Bus.Event.Dummy
         public DummyDomainEventRules(string name)
             : base(name)
         {
-            Add("test", "string");
+            Add(TestingResources.DummyEventDummyField, DataTypeResources.STRING);
         }
     }
 }

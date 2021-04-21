@@ -34,6 +34,7 @@ namespace BlockBuster.IAM.Infrastructure.Services.Startup
 
                 .AddScoped<UserSignUpEmailDoesNotExistValidator>()
                 .AddScoped<UserSignUpCountryExistsValidator>()
+                .AddScoped<UserFindByEmailAndPasswordValidator>()
                 .AddScoped<TokenCreateValidator>();
 
         }

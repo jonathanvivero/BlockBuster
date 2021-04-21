@@ -1,8 +1,6 @@
 ﻿using BlockBuster.Shared.Domain.Aggregates;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace BlockBuster.GEO.Country.Domain.CountryAggregate
 {
@@ -18,7 +16,7 @@ namespace BlockBuster.GEO.Country.Domain.CountryAggregate
         public Country()
         { }
 
-        public Country(CountryId id,
+        private Country(CountryId id,
             CountryCode code,
             CountryTax tax,
             CountryCreatedAt createdAt,
@@ -31,7 +29,7 @@ namespace BlockBuster.GEO.Country.Domain.CountryAggregate
             this.UpdatedAt = updatedAt;
         }
 
-        public static Country FindByCountryCode(
+        public static Country Create(
             CountryId id,
             CountryCode code,
             CountryTax tax,
