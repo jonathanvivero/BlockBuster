@@ -26,9 +26,9 @@ namespace BlockBuster.GEO.Country.Application.UseCase.FindByCode
 
             CountryCode countryCode = new CountryCode(request.Code);
 
-            var countryId = _countryRepository.FindByCode(countryCode);                                    
+            var country = _countryRepository.FindByCode(countryCode);                                    
 
-            return _countryConverter.Convert(countryId);
+            return _countryConverter.Convert(country);
         }
         
     }

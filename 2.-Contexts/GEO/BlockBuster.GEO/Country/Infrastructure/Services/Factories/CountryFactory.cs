@@ -17,7 +17,7 @@ namespace BlockBuster.GEO.Country.Infrastructure.Services.Factories
             var countryCreatedAt = new CountryCreatedAt(createdAt);
             var countryUpdatedAt = new CountryUpdatedAt(updatedAt);
 
-            return new Domain.CountryAggregate.Country(countryId, countryCode, countryTax, countryCreatedAt, countryUpdatedAt);
+            return Domain.CountryAggregate.Country.Create(countryId, countryCode, countryTax, countryCreatedAt, countryUpdatedAt);
         }
     }
 }

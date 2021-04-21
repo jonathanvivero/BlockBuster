@@ -5,16 +5,18 @@ using System.Text;
 
 namespace BlockBuster.Shared.Testing.Domain.CountryAggregate.Stub
 {
-    public class CountryIdStub
+    public class CountryCodeStub
     {
-        public static CountryId Create(string id)
+        public static CountryCode Create(string code)
         {
-            return new CountryId(id);
+            return new CountryCode(code);
         }
 
-        public static CountryId ByDefault()
+        public static CountryCode ByDefault()
         {
-            return Create("d5a29699-eff3-448c-986a-10e06a1753b4");
+            return Create("ESP");
         }
+
+
     }
 }

@@ -21,7 +21,8 @@ namespace BlockBuster.Shared.Testing.Domain.UserAggregate
                 UserFirstNameStub.ByDefault(),
                 UserLastNameStub.ByDefault(),
                 UserRoleStub.ByDefault(),
-                UserCountryIdStub.ByDefault()
+                UserCountryIdStub.ByDefault(),
+                UserCountryStub.ByDefault()
                 );
 
             Assert.AreEqual(user.Id, UserIdStub.ByDefault());

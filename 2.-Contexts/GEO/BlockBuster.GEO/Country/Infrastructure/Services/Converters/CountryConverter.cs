@@ -12,9 +12,9 @@ namespace BlockBuster.GEO.Country.Application.Converters
         {            
         }
         
-        public IResponse Convert(CountryId countryId)
+        public IResponse Convert(Domain.CountryAggregate.Country country)
         {
-            var response = new FindCountryByCodeResponse(countryId);
+            var response = new FindCountryByCodeResponse(country);
 
             return response;
         }

@@ -28,7 +28,7 @@ namespace BlockBuster.Shared.Testing.Domain.UserAggregate
             dummyServiceScopeFactory =
                 new DummyServiceScopeFactory(context.Object);
         }
-        [Test]
+        
         public void FindUserByEmailShouldReturnValidUserAndUseCollaborators()
         {
             var userRepository = new UserRepository(context.Object, dummyServiceScopeFactory);

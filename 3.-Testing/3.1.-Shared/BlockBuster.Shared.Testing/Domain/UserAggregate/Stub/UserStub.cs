@@ -8,6 +8,25 @@ namespace BlockBuster.Shared.Testing.Domain.UserAggregate.Stub
 {
     public class UserStub
     {
+        private static User Create(UserId userId,
+            UserEmail userEmail,
+            UserHashedPassword userHashedPassword,
+            UserFirstName userFirstName,
+            UserLastName userLastName,
+            UserRole userRole,
+            UserCountryId userCountryId,
+            UserCountry userCountry)
+        {
+            return User.SignUp(
+                userId,
+                userEmail,
+                userHashedPassword,
+                userFirstName,
+                userLastName,
+                userRole,
+                userCountryId,
+                userCountry);
+        }
 
         public static User ByDefault() 
         {
@@ -18,27 +37,13 @@ namespace BlockBuster.Shared.Testing.Domain.UserAggregate.Stub
                 UserFirstNameStub.ByDefault(),
                 UserLastNameStub.ByDefault(),
                 UserRoleStub.ByDefault(),
-                UserCountryIdStub.ByDefault()
+                UserCountryIdStub.ByDefault(),
+                UserCountryStub.ByDefault()
             );
         }
 
 
-        private static User Create(UserId userId, 
-            UserEmail userEmail, 
-            UserHashedPassword userHashedPassword, 
-            UserFirstName userFirstName, 
-            UserLastName userLastName, 
-            UserRole userRole, 
-            UserCountryId userCountryId) 
-        {
-            return User.SignUp(
-                userId,
-                userEmail,
-                userHashedPassword,
-                userFirstName,
-                userLastName,
-                userRole,
-                userCountryId);
-        }
+        
     }
 }
+

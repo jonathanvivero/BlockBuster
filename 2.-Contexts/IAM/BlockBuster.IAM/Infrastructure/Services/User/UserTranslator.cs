@@ -7,7 +7,7 @@ using System.Text;
 
 namespace BlockBuster.IAM.Infrastructure.Services.User
 {
-    public class UserTranslator
+    public class UserTranslator: IUserTranslator
     {
         public UserCountry FromFindCountryByCodeResponseToUserCountry(IResponse resp)
         {

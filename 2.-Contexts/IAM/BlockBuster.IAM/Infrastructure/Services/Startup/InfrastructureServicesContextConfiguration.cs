@@ -24,11 +24,14 @@ namespace BlockBuster.IAM.Infrastructure.Services.Startup
                 .AddScoped<IUserRepository, UserRepository>()
                 .AddScoped<ITokenRepository, TokenRepository>()                
 
-                .AddScoped<UserAdapter>()
-                .AddScoped<UserFacade>()
-                .AddScoped<TokenAdapter>()
-                .AddScoped<TokenFacade>()
-                .AddScoped<TokenTranslator>()
+                .AddScoped<IUserAdapter, UserAdapter>()
+                .AddScoped<IUserFacade, UserFacade>()
+                .AddScoped<IUserTranslator, UserTranslator>()
+                .AddScoped<IUserSendWelcomeEmailAdapter, UserSendWelcomeEmailAdapter>()
+                .AddScoped<IUserSendWelcomeEmailFacade, UserSendWelcomeEmailFacade>()
+                .AddScoped<ITokenAdapter, TokenAdapter>()
+                .AddScoped<ITokenFacade, TokenFacade>()
+                .AddScoped<ITokenTranslator, TokenTranslator>()
 
                 .AddSingleton<TransactionMiddleware<IBlockBusterIAMContext>>()
                 ;

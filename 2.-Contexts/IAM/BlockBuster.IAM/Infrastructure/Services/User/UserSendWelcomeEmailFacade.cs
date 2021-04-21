@@ -7,7 +7,7 @@ using System.Text;
 
 namespace BlockBuster.IAM.Infrastructure.Services.User
 {
-    public class UserSendWelcomeEmailFacade
+    public class UserSendWelcomeEmailFacade: IUserSendWelcomeEmailFacade
     {
         private readonly IUseCaseBus _useCaseBus;
        

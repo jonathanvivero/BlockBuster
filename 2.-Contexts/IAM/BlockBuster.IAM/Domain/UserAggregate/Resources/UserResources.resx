@@ -162,6 +162,9 @@
   <data name="ROLE_USER" xml:space="preserve">
     <value>User</value>
   </data>
+  <data name="ValidationFindUserByEmailAndPasswordNotFound" xml:space="preserve">
+    <value>No se ha encontrado ningún usuario. El Email y/o la Contraseña son incorrectos</value>
+  </data>
   <data name="ValidationPasswordShouldMatchRepeatPassword" xml:space="preserve">
     <value>Password value should match Repeat Password value</value>
   </data>

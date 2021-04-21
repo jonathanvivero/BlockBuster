@@ -39,7 +39,8 @@ namespace BlockBuster.Shared.Testing.Domain.UserAggregate.Factory
                 UserFirstNameStub.ByDefault().GetValue(),
                 UserLastNameStub.ByDefault().GetValue(),
                 UserRoleStub.ByDefault().GetValue(),
-                UserCountryIdStub.ByDefault().GetValue()
+                UserCountryIdStub.ByDefault().GetValue(),
+                UserCountryStub.ByDefault().GetValue()
                 );
 
             Assert.AreEqual(user.Email.GetValue(), userEmail.GetValue());
@@ -61,7 +62,8 @@ namespace BlockBuster.Shared.Testing.Domain.UserAggregate.Factory
                 UserFirstNameStub.ByDefault().GetValue(),
                 UserLastNameStub.ByDefault().GetValue(),
                 UserRoleStub.ByDefault().GetValue(),
-                UserCountryIdStub.ByDefault().GetValue()
+                UserCountryIdStub.ByDefault().GetValue(),
+                UserCountryStub.ByDefault().GetValue()
                 );
 
             Assert.Throws<InvalidUserAttributeException>(dlg);
@@ -81,7 +83,8 @@ namespace BlockBuster.Shared.Testing.Domain.UserAggregate.Factory
                 UserFirstNameStub.ByDefault().GetValue(),
                 UserLastNameStub.ByDefault().GetValue(),
                 UserRoleStub.ByDefault().GetValue(),
-                UserCountryIdStub.ByDefault().GetValue()
+                UserCountryIdStub.ByDefault().GetValue(),
+                UserCountryStub.ByDefault().GetValue()
                 );
 
             Assert.Throws<InvalidUserAttributeException>(dlg);
@@ -101,7 +104,8 @@ namespace BlockBuster.Shared.Testing.Domain.UserAggregate.Factory
                 UserFirstNameStub.ByDefault().GetValue(),
                 UserLastNameStub.ByDefault().GetValue(),
                 UserRoleStub.NotExistingRole().GetValue(),
-                UserCountryIdStub.ByDefault().GetValue()
+                UserCountryIdStub.ByDefault().GetValue(),
+                UserCountryStub.ByDefault().GetValue()
                 );
 
             var ex = Assert.Throws(typeof(InvalidAttributeException),dlg);

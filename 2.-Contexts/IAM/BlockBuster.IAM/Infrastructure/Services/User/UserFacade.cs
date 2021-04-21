@@ -5,13 +5,13 @@ using BlockBuster.Shared.Infrastructure.Bus.UseCase;
 
 namespace BlockBuster.IAM.Infrastructure.Services.User
 {
-    public class UserFacade
+    public class UserFacade: IUserFacade
     {
         private readonly IUseCaseBus _useCaseBus;
-        private readonly UserTranslator _userTranslator;
+        private readonly IUserTranslator _userTranslator;
 
         public UserFacade(IUseCaseBus useCaseBus, 
-            UserTranslator userTranslator)
+            IUserTranslator userTranslator)
         {
             _useCaseBus = useCaseBus;
             _userTranslator = userTranslator;

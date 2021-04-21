@@ -3,11 +3,11 @@ using BlockBuster.IAM.Domain.UserAggregate.ValueObjects;
 
 namespace BlockBuster.IAM.Infrastructure.Services.User
 {
-    public class UserAdapter
+    public class UserAdapter: IUserAdapter
     {
-        private readonly UserFacade _userFacade;        
+        private readonly IUserFacade _userFacade;        
 
-        public UserAdapter(UserFacade userFacade)
+        public UserAdapter(IUserFacade userFacade)
         {
             _userFacade = userFacade;            
         }

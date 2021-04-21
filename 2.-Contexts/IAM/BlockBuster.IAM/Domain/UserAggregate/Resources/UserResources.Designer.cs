@@ -196,6 +196,15 @@ namespace BlockBuster.IAM.Domain.UserAggregate.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a No se ha encontrado ningún usuario. El Email y/o la Contraseña son incorrectos.
+        /// </summary>
+        public static string ValidationFindUserByEmailAndPasswordNotFound {
+            get {
+                return ResourceManager.GetString("ValidationFindUserByEmailAndPasswordNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Password value should match Repeat Password value.
         /// </summary>
         public static string ValidationPasswordShouldMatchRepeatPassword {
