@@ -157,7 +157,7 @@
     <value>^([a-zA-Z0-9]{8,20})$</value>
   </data>
   <data name="ROLE_ADMIN" xml:space="preserve">
-    <value />
+    <value>Admin</value>
   </data>
   <data name="ROLE_USER" xml:space="preserve">
     <value>User</value>

@@ -1,7 +1,9 @@
 ﻿using BlockBuster.GEO.Country.Application.UseCase.FindByCode;
+using BlockBuster.GEO.Country.Application.UseCase.GetAll;
 using BlockBuster.IAM.Domain.UserAggregate.ValueObjects;
 using BlockBuster.Shared.Application.Bus.UseCase;
 using BlockBuster.Shared.Infrastructure.Bus.UseCase;
+using System.Collections.Generic;
 
 namespace BlockBuster.IAM.Infrastructure.Services.User
 {
@@ -31,5 +33,12 @@ namespace BlockBuster.IAM.Infrastructure.Services.User
             return _userTranslator.FromFindCountryByCodeResponseToUserCountry(response);
         }
 
+
+        public IEnumerable<UserCountry> GetCountries()
+        {
+            var request = new CountryGetCountriesRequest();
+            IResponse response = _useCaseBus.Dispatch(request);
+            return _userTranslator.FromCountryListToUserCountryList(response);
+        }
     }
 }

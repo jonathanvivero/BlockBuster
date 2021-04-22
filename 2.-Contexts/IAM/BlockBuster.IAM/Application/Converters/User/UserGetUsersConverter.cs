@@ -1,4 +1,5 @@
 ﻿using BlockBuster.IAM.Application.UseCases.User.GetUsers;
+using BlockBuster.IAM.Domain.UserAggregate.ValueObjects;
 using BlockBuster.IAM.Infrastructure.Services.User;
 using BlockBuster.Shared.Application.Bus.UseCase;
 using BlockBuster.Shared.Domain.ValueObjects;
@@ -16,19 +17,23 @@ namespace BlockBuster.IAM.Application.Converters.User
         {
             _userTranslator = userTranslator;
         }
-        public IResponse Convert(IEnumerable<Domain.UserAggregate.User> users)
+        public IResponse Convert(IEnumerable<Domain.UserAggregate.User> users, IEnumerable<UserCountry> userCountryList)
         {            
             var userDTOs = users
                 .Select(s => new UserDTO(
-                    _(s.Id),
-                    _(s.Email),
-                    _(s.FirstName),
-                    _(s.LastName),
-                    _(s.Role),
-                    _(s.CreatedAt),
-                    _(s.UpdatedAt),
-                    _(s.CountryId),
-                    _userTranslator.FromUserCountryToCountryDTO(_(s.Country))
+                    s.Id.GetValue(),
+                    s.Email.GetValue(),
+                    s.FirstName.GetValue(),
+                    s.LastName.GetValue(),
+                    s.Role.GetValue(),
+                    s.CreatedAt.GetValue(),
+                    s.UpdatedAt.GetValue(),
+                    s.CountryId.GetValue(),
+                    _userTranslator.FromUserCountryToCountryDTO(
+                        userCountryList
+                            .FirstOrDefault(w => w.GetValue().Id.GetValue() == s.CountryId.GetValue())
+                            .GetValue()
+                        )
                     )
                 )
                 .ToArray();

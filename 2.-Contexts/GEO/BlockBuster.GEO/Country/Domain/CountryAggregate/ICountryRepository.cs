@@ -6,5 +6,6 @@ namespace BlockBuster.GEO.Country.Domain.CountryAggregate
     {        
         Country FindByCode(CountryCode countryCode);
         Country FindById(CountryId countryId);
+        IEnumerable<Country> GetAllCountries();
     }
 }

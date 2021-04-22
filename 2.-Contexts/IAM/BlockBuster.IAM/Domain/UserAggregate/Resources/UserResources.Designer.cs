@@ -178,7 +178,7 @@ namespace BlockBuster.IAM.Domain.UserAggregate.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a .
+        ///   Busca una cadena traducida similar a Admin.
         /// </summary>
         public static string ROLE_ADMIN {
             get {

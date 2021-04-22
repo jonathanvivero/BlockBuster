@@ -19,7 +19,7 @@ namespace BlockBuster.Shared.Application.Bus.UseCase
             this.page = new Dictionary<string, int>();
 
             this.page.Add("number", int.TryParse(pageNumber, out int number) ? number : 1);
-            this.page.Add("size", int.TryParse(pageSize, out int size) ? size : 1);
+            this.page.Add("size", int.TryParse(pageSize, out int size) ? size : 25);
         }      
 
         public IDictionary<string, int> Page()
