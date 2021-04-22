@@ -25,7 +25,7 @@ namespace BlockBuster.IAM.Domain.TokenAggregate
             this.UserId = tokenUserId;
             this.Hash = tokenHash;
             this.CreatedAt = tokenCreatedAt;
-            this.UpdatedAt = UpdatedAt;
+            this.UpdatedAt = tokenUpdatedAt;
         }
 
         public static Token Create(TokenUserId tokenUserId, TokenHash tokenHash)

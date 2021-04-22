@@ -5,6 +5,6 @@ using System.Text;
 namespace BlockBuster.Shared.Application.Bus.UseCase
 {
     public interface IRequest
-    {
+    {        
     }
 }

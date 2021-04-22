@@ -24,7 +24,7 @@ namespace BlockBuster.IAM.Infrastructure.Presistence.Mapping
 
             builder.Property(p => p.Hash)
                 .HasColumnName("hash")
-                .HasColumnType("nvarchar(255)")
+                .HasColumnType("nvarchar(1024)")
                 .HasConversion(
                     v => v.GetValue(),
                     v => new TokenHash(v)

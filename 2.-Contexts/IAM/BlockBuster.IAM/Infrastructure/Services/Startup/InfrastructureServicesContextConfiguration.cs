@@ -1,6 +1,8 @@
 ﻿using BlockBuster.IAM.Domain.TokenAggregate.Repository;
 using BlockBuster.IAM.Domain.UserAggregate.Repository;
+using BlockBuster.IAM.Infrastructure.Factory;
 using BlockBuster.IAM.Infrastructure.Presistence.Repositories;
+using BlockBuster.IAM.Infrastructure.Services.Mailer;
 using BlockBuster.IAM.Infrastructure.Services.Token;
 using BlockBuster.IAM.Infrastructure.Services.User;
 using BlockBuster.Infrastructure.Persistence.Context;
@@ -32,6 +34,11 @@ namespace BlockBuster.IAM.Infrastructure.Services.Startup
                 .AddScoped<ITokenAdapter, TokenAdapter>()
                 .AddScoped<ITokenFacade, TokenFacade>()
                 .AddScoped<ITokenTranslator, TokenTranslator>()
+                
+                .AddScoped<IMailer, DefaultMailer>()
+                .AddScoped<MailTemplateFactory>()
+
+
 
                 .AddSingleton<TransactionMiddleware<IBlockBusterIAMContext>>()
                 ;

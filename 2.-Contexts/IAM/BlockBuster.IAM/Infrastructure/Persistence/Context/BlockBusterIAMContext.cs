@@ -14,11 +14,11 @@ namespace BlockBuster.Infrastructure.Persistence.Context
             IBlockBusterIAMContext
     {
         private readonly IServiceProvider _serviceProvider;
-        public BlockBusterIAMContext(DbContextOptions options, 
+        public BlockBusterIAMContext(DbContextOptions<BlockBusterIAMContext> options, 
             IServiceProvider serviceProvider) 
             : base(options) 
         {
-            _serviceProvider = serviceProvider;
+            _serviceProvider = serviceProvider;            
         }
 
         public DbSet<User> Users { get; set; }

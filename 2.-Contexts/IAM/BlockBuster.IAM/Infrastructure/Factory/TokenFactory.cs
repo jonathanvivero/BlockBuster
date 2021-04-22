@@ -10,16 +10,16 @@ namespace BlockBuster.IAM.Infrastructure.Factory
 {
     public class TokenFactory : ITokenFactory
     {
-        private IJWTEncoder jwtEncoder;
+        private IJWTEncoder _jwtEncoder;
 
         public TokenFactory(IJWTEncoder jwtEncoder)
         {
-
+            _jwtEncoder = jwtEncoder;
         }
 
         public Domain.TokenAggregate.Token Create(IDictionary<string, string> payload)
         {
-            string hash = this.jwtEncoder.Encode(payload);
+            string hash = _jwtEncoder.Encode(payload);
             TokenHash tokenHash = new TokenHash(hash);
             TokenUserId tokenUserId = new TokenUserId(payload[IAMResources.TokenPayloadUserId]);
 

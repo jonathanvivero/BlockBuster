@@ -13,7 +13,7 @@ namespace BlockBuster.Infrastructure.Persistence.Context
             IBlockBusterCountryContext
     {
         private readonly IServiceProvider _serviceProvider;
-        public BlockBusterCountryContext(DbContextOptions options, 
+        public BlockBusterCountryContext(DbContextOptions<BlockBusterCountryContext> options, 
             IServiceProvider serviceProvider) 
             : base(options) 
         {

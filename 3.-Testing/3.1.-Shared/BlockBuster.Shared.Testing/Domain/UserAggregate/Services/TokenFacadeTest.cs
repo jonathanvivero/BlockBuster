@@ -5,6 +5,7 @@ using BlockBuster.IAM.Domain.UserAggregate.Validators;
 using BlockBuster.IAM.Domain.UserAggregate.ValueObjects;
 using BlockBuster.IAM.Infrastructure.Services.Hashing;
 using BlockBuster.IAM.Infrastructure.Services.Token;
+using BlockBuster.IAM.Infrastructure.Services.User;
 using BlockBuster.Shared.Testing.Domain.UserAggregate.Stub;
 using Moq;
 using NUnit.Framework;
@@ -18,6 +19,7 @@ namespace BlockBuster.Shared.Testing.Domain.UserAggregate.Services
     public class TokenFacadeTest
     {
         Mock<IUserRepository> userRepository;
+        Mock<IUserAdapter> userAdapter;
         Mock<IHashing> hashingService;
         UserFindByEmailAndPasswordValidator validator;
         User user;
@@ -29,6 +31,7 @@ namespace BlockBuster.Shared.Testing.Domain.UserAggregate.Services
         public void Setup() 
         {
             userRepository = new Mock<IUserRepository>();
+            userAdapter = new Mock<IUserAdapter>();
             hashingService = new Mock<IHashing>();
             userEmail = UserEmailStub.ByDefault().GetValue();
             userPassword = UserPasswordStub.ByDefault().GetValue();
@@ -40,8 +43,16 @@ namespace BlockBuster.Shared.Testing.Domain.UserAggregate.Services
         public void TokenFacadeFindUserFromEmailAndPasswordShouldReturnValidUser()
         {
             user = UserStub.ByDefault();
-            var tokenFacade = new TokenFacade(userRepository.Object, hashingService.Object, validator);
+            var userCountry = UserCountryStub.ByDefault();
+            var tokenFacade = new TokenFacade(
+                userRepository.Object,
+                hashingService.Object, 
+                userAdapter.Object,
+                validator);
 
+            userAdapter
+                .Setup(s => s.FindCountryFromCountryId(It.IsAny<string>()))
+                .Returns(userCountry);
             userRepository
                 .Setup(s => s.FindUserByEmailAndPassword(It.IsAny<UserEmail>(), It.IsAny<UserHashedPassword>()))
                 .Returns(user)
@@ -64,8 +75,16 @@ namespace BlockBuster.Shared.Testing.Domain.UserAggregate.Services
         public void TokenFacadeFindUserFromEmailAndPasswordShouldThrowError()
         {
             user = null;
-            var tokenFacade = new TokenFacade(userRepository.Object, hashingService.Object, validator);
+            var userCountry = UserCountryStub.ByDefault();
+            var tokenFacade = new TokenFacade(
+                userRepository.Object, 
+                hashingService.Object, 
+                userAdapter.Object,
+                validator);
 
+            userAdapter
+               .Setup(s => s.FindCountryFromCountryId(It.IsAny<string>()))
+               .Returns(userCountry);
             userRepository
                 .Setup(s => s.FindUserByEmailAndPassword(It.IsAny<UserEmail>(), It.IsAny<UserHashedPassword>()))
                 .Returns(user);

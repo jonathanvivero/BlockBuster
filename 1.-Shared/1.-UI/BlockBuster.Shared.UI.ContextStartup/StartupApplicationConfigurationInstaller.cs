@@ -53,7 +53,7 @@ namespace BlockBuster.Shared.UI.ContextStartup
             {
                 useCaseBus.Subscribe((IUseCase)_serviceProvider.GetService(useCase));
             }
-
+                
             IDictionary<string, IList<IMiddlewareHandler>> contextMiddlewares =
                 GetContextMiddlewareAlongApp<IStartupContextMiddlewareInstaller>();
 

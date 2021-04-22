@@ -21,6 +21,6 @@ namespace BlockBuster.IAM.Infrastructure.Services.Token
         {
             var user = _tokenFacade.FindUserFromEmailAndPassword(email, password);
             return _tokenTranslator.FromRepresentationToPayLoad(user);
-        }
+        }        
     }
 }

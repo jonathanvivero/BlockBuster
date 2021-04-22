@@ -22,6 +22,7 @@ namespace BlockBuster.IAM.Infrastructure.Services.Startup
                .AddDbContextPool<IBlockBusterIAMContext, BlockBusterIAMContext>(
                    options =>
                    {
+                       options.EnableSensitiveDataLogging();
                        options.UseMySql(_configureServicesInstaller
                            .GetConfiguration()
                            .GetConnectionString("DefaultConnection")

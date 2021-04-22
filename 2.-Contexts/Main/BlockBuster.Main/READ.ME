@@ -9,6 +9,17 @@ COLLATE='utf8mb4_0900_ai_ci'
 ENGINE=InnoDB
 ;
 
+CREATE TABLE `token` (
+	`user_id` VARCHAR(40) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`hash` VARCHAR(1024) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`created_at` TIMESTAMP NOT NULL,
+	`updated_at` TIMESTAMP NOT NULL,
+	PRIMARY KEY (`user_id`) USING BTREE
+)
+COLLATE='utf8mb4_0900_ai_ci'
+ENGINE=InnoDB
+;
+
 CREATE TABLE `user` (
 	`id` VARCHAR(40) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`country_id` VARCHAR(40) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
