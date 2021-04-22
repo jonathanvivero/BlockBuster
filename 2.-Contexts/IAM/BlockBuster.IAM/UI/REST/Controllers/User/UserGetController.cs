@@ -1,5 +1,7 @@
 ﻿using BlockBuster.IAM.Application.UseCases.User.GetUsers;
 using BlockBuster.IAM.Application.UseCases.User.SignUp;
+using BlockBuster.IAM.Domain.UserAggregate.Resources;
+using BlockBuster.IAM.Domain.UserAggregate.ValueObjects;
 using BlockBuster.Infrastructure.Persistence.Context;
 using BlockBuster.Shared.Infrastructure.Bus.UseCase;
 using BlockBuster.Shared.UI.REST.Controllers;
@@ -9,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BlockBuster.IAM.UI.REST.Controllers.User
 {
+    [Authorize]
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/users")]
     [ApiController]
@@ -19,7 +22,7 @@ namespace BlockBuster.IAM.UI.REST.Controllers.User
             IBlockBusterIAMContext context)
            : base(useCaseBus) { }
 
-        [AllowAnonymous]
+        [Authorize(Roles = UserRole.ROLE_ADMIN)]
         [HttpGet(Name = nameof(GetUsers))]
         public IActionResult GetUsers()
         {

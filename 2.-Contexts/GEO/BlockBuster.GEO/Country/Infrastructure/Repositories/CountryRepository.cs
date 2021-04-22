@@ -2,6 +2,7 @@
 using BlockBuster.Infrastructure.Persistence.Context;
 using BlockBuster.Shared.Infrastructure.Persistence;
 using Microsoft.Extensions.DependencyInjection;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace BlockBuster.GEO.Country.Infrastructure.Repositories
@@ -34,6 +35,16 @@ namespace BlockBuster.GEO.Country.Infrastructure.Repositories
                 return dbContext
                     .Countries
                     .FirstOrDefault(w => w.Id.GetValue() == countryId.GetValue());
+            }
+        }
+
+        public IEnumerable<Domain.CountryAggregate.Country> GetAllCountries()
+        {
+            using (var scope = this.serviceScopeFactory.CreateScope())
+            {
+                var dbContext = scope.ServiceProvider.GetRequiredService<IBlockBusterCountryContext>();
+                return dbContext
+                    .Countries;
             }
         }
 

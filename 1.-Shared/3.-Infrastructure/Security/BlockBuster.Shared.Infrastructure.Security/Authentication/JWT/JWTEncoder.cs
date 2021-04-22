@@ -31,6 +31,7 @@ namespace BlockBuster.Shared.Infrastructure.Security.Authentication.JWT
                     new Claim(ClaimTypes.Email, payload["email"]),
                     new Claim(ClaimTypes.Name, payload["first_name"]),
                     new Claim(ClaimTypes.Surname, payload["last_name"]),
+                    new Claim(ClaimTypes.Role, payload["role"]),
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)

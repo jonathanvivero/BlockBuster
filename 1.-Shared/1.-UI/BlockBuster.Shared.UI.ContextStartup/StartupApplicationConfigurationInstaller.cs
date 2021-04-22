@@ -8,6 +8,7 @@ using BlockBuster.Shared.Infrastructure.Resources;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -108,8 +109,11 @@ namespace BlockBuster.Shared.UI.ContextStartup
 
         public StartupApplicationConfigurationInstaller ConfigureApp(bool isDevelopment = true)
         {
-            if (isDevelopment)
+            if (isDevelopment) 
+            { 
                 _applicationBuilder.UseDeveloperExceptionPage();
+
+            }
             else
                 _applicationBuilder.UseHsts();
 
