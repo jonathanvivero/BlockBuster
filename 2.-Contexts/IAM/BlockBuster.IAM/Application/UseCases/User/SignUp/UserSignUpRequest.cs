@@ -5,6 +5,7 @@ namespace BlockBuster.IAM.Application.UseCases.User.SignUp
 {
     public class UserSignUpRequest: IRequest
     {
+
         public string Id { get; private set; }
         public string Email { get; private set; }
         public string Password { get; private set; }

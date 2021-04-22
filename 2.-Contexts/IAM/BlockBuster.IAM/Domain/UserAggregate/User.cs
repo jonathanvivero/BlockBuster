@@ -10,8 +10,7 @@ using System.ComponentModel.DataAnnotations;
 namespace BlockBuster.IAM.Domain.UserAggregate
 {
     public class User : AggregateRoot
-    {
-        private object _country;
+    {        
         [Key]
         public UserId Id { get; private set; }
         public UserEmail Email { get; private set; }
@@ -79,6 +78,11 @@ namespace BlockBuster.IAM.Domain.UserAggregate
             );
 
             return user;
+        }
+
+        public void SetUserCountry(UserCountry country) 
+        {
+            this.Country = country;
         }
 
     }

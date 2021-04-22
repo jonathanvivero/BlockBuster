@@ -19,7 +19,7 @@ namespace BlockBuster.GEO.Country.Infrastructure.Presistence.Mapping
                ).IsRequired();
 
             builder.Property(p => p.Code)
-                .HasColumnName("hash")
+                .HasColumnName("code")
                 .HasColumnType("nvarchar(3)")
                 .HasConversion(
                     v => v.GetValue(),

@@ -23,7 +23,7 @@ namespace BlockBuster.Shared.Testing.Domain.UserAggregate.Services
                 .Returns(configurationSectionMock.Object)
                 .Verifiable();
 
-            var mailer = new Mailer(configurationMock.Object);
+            var mailer = new DefaultMailer(configurationMock.Object);
 
             configurationMock.Verify();
 

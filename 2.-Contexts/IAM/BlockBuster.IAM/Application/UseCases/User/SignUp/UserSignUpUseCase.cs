@@ -20,8 +20,8 @@ namespace BlockBuster.IAM.Application.UseCases.User.SignUp
         private readonly IUserRepository _userRepository;
         private readonly UserConverter _userConverter;
         private readonly IEventProvider _eventProvider;
-        private readonly UserAdapter _userAdapter;
-        private readonly UserSendWelcomeEmailAdapter _userSendWelcomeEmailAdapter;
+        private readonly IUserAdapter _userAdapter;
+        private readonly IUserSendWelcomeEmailAdapter _userSendWelcomeEmailAdapter;
         
         public UserSignUpUseCase(
             IUserFactory userFactory,
@@ -30,13 +30,14 @@ namespace BlockBuster.IAM.Application.UseCases.User.SignUp
             IUserRepository userRepository,
             UserConverter userConverter,
             IEventProvider eventProvider,
-            UserAdapter userAdapter,
-            UserSendWelcomeEmailAdapter userSendWelcomeEmailAdapter,
+            IUserAdapter userAdapter,
+            IUserSendWelcomeEmailAdapter userSendWelcomeEmailAdapter,
             IBlockBusterIAMContext context)
             : base(context)
         {
             _userFactory = userFactory;
             _userSignUpEmailDoesNotExistValidator = userSignUpEmailDoesNotExistValidator;
+            _userSignUpCountryExistsValidator = userSignUpCountryExistsValidator;
             _userRepository = userRepository;
             _userConverter = userConverter;
             _eventProvider = eventProvider;

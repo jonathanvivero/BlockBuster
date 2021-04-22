@@ -4,14 +4,14 @@ using Microsoft.Extensions.Configuration;
 
 namespace BlockBuster.IAM.Infrastructure.Services.Mailer
 {
-    public class Mailer: IMailer
+    public class DefaultMailer: IMailer
     {
         private readonly IConfiguration _configuration;
         private readonly string _smtpServer;
         private readonly string _smtpUser;
         private readonly string _smtpPassword;
 
-        public Mailer(IConfiguration configuration)
+        public DefaultMailer(IConfiguration configuration)
         {
             _configuration = configuration;
             _smtpServer = _configuration

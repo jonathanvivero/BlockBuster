@@ -6,6 +6,7 @@ using BlockBuster.Shared.Infrastructure.Persistence;
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace BlockBuster.IAM.Infrastructure.Presistence.Repositories
 {
@@ -39,7 +40,7 @@ namespace BlockBuster.IAM.Infrastructure.Presistence.Repositories
             {
                 var dbContext = scope.ServiceProvider.GetRequiredService<IBlockBusterIAMContext>();
                 return dbContext.Users
-                    .Where(w => w.Email.Equals(userEmail) 
+                    .Where(w => w.Email.Equals(userEmail)
                         && w.HashedPassword.Equals(userHashedPassword)
                     )
                     .FirstOrDefault();

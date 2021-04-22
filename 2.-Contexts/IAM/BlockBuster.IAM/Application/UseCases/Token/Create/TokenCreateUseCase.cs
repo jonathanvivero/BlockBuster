@@ -11,13 +11,13 @@ namespace BlockBuster.IAM.Application.UseCases.Token.Create
 {
     public class TokenCreateUseCase: UseCaseBase
     {
-        private readonly TokenAdapter _tokenAdapter;
+        private readonly ITokenAdapter _tokenAdapter;
         private readonly ITokenFactory _tokenFactory;
         private readonly ITokenRepository _tokenRepository;
         private readonly TokenCreateValidator _createTokenValidator;
         private readonly TokenConverter _tokenConverter;
 
-        public TokenCreateUseCase(TokenAdapter tokenAdapter,
+        public TokenCreateUseCase(ITokenAdapter tokenAdapter,
             ITokenFactory tokenFactory,
             ITokenRepository tokenRepository,
             TokenConverter tokenConverter,

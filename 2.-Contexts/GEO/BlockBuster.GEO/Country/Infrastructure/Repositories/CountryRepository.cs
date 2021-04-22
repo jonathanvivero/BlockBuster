@@ -26,5 +26,16 @@ namespace BlockBuster.GEO.Country.Infrastructure.Repositories
                     .FirstOrDefault(w => w.Code.GetValue() == countryCode.GetValue());
             }
         }
+        public Domain.CountryAggregate.Country FindById(CountryId countryId)
+        {
+            using (var scope = this.serviceScopeFactory.CreateScope())
+            {
+                var dbContext = scope.ServiceProvider.GetRequiredService<IBlockBusterCountryContext>();
+                return dbContext
+                    .Countries
+                    .FirstOrDefault(w => w.Id.GetValue() == countryId.GetValue());
+            }
+        }
+
     }
 }

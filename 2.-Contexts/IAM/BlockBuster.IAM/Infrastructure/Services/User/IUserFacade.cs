@@ -5,5 +5,6 @@ namespace BlockBuster.IAM.Infrastructure.Services.User
     public interface IUserFacade
     {
         UserCountry FindCountryFromCountryCode(string countryCode);
+        UserCountry FindCountryFromCountryId(string countryId);
     }
 }

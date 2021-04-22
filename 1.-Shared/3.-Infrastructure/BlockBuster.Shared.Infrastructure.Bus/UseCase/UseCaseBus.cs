@@ -53,8 +53,11 @@ namespace BlockBuster.Shared.Infrastructure.Bus.UseCase
 
             var contextName = useCase.GetContextName();
 
-            var middlewareHandlers = (List<IMiddlewareHandler>)_middlewareHandlers;
-            
+            var middlewareHandlers = new List<IMiddlewareHandler>();
+
+            foreach (var mw in _middlewareHandlers)
+                middlewareHandlers.Add(mw);
+
             if (_contextMiddlewareHandlers.ContainsKey(contextName))            
                 middlewareHandlers.InsertRange(0,_contextMiddlewareHandlers[contextName]);                
 
