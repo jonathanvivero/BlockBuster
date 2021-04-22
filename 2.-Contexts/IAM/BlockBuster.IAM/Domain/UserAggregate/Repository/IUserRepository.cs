@@ -7,8 +7,7 @@ namespace BlockBuster.IAM.Domain.UserAggregate.Repository
     {
         void Add(User user);
         User FindUserByEmail(UserEmail userEmail);
+        User FindUserByEmailAndPassword(UserEmail userEmail, UserHashedPassword password);
         IEnumerable<User> GetUsers(IDictionary<string, int> page);
-
-        Country FindCountryByCode(CountryCode countryCode);
     }
 }

@@ -3,24 +3,27 @@ using BlockBuster.IAM.Domain.TokenAggregate.Factories;
 using BlockBuster.IAM.Domain.TokenAggregate.Repository;
 using BlockBuster.IAM.Domain.TokenAggregate.Validators;
 using BlockBuster.IAM.Infrastructure.Services.Token;
+using BlockBuster.Infrastructure.Persistence.Context;
 using BlockBuster.Shared.Application.Bus.UseCase;
 using System.Collections.Generic;
 
 namespace BlockBuster.IAM.Application.UseCases.Token.Create
 {
-    public class TokenCreateUseCase: IUseCase
+    public class TokenCreateUseCase: UseCaseBase
     {
-        private readonly TokenAdapter _tokenAdapter;
+        private readonly ITokenAdapter _tokenAdapter;
         private readonly ITokenFactory _tokenFactory;
         private readonly ITokenRepository _tokenRepository;
         private readonly TokenCreateValidator _createTokenValidator;
         private readonly TokenConverter _tokenConverter;
 
-        public TokenCreateUseCase(TokenAdapter tokenAdapter,
+        public TokenCreateUseCase(ITokenAdapter tokenAdapter,
             ITokenFactory tokenFactory,
             ITokenRepository tokenRepository,
             TokenConverter tokenConverter,
-            TokenCreateValidator createTokenValiator)
+            TokenCreateValidator createTokenValiator, 
+            IBlockBusterIAMContext context)
+            : base(context)
         {
             _tokenAdapter = tokenAdapter;
             _tokenConverter = tokenConverter;
@@ -29,7 +32,7 @@ namespace BlockBuster.IAM.Application.UseCases.Token.Create
             _createTokenValidator = createTokenValiator;
 
         }
-        public IResponse Execute(IRequest req)
+        public override IResponse Execute(IRequest req)
         {
             TokenCreateRequest request = req as TokenCreateRequest;
 

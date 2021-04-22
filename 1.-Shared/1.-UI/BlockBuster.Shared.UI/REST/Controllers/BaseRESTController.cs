@@ -8,24 +8,18 @@ namespace BlockBuster.Shared.UI.REST.Controllers
 {
     public abstract class BaseRESTController : ControllerBase
     {
-        private readonly IUseCaseBus _useCaseBus;
-        private readonly IBlockBusterContext _context;
-        public BaseRESTController(IUseCaseBus useCaseBus, 
-            IBlockBusterContext context)
+        private readonly IUseCaseBus _useCaseBus;        
+        public BaseRESTController(IUseCaseBus useCaseBus)
         {
             _useCaseBus = useCaseBus;
-            _context = context;
         }
 
         protected IActionResult Dispatch(IRequest request)
         {            
             IResponse response = _useCaseBus
-                .Dispatch(request, _context);
-            
-            ExceptionResponseFacade exceptionResponseFacade =
-                new ExceptionResponseFacade(this, response);
-            
-            return exceptionResponseFacade.HandleResponse();
+                .Dispatch(request);
+                        
+            return this.HandleResponse(response);
         }
     }
 }

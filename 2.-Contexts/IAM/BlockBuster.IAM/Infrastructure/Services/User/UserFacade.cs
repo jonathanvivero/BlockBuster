@@ -1,37 +1,35 @@
-﻿using BlockBuster.IAM.Application.Converters.Country;
-using BlockBuster.IAM.Application.UseCases.Country.Find;
-using BlockBuster.IAM.Domain.UserAggregate;
-using BlockBuster.IAM.Domain.UserAggregate.Repository;
-using BlockBuster.Infrastructure.Persistence.Context;
+﻿using BlockBuster.GEO.Country.Application.UseCase.FindByCode;
+using BlockBuster.IAM.Domain.UserAggregate.ValueObjects;
 using BlockBuster.Shared.Application.Bus.UseCase;
 using BlockBuster.Shared.Infrastructure.Bus.UseCase;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BlockBuster.IAM.Infrastructure.Services.User
 {
-    public class UserFacade
+    public class UserFacade: IUserFacade
     {
         private readonly IUseCaseBus _useCaseBus;
-        private readonly CountryConverter _countryConverter;
-        private readonly IBlockBusterIAMContext _context;
+        private readonly IUserTranslator _userTranslator;
 
-        public UserFacade(IUseCaseBus useCaseBus,
-            CountryConverter countryConverter, 
-            IBlockBusterIAMContext context)
+        public UserFacade(IUseCaseBus useCaseBus, 
+            IUserTranslator userTranslator)
         {
             _useCaseBus = useCaseBus;
-            _countryConverter = countryConverter;
-            _context = context;
+            _userTranslator = userTranslator;
         }
 
-        public Country FindCountryFromCountryCode(string countryCode)
+        public UserCountry FindCountryFromCountryCode(string countryCode)
         {
-            FindCountryByCodeRequest request = new FindCountryByCodeRequest(countryCode);
-            IResponse response = _useCaseBus.Dispatch(request, _context);
-            Country country = _countryConverter.FromResponse(response);
-            return country;
+            var request = new FindCountryByCodeRequest(countryCode);
+            IResponse response = _useCaseBus.Dispatch(request);
+            return _userTranslator.FromFindCountryByCodeResponseToUserCountry(response);
         }
+
+        public UserCountry FindCountryFromCountryId(string countryId)
+        {
+            var request = new FindCountryByIdRequest(countryId);
+            IResponse response = _useCaseBus.Dispatch(request);
+            return _userTranslator.FromFindCountryByCodeResponseToUserCountry(response);
+        }
+
     }
 }

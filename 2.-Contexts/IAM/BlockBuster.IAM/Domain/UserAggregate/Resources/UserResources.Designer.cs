@@ -70,6 +70,24 @@ namespace BlockBuster.IAM.Domain.UserAggregate.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a El País es nulo.
+        /// </summary>
+        public static string ErrorCountryIsNull {
+            get {
+                return ResourceManager.GetString("ErrorCountryIsNull", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Country.
+        /// </summary>
+        public static string FieldCountry {
+            get {
+                return ResourceManager.GetString("FieldCountry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a CountryCode.
         /// </summary>
         public static string FieldCountryCode {
@@ -151,7 +169,7 @@ namespace BlockBuster.IAM.Domain.UserAggregate.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a /^([a-zA-Z0-9]{8,20})$/.
+        ///   Busca una cadena traducida similar a ^([a-zA-Z0-9]{8,20})$.
         /// </summary>
         public static string PasswordPattern {
             get {
@@ -174,6 +192,15 @@ namespace BlockBuster.IAM.Domain.UserAggregate.Resources {
         public static string ROLE_USER {
             get {
                 return ResourceManager.GetString("ROLE_USER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a No se ha encontrado ningún usuario. El Email y/o la Contraseña son incorrectos.
+        /// </summary>
+        public static string ValidationFindUserByEmailAndPasswordNotFound {
+            get {
+                return ResourceManager.GetString("ValidationFindUserByEmailAndPasswordNotFound", resourceCulture);
             }
         }
         

@@ -1,17 +1,14 @@
 ﻿using BlockBuster.Shared.Domain.Events;
-using BlockBuster.Shared.Domain.ValueObjects;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using BlockBuster.Shared.Testing.Infrastructure.Resources;
 
 namespace BlockBuster.Shared.Testing.Infrastructure.Bus.Event.Dummy
 {
     internal class DummyDomainEventBody : DomainEventBody
     {
-        public DummyDomainEventBody()
+        public DummyDomainEventBody(DummyStringValueObject svo)
         {
-            var svo = new StringValueObject(string.Empty);
-            Add("test", typeof(StringValueObject));
+            
+            Add<string>(TestingResources.DummyEventDummyField, svo);
         }
     }
 }

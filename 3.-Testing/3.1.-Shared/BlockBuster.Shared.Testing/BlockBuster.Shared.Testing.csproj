@@ -16,6 +16,22 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\1.-Shared\2.-Application\BlockBuster.Shared.Application\BlockBuster.Shared.Application.csproj" />
     <ProjectReference Include="..\..\..\1.-Shared\3.-Infrastructure\BlockBuster.Shared.Infrastructure.Bus\BlockBuster.Shared.Infrastructure.Bus.csproj" />
+    <ProjectReference Include="..\..\..\2.-Contexts\IAM\BlockBuster.IAM\BlockBuster.IAM.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Infrastructure\Resources\TestingResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>TestingResources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Infrastructure\Resources\TestingResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>TestingResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 
 </Project>

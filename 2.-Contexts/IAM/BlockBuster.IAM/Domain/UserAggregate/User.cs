@@ -1,6 +1,7 @@
 ﻿using BlockBuster.IAM.Domain.UserAggregate.Events;
 using BlockBuster.IAM.Domain.UserAggregate.Events.Body;
 using BlockBuster.IAM.Domain.UserAggregate.ValueObjects;
+using BlockBuster.IAM.Infrastructure.Services.User;
 using BlockBuster.Shared.Domain.Aggregates;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.ComponentModel.DataAnnotations;
 namespace BlockBuster.IAM.Domain.UserAggregate
 {
     public class User : AggregateRoot
-    {
+    {        
         [Key]
         public UserId Id { get; private set; }
         public UserEmail Email { get; private set; }
@@ -19,8 +20,8 @@ namespace BlockBuster.IAM.Domain.UserAggregate
         public UserRole Role { get; private set; }
         public UserCreatedAt CreatedAt { get; private set; }
         public UserUpdatedAt UpdatedAt { get; private set; }
+        public UserCountryId CountryId { get; private set; }
         public UserCountry Country { get; private set; }
-        public CountryId CountryId { get; private set; }
 
         public User() { }
         private User(UserId userId,
@@ -29,6 +30,7 @@ namespace BlockBuster.IAM.Domain.UserAggregate
             UserFirstName userFirstName,
             UserLastName userLastName,
             UserRole userRole,
+            UserCountryId userCountryId,
             UserCountry userCountry,
             UserCreatedAt userCreatedAt,
             UserUpdatedAt userUpdatedAt
@@ -40,10 +42,10 @@ namespace BlockBuster.IAM.Domain.UserAggregate
             this.FirstName = userFirstName;
             this.LastName = userLastName;
             this.Role = userRole;
-            this.Country = userCountry;
-            this.CountryId = userCountry.GetValue().Id;
+            this.CountryId = userCountryId;
             this.CreatedAt = userCreatedAt;
             this.UpdatedAt = userUpdatedAt;
+            this.Country = userCountry;
         }
         public static User SignUp(UserId userId,
             UserEmail userEmail,
@@ -51,6 +53,7 @@ namespace BlockBuster.IAM.Domain.UserAggregate
             UserFirstName userFirstName,
             UserLastName userLastName,
             UserRole userRole,
+            UserCountryId userCountryId,
             UserCountry userCountry)
         {
             var userCreatedAt = new UserCreatedAt(DateTime.Now);
@@ -62,6 +65,7 @@ namespace BlockBuster.IAM.Domain.UserAggregate
                 userFirstName,
                 userLastName,
                 userRole,
+                userCountryId,
                 userCountry,
                 userCreatedAt,
                 userUpdatedAt);
@@ -74,6 +78,11 @@ namespace BlockBuster.IAM.Domain.UserAggregate
             );
 
             return user;
+        }
+
+        public void SetUserCountry(UserCountry country) 
+        {
+            this.Country = country;
         }
 
     }

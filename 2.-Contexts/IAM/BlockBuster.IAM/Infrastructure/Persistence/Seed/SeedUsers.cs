@@ -6,6 +6,7 @@ using BlockBuster.Shared.Infrastructure.Persistence.Seed;
 using System;
 using System.Linq;
 using BlockBuster.IAM.Domain.UserAggregate;
+using BlockBuster.GEO.Country.Domain.CountryAggregate;
 
 namespace BlockBuster.IAM.Infrastructure.Persistence.Seed
 {
@@ -24,12 +25,6 @@ namespace BlockBuster.IAM.Infrastructure.Persistence.Seed
         }
         public override void SeedDatabase()
         {
-            Country mainCountry = _context
-                .Countries
-                .Where(w => w.Code.GetValue() == "ESP")
-                .FirstOrDefault();                
-            
-
             if (!_context.Users.Any())
             {
                 string id = new Guid().ToString();
@@ -37,7 +32,8 @@ namespace BlockBuster.IAM.Infrastructure.Persistence.Seed
                 string password = "123456789";
                 string fistName = "Jonathan";
                 string lastName = "Vivero Gázquez";
-                string role = UserRole.ROLE_ADMIN;                
+                string role = UserRole.ROLE_ADMIN;
+                Country country = new Country();
 
                 //fill with first user
                 var user = _userFactory.Create(id,
@@ -47,7 +43,8 @@ namespace BlockBuster.IAM.Infrastructure.Persistence.Seed
                     fistName,
                     lastName,
                     role,
-                    mainCountry);
+                    "d5a29699-eff3-448c-986a-10e06a1753b4",
+                    country);
 
                 _userRepository.Add(user);
                 _context.SaveChanges();

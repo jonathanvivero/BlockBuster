@@ -120,6 +120,12 @@
   <data name="Email" xml:space="preserve">
     <value>Email</value>
   </data>
+  <data name="ErrorCountryIsNull" xml:space="preserve">
+    <value>El País es nulo</value>
+  </data>
+  <data name="FieldCountry" xml:space="preserve">
+    <value>Country</value>
+  </data>
   <data name="FieldCountryCode" xml:space="preserve">
     <value>CountryCode</value>
   </data>
@@ -148,13 +154,16 @@
     <value>Password</value>
   </data>
   <data name="PasswordPattern" xml:space="preserve">
-    <value>/^([a-zA-Z0-9]{8,20})$/</value>
+    <value>^([a-zA-Z0-9]{8,20})$</value>
   </data>
   <data name="ROLE_ADMIN" xml:space="preserve">
     <value />
   </data>
   <data name="ROLE_USER" xml:space="preserve">
     <value>User</value>
+  </data>
+  <data name="ValidationFindUserByEmailAndPasswordNotFound" xml:space="preserve">
+    <value>No se ha encontrado ningún usuario. El Email y/o la Contraseña son incorrectos</value>
   </data>
   <data name="ValidationPasswordShouldMatchRepeatPassword" xml:space="preserve">
     <value>Password value should match Repeat Password value</value>

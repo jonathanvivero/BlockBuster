@@ -1,6 +1,4 @@
-﻿using BlockBuster.IAM.Application.Converters.Token;
-using BlockBuster.IAM.Application.Converters.User;
-using BlockBuster.IAM.Infrastructure.Services.Hashing;
+﻿using BlockBuster.IAM.Infrastructure.Services.Hashing;
 using BlockBuster.Shared.Domain.Events;
 using BlockBuster.Shared.Infrastructure.Bus.Event;
 using BlockBuster.Shared.Infrastructure.Bus.Middleware;
@@ -22,9 +20,6 @@ using Swashbuckle.AspNetCore.Filters;
 using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.Buffers;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BlockBuster.Main.StartupBuilder
 {
@@ -94,44 +89,21 @@ namespace BlockBuster.Main.StartupBuilder
         
         public StartupServiceCollectionInstallerFacade ConfigureMvcServices()
         {
-            _serviceConfigurationInstaller.
-                GetServiceCollection()
-                .AddMvcCore()
-                .AddVersionedApiExplorer(o => o.GroupNameFormat = "'v'VVV");
-
-            var sp = _serviceConfigurationInstaller.
-                GetServiceCollection()
+            var serviceCollection = _serviceConfigurationInstaller.
+                GetServiceCollection();
+            
+            var sp = serviceCollection
                 .BuildServiceProvider();
 
             var loggerFactory = sp.GetService<ILoggerFactory>();
-            var objectPoolProvider =  sp.GetService<ObjectPoolProvider>();            
+            var objectPoolProvider = sp.GetService<ObjectPoolProvider>();
 
-            _serviceConfigurationInstaller.
-                GetServiceCollection()
-                .AddMvc((opt) =>
-                {
-                    var serializerSettings = new JsonApiSerializerSettings();
+            serviceCollection
+                .AddMvcCore()// ((opt) => SetJsonApiSerializerOpotions(opt, loggerFactory, objectPoolProvider))
+                .AddVersionedApiExplorer(o => o.GroupNameFormat = "'v'VVV");
 
-                    var jsonApiFormatter = new JsonOutputFormatter(serializerSettings, ArrayPool<Char>.Shared);
-                    opt.OutputFormatters.RemoveType<JsonOutputFormatter>();
-                    opt.OutputFormatters.Insert(0, jsonApiFormatter);
-
-                    var logger = loggerFactory.CreateLogger<JsonInputFormatter>();
-                    var jsonMvcOptions = new MvcJsonOptions()
-                    {
-                        AllowInputFormatterExceptionMessages = true
-                    };
-
-                    var jsonApiInputFormatter = new JsonInputFormatter(
-                        logger,
-                        serializerSettings,
-                        ArrayPool<Char>.Shared,
-                        objectPoolProvider,
-                        opt, jsonMvcOptions);                    
-
-                    opt.InputFormatters.RemoveType<JsonInputFormatter>();
-                    opt.InputFormatters.Insert(0, jsonApiInputFormatter);
-                })
+            serviceCollection
+                .AddMvc() //((opt) => SetJsonApiSerializerOpotions(opt, loggerFactory, objectPoolProvider))                
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             return this;
@@ -194,6 +166,34 @@ namespace BlockBuster.Main.StartupBuilder
                 });
 
             return this;
+        }
+
+        private MvcOptions SetJsonApiSerializerOpotions(MvcOptions opt, ILoggerFactory loggerFactory, ObjectPoolProvider objectPoolProvider)
+        {
+            var serializerSettings = new JsonApiSerializerSettings();
+
+            var jsonApiFormatter = new JsonOutputFormatter(serializerSettings, ArrayPool<Char>.Shared);
+            opt.OutputFormatters.RemoveType<JsonOutputFormatter>();
+            opt.OutputFormatters.Insert(0, jsonApiFormatter);
+
+            var logger = loggerFactory.CreateLogger<JsonInputFormatter>();
+            var jsonMvcOptions = new MvcJsonOptions()
+            {
+                AllowInputFormatterExceptionMessages = true
+                
+            };
+
+            var jsonApiInputFormatter = new JsonInputFormatter(
+                logger,
+                serializerSettings,
+                ArrayPool<Char>.Shared,
+                objectPoolProvider,
+                opt, jsonMvcOptions);
+
+            opt.InputFormatters.RemoveType<JsonInputFormatter>();
+            opt.InputFormatters.Insert(0, jsonApiInputFormatter);
+
+            return opt;
         }
     }
 }

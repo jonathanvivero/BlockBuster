@@ -5,9 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="JsonApiDotNetCore" Version="2.5.2" />
     <PackageReference Include="JsonApiSerializer" Version="1.7.4" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.1.0" />
   </ItemGroup>
 
@@ -19,6 +21,7 @@
     <ProjectReference Include="..\..\..\1.-Shared\3.-Infrastructure\Persistence\BlockBuster.Shared.Infrastructure.Persistence\BlockBuster.Shared.Infrastructure.Persistence.csproj" />
     <ProjectReference Include="..\..\..\1.-Shared\3.-Infrastructure\Security\BlockBuster.Shared.Infrastructure.Security\BlockBuster.Shared.Infrastructure.Security.csproj" />
     <ProjectReference Include="..\..\..\1.-Shared\4.-Domain\BlockBuster.Shared.Domain\BlockBuster.Shared.Domain.csproj" />
+    <ProjectReference Include="..\..\GEO\BlockBuster.GEO\BlockBuster.GEO.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -42,6 +45,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>IAMResources.resx</DependentUpon>
     </Compile>
+    <Compile Update="Infrastructure\Resources\MailTemplateResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>MailTemplateResources.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -60,6 +68,10 @@
     <EmbeddedResource Update="Infrastructure\Resources\IAMResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>IAMResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Infrastructure\Resources\MailTemplateResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>MailTemplateResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 

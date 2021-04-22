@@ -14,24 +14,20 @@ namespace BlockBuster.Infrastructure.Persistence.Context
             IBlockBusterIAMContext
     {
         private readonly IServiceProvider _serviceProvider;
-        public BlockBusterIAMContext(DbContextOptions options, 
+        public BlockBusterIAMContext(DbContextOptions<BlockBusterIAMContext> options, 
             IServiceProvider serviceProvider) 
             : base(options) 
         {
-            _serviceProvider = serviceProvider;
+            _serviceProvider = serviceProvider;            
         }
 
         public DbSet<User> Users { get; set; }
         public DbSet<Token> Tokens { get; set; }
-        public DbSet<Country> Countries { get; set; }
-
 
         protected override void SetEntityModelMapping(ModelBuilder modelBuilder)
         { 
             modelBuilder.ApplyConfiguration(new UserMap());
             modelBuilder.ApplyConfiguration(new TokenMap());
-            modelBuilder.ApplyConfiguration(new CountryMap());
-
         }
 
         protected override void SetUpDatabaseSeeding() 

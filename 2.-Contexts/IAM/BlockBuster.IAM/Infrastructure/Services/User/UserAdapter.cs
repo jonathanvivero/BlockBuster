@@ -1,22 +1,27 @@
-﻿using BlockBuster.IAM.Domain.UserAggregate;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using BlockBuster.IAM.Application.UseCases.Email;
+using BlockBuster.IAM.Domain.UserAggregate.ValueObjects;
 
 namespace BlockBuster.IAM.Infrastructure.Services.User
 {
-    public class UserAdapter
+    public class UserAdapter: IUserAdapter
     {
-        private readonly UserFacade _userFacade;        
+        private readonly IUserFacade _userFacade;        
 
-        public UserAdapter(UserFacade userFacade)
+        public UserAdapter(IUserFacade userFacade)
         {
             _userFacade = userFacade;            
         }
 
-        public Country FindCountryFromCountryCode(string countryCode)
+        public UserCountry FindCountryFromCountryCode(string countryCode)
         {
             return _userFacade.FindCountryFromCountryCode(countryCode);
         }
+
+        public UserCountry FindCountryFromCountryId(string countryId)
+        {
+            return _userFacade.FindCountryFromCountryId(countryId);
+        }
+
+
     }
 }

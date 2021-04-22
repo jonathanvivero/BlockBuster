@@ -1,46 +1,58 @@
 ﻿
 using BlockBuster.IAM.Application.Converters.User;
+using BlockBuster.IAM.Application.UseCases.Email;
 using BlockBuster.IAM.Domain.UserAggregate.Factories;
 using BlockBuster.IAM.Domain.UserAggregate.Repository;
 using BlockBuster.IAM.Domain.UserAggregate.Validators;
+using BlockBuster.IAM.Domain.UserAggregate.ValueObjects;
 using BlockBuster.IAM.Infrastructure.Services.User;
+using BlockBuster.Infrastructure.Persistence.Context;
 using BlockBuster.Shared.Application.Bus.UseCase;
 using BlockBuster.Shared.Domain.Events;
 
 namespace BlockBuster.IAM.Application.UseCases.User.SignUp
 {
-    public class UserSignUpUseCase : IUseCase
+    public class UserSignUpUseCase : UseCaseBase
     {
         private readonly IUserFactory _userFactory;
-        private readonly UserSignUpValidator _userSignUpValidator;
+        private readonly UserSignUpEmailDoesNotExistValidator _userSignUpEmailDoesNotExistValidator;
+        private readonly UserSignUpCountryExistsValidator _userSignUpCountryExistsValidator;
         private readonly IUserRepository _userRepository;
         private readonly UserConverter _userConverter;
         private readonly IEventProvider _eventProvider;
-        private readonly UserAdapter _userAdapter;
+        private readonly IUserAdapter _userAdapter;
+        private readonly IUserSendWelcomeEmailAdapter _userSendWelcomeEmailAdapter;
         
         public UserSignUpUseCase(
             IUserFactory userFactory,
-            UserSignUpValidator userSignUpValidator,
+            UserSignUpEmailDoesNotExistValidator userSignUpEmailDoesNotExistValidator,
+            UserSignUpCountryExistsValidator userSignUpCountryExistsValidator,
             IUserRepository userRepository,
             UserConverter userConverter,
             IEventProvider eventProvider,
-            UserAdapter userAdapter)
+            IUserAdapter userAdapter,
+            IUserSendWelcomeEmailAdapter userSendWelcomeEmailAdapter,
+            IBlockBusterIAMContext context)
+            : base(context)
         {
             _userFactory = userFactory;
-            _userSignUpValidator = userSignUpValidator;
+            _userSignUpEmailDoesNotExistValidator = userSignUpEmailDoesNotExistValidator;
+            _userSignUpCountryExistsValidator = userSignUpCountryExistsValidator;
             _userRepository = userRepository;
             _userConverter = userConverter;
             _eventProvider = eventProvider;
             _userAdapter = userAdapter;
+            _userSendWelcomeEmailAdapter = userSendWelcomeEmailAdapter;
         }
 
-        public IResponse Execute(IRequest req)
+        public override IResponse Execute(IRequest req)
         {
             UserSignUpRequest request = req as UserSignUpRequest;
+            
+            _userSignUpEmailDoesNotExistValidator.Validate(request.Email);
 
-            var country = _userAdapter.FindCountryFromCountryCode(request.Country.Code);
-
-            _userSignUpValidator.ValidateCountryExists(country, request.Country.Code);
+            UserCountry country = _userAdapter.FindCountryFromCountryCode(request.Country.Code);
+            _userSignUpCountryExistsValidator.Validate(country, request.Country.Code);
 
             var user = _userFactory.Create(
                 request.Id,
@@ -50,14 +62,15 @@ namespace BlockBuster.IAM.Application.UseCases.User.SignUp
                 request.FirstName,
                 request.LastName,
                 request.Role,
-                country);
+                country.GetValue().Id.GetValue(), 
+                country.GetValue());
 
 
             _eventProvider.RecordEvents(user.ReleaseEvents());
 
-            _userSignUpValidator.ValidateExistingUser(user.Email);
-
             _userRepository.Add(user);
+
+            _userSendWelcomeEmailAdapter.SendUserSignedUpWelcomeEmail(user);
 
             return _userConverter.Convert();
         }
