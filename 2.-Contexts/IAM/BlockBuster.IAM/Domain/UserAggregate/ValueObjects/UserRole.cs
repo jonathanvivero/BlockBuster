@@ -8,6 +8,7 @@ namespace BlockBuster.IAM.Domain.UserAggregate.ValueObjects
     {
         public const string ROLE_USER = "User";
         public const string ROLE_ADMIN = "Admin";
+        public const string ALL_ROLES = "User,Admin";
 
         public UserRole(string value) : base(value)
         {

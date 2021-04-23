@@ -23,14 +23,14 @@ namespace BlockBuster.IAM.Infrastructure.Services.Startup
                 .GetServiceCollection()
                 .AddScoped<UserConverter>()
                 .AddScoped<TokenConverter>()
-                .AddScoped<UserGetUsersConverter>()
+                .AddScoped<UserGetUsersConverter>()                
 
                 .AddScoped<UserSignUpUseCase>()
                 .AddScoped<TokenCreateUseCase>()
                 .AddScoped<SendUserWelcomeEmailUseCase>()
                 .AddScoped<UserPartialUpdateUseCase>() 
                 .AddScoped<UserGetUsersUseCase>() 
-                
+
                 .AddScoped<SendUserWelcomeEmailWhenUserSignedUpEventHandler>()
 
                 .AddScoped<UserSignUpRequest>()

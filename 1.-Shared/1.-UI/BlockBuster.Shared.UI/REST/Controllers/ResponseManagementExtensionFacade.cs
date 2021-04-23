@@ -15,16 +15,23 @@ namespace BlockBuster.Shared.UI.REST.Controllers
         {
             if (!(response is ExceptionResponse))
             {
-                string json = JsonConvert.SerializeObject(response, new JsonApiSerializerSettings());
+                string responseJSON = JsonConvert.SerializeObject(response, new JsonApiSerializerSettings());
+                var jsonObjectResult = JsonConvert.DeserializeObject(responseJSON, new JsonApiSerializerSettings());
 
-                return controller.Ok(json);
+                return controller.Ok(jsonObjectResult);
             }
 
             int code = int.Parse(((ExceptionResponse)response).Code);
 
+            if (code == 204)
+                return controller.NoContent();
+
             if(code == 400)
                 return controller.BadRequest(response);
             
+            if (code == 401)
+                return controller.Unauthorized();
+
             if (code == 403)
                 return controller.Forbid();
             

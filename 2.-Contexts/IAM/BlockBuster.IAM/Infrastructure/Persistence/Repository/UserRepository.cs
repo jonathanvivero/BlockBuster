@@ -56,6 +56,15 @@ namespace BlockBuster.IAM.Infrastructure.Presistence.Repositories
             }
         }
 
+        public override void Update(User user)
+        {
+            using (var scope = this.serviceScopeFactory.CreateScope())
+            {
+                var dbContext = scope.ServiceProvider.GetRequiredService<IBlockBusterIAMContext>();
+                dbContext.Users.Update(user);
+            }
+        }
+
         public IEnumerable<User> GetUsers(IDictionary<string, int> page)
         {
             using (var scope = this.serviceScopeFactory.CreateScope())
@@ -64,6 +73,16 @@ namespace BlockBuster.IAM.Infrastructure.Presistence.Repositories
                 return db.Users
                     .Skip((page["number"] - 1) * page["size"])
                     .Take(page["size"]);
+            }
+        }
+
+        public User FindUserById(UserId userId)
+        {
+            using (var scope = this.serviceScopeFactory.CreateScope())
+            {
+                var db = scope.ServiceProvider.GetRequiredService<IBlockBusterIAMContext>();
+                return db.Users
+                    .FirstOrDefault(w => w.Id.GetValue() == userId.GetValue());
             }
         }
     }
