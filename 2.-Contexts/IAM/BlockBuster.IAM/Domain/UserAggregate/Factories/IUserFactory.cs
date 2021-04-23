@@ -15,5 +15,12 @@ namespace BlockBuster.IAM.Domain.UserAggregate.Factories
             string role,
             string countryId,
             Country country);
+
+        User PartialUpdate(
+            User user,
+            string password,
+            string firstName,
+            string lastName
+            );
     }
 }

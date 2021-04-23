@@ -4,16 +4,19 @@ using Microsoft.AspNetCore.JsonPatch;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace BlockBuster.IAM.Application.UseCases.User.PartialUpdate
 {
-    public class UserPartialUpdateRequest : AbstractRequest
-    { 
-        public string Id { get; private set; }
-        public JsonPatchDocument<UserDTO> User { get; private set; }               
+    public class UserPartialUpdateRequest : IRequest
+    {
+        public string Id { get; set; }
+        public string CurrentUserId { get; set; }
+        public string Password { get; set; }
+        public string FirstName {get;set;}        
+        public string LastName {get;set;}        
     
-        public UserPartialUpdateRequest(IQueryCollection query)
-        :base(query)
+        public UserPartialUpdateRequest()
         {
 
         }

@@ -6,10 +6,10 @@ namespace BlockBuster.Shared.Infrastructure.Bus.Middleware
 {
     public class ExceptionMiddleware : MiddlewareHandler
     {
-        private readonly ExceptionConverter exceptionConverter;
+        private readonly ExceptionConverter _exceptionConverter;
         public ExceptionMiddleware(ExceptionConverter exceptionConverter)
         {
-            this.exceptionConverter = exceptionConverter;
+            _exceptionConverter = exceptionConverter;
         }
 
         public override IResponse Handle(IRequest request)
@@ -20,13 +20,25 @@ namespace BlockBuster.Shared.Infrastructure.Bus.Middleware
 
                 return response;
             }
+            catch (ContentException exception)
+            {
+                return _exceptionConverter.Convert("204", exception.Message);
+            }
             catch (ValidationException exception)
             {
-                return this.exceptionConverter.Convert("400", exception.Message);
+                return _exceptionConverter.Convert("400", exception.Message);
+            }
+            catch (AuthorizationException exception)
+            {
+                return _exceptionConverter.Convert("401", exception.Message);
+            }
+            catch (ForbiddenException exception)
+            {
+                return _exceptionConverter.Convert("403", exception.Message);
             }
             catch (System.Exception exception)
             {
-                return this.exceptionConverter.Convert("500", exception.Message);
+                return _exceptionConverter.Convert("500", exception.Message);
             }
         }
     }

@@ -78,12 +78,22 @@ namespace BlockBuster.IAM.Domain.UserAggregate
             );
 
             return user;
-        }
+        }        
 
         public void SetUserCountry(UserCountry country) 
         {
             this.Country = country;
         }
+
+        public void UpdateField(UserFirstName firstName)
+            => this.FirstName = firstName;
+        public void UpdateField(UserLastName lastName)
+            => this.LastName = lastName;
+        public void UpdateField(UserHashedPassword password)
+            => this.HashedPassword = password;
+        public void UpdateField(UserUpdatedAt updatedAt)
+            => this.UpdatedAt = updatedAt;
+
 
     }
 }
