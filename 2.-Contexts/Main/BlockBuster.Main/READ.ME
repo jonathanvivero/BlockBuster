@@ -12,8 +12,8 @@ ENGINE=InnoDB
 CREATE TABLE `token` (
 	`user_id` VARCHAR(40) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`hash` VARCHAR(1024) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
-	`created_at` TIMESTAMP NOT NULL,
-	`updated_at` TIMESTAMP NOT NULL,
+	`created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+	`updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP()
 	PRIMARY KEY (`user_id`) USING BTREE
 )
 COLLATE='utf8mb4_0900_ai_ci'
@@ -28,8 +28,8 @@ CREATE TABLE `user` (
 	`first_name` VARCHAR(15) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`last_name` VARCHAR(30) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
 	`role` VARCHAR(20) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
-	`created_at` TIMESTAMP NOT NULL,
-	`updated_at` TIMESTAMP NOT NULL,
+	`created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+	`updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP()
 	PRIMARY KEY (`id`) USING BTREE
 )
 COLLATE='utf8mb4_0900_ai_ci'
@@ -42,3 +42,34 @@ INSERT INTO `country` (`id`, `code`, `tax`) VALUES ('a74f0d2a-3098-4a29-9ee1-6d6
 INSERT INTO `country` (`id`, `code`, `tax`) VALUES ('1c067a88-4f12-4e8f-ac06-17d0986ae1ce', 'GBR', 25);
 INSERT INTO `country` (`id`, `code`, `tax`) VALUES ('32be99d1-266a-430b-b986-fdbe49675d4b', 'POR', 20);
 
+
+CREATE TABLE `category` (
+	`id` VARCHAR(40) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',	
+	`name` VARCHAR(64) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+	`updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
+	PRIMARY KEY (`id`) USING BTREE
+)
+COLLATE='utf8mb4_0900_ai_ci'
+ENGINE=InnoDB
+;
+
+INSERT INTO `category` (`id`, `name`) VALUES ('24c554a4-68a8-49b0-b1c4-02054fe113bc', 'comedy');
+INSERT INTO `category` (`id`, `name`) VALUES ('032ca58c-26e9-41de-a539-3a30a51177ac', 'drama');
+INSERT INTO `category` (`id`, `name`) VALUES ('8ae83972-fdb8-4a71-84be-b59e4086f99a', 'terror');
+INSERT INTO `category` (`id`, `name`) VALUES ('ad42ee53-2429-401a-a522-fe54b6a1c932', 'biopic');
+INSERT INTO `category` (`id`, `name`) VALUES ('99f5d729-b0a3-4b03-b139-60c61cd75c28', 'musical');
+
+
+CREATE TABLE `film` (
+	`id` VARCHAR(40) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`category_id` VARCHAR(40) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`name` VARCHAR(256) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`description` VARCHAR(512) NOT NULL COLLATE 'utf8mb4_0900_ai_ci',
+	`created_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+	`updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP() ON UPDATE CURRENT_TIMESTAMP(),
+	PRIMARY KEY (`id`) USING BTREE
+)
+COLLATE='utf8mb4_0900_ai_ci'
+ENGINE=InnoDB
+;
