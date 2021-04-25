@@ -1,4 +1,6 @@
-﻿using BlockBuster.FILM.Film.Domain.FilmAggregate;
+﻿using BlockBuster.FILM.Category.Domain.FilmAggregate;
+using BlockBuster.FILM.Category.Infrastructure.Services.Converters;
+using BlockBuster.FILM.Film.Domain.FilmAggregate;
 using BlockBuster.FILM.Film.Infrastructure.Persistence.Context;
 using BlockBuster.FILM.Film.Infrastructure.Services.Converters;
 using BlockBuster.Shared.Application.Bus.UseCase;

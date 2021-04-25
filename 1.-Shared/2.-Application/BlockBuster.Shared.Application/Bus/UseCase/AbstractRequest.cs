@@ -22,7 +22,6 @@ namespace BlockBuster.Shared.Application.Bus.UseCase
             this.page.Add("size", int.TryParse(pageSize, out int size) ? size : 25);
         }      
 
-        public IDictionary<string, int> Page()
-            => this.page;
+        public IDictionary<string, int> Page { get => this.page; }
     }
 }

@@ -1,10 +1,10 @@
-﻿using BlockBuster.FILM.Film.Infrastructure.Persistence.Mapping;
+﻿using BlockBuster.FILM.Category.Infrastructure.Persistence.Mapping;
+using BlockBuster.FILM.Film.Infrastructure.Persistence.Mapping;
 using BlockBuster.FILM.Film.Infrastructure.Persistence.Seed;
 using BlockBuster.Infrastructure.Persistence.Context;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BlockBuster.FILM.Film.Infrastructure.Persistence.Context
 {

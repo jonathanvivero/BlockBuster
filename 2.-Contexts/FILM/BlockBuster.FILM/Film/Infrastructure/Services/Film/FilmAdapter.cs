@@ -8,7 +8,7 @@ namespace BlockBuster.FILM.Film.Infrastructure.Services.Film
     public class FilmAdapter: IFilmAdapter
     {
         private readonly IFilmFindCategoryFromCategoryNameFacade _filmFindCategoryFromCategoryName;
-        public FilmAdapter(FilmFindCategoryFromCategoryNameFacade filmFindCategoryFromCategoryName)
+        public FilmAdapter(IFilmFindCategoryFromCategoryNameFacade filmFindCategoryFromCategoryName)
         {
             _filmFindCategoryFromCategoryName = filmFindCategoryFromCategoryName;
         }

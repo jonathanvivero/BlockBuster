@@ -23,6 +23,8 @@
     <ProjectReference Include="..\..\..\1.-Shared\1.-UI\BlockBuster.Shared.UI.ContextStartup\BlockBuster.Shared.UI.ContextStartup.csproj" />
     <ProjectReference Include="..\..\..\1.-Shared\3.-Infrastructure\Extensions\BlockBuster.Shared.Infrastructure.Extensions\BlockBuster.Shared.Infrastructure.Extensions.csproj" />
     <ProjectReference Include="..\..\..\1.-Shared\3.-Infrastructure\Persistence\BlockBuster.Shared.Infrastructure.Persistence\BlockBuster.Shared.Infrastructure.Persistence.csproj" />
+    <ProjectReference Include="..\..\FILM\BlockBuster.FILM\BlockBuster.FILM.csproj" />
+    <ProjectReference Include="..\..\GEO\BlockBuster.GEO\BlockBuster.GEO.csproj" />
     <ProjectReference Include="..\..\IAM\BlockBuster.IAM\BlockBuster.IAM.csproj" />
   </ItemGroup>
 

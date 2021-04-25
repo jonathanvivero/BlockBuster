@@ -40,12 +40,14 @@ namespace BlockBuster.FILM.Film.Infrastructure.Repositories
                     .FirstOrDefault(w => w.Id.GetValue() == id.GetValue());
             }
         }
-        public IEnumerable<Domain.FilmAggregate.Film> GetAllFilms()
+        public IEnumerable<Domain.FilmAggregate.Film> GetAllFilms(IDictionary<string, int> page)
         {
             using (var scope = this.serviceScopeFactory.CreateScope())
             {
                 var dbContext = scope.ServiceProvider.GetRequiredService<IBlockBusterFilmContext>();
-                return dbContext.Films;
+                return dbContext.Films
+                    .Skip((page["number"] - 1) * page["size"])
+                    .Take(page["size"]); ;
             }
         }
         public override void Add(Domain.FilmAggregate.Film film)
