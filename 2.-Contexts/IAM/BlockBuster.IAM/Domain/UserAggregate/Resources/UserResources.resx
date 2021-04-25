@@ -157,13 +157,22 @@
     <value>^([a-zA-Z0-9]{8,20})$</value>
   </data>
   <data name="ROLE_ADMIN" xml:space="preserve">
-    <value />
+    <value>Admin</value>
   </data>
   <data name="ROLE_USER" xml:space="preserve">
     <value>User</value>
   </data>
   <data name="ValidationFindUserByEmailAndPasswordNotFound" xml:space="preserve">
     <value>No se ha encontrado ningún usuario. El Email y/o la Contraseña son incorrectos</value>
+  </data>
+  <data name="ValidationFindUserByIdNotFound" xml:space="preserve">
+    <value>Usuario no encontrado con el Id '{0}'</value>
+  </data>
+  <data name="ValidationPartialUpdateNoContentToBeUpdated" xml:space="preserve">
+    <value>No content to be updated</value>
+  </data>
+  <data name="ValidationPartialUpdateUserNotAuthorized" xml:space="preserve">
+    <value>Usuario no autorizado</value>
   </data>
   <data name="ValidationPasswordShouldMatchRepeatPassword" xml:space="preserve">
     <value>Password value should match Repeat Password value</value>

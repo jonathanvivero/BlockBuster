@@ -2,7 +2,7 @@
 
 namespace BlockBuster.IAM.Domain.UserAggregate.ValueObjects
 {
-    public class UserId : UUID
+    public class UserId : UUIDValueObject
     {
         public UserId(string message) : base(message) { }
     }

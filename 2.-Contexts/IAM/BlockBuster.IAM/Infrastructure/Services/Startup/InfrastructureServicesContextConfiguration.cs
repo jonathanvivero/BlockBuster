@@ -38,8 +38,6 @@ namespace BlockBuster.IAM.Infrastructure.Services.Startup
                 .AddScoped<IMailer, DefaultMailer>()
                 .AddScoped<MailTemplateFactory>()
 
-
-
                 .AddSingleton<TransactionMiddleware<IBlockBusterIAMContext>>()
                 ;
 

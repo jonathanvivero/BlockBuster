@@ -35,7 +35,7 @@ namespace BlockBuster.Main.StartupBuilder
                 .AddAuthentication(auth =>
                 {
                     auth.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                    auth.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                    auth.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;                                        
                 }).AddJwtBearer(bearer =>
                 {
                     bearer.RequireHttpsMetadata = false;

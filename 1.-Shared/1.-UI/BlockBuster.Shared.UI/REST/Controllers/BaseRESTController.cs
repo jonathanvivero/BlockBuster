@@ -2,6 +2,7 @@
 using BlockBuster.Shared.Application.Bus.UseCase;
 using BlockBuster.Shared.Infrastructure.Bus.Middleware.Exceptions;
 using BlockBuster.Shared.Infrastructure.Bus.UseCase;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlockBuster.Shared.UI.REST.Controllers
@@ -20,6 +21,6 @@ namespace BlockBuster.Shared.UI.REST.Controllers
                 .Dispatch(request);
                         
             return this.HandleResponse(response);
-        }
+        }        
     }
 }

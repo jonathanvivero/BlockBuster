@@ -1,8 +1,11 @@
 ﻿using BlockBuster.GEO.Country.Application.UseCase.FindByCode;
+using BlockBuster.GEO.Country.Application.UseCase.GetAll;
 using BlockBuster.GEO.Country.Domain.CountryAggregate;
 using BlockBuster.IAM.Application.UseCases.User.GetUsers;
 using BlockBuster.IAM.Domain.UserAggregate.ValueObjects;
 using BlockBuster.Shared.Application.Bus.UseCase;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BlockBuster.IAM.Infrastructure.Services.User
 {
@@ -28,6 +31,15 @@ namespace BlockBuster.IAM.Infrastructure.Services.User
                 country.CreatedAt.GetValue(),
                 country.UpdatedAt.GetValue()
                 );
+        }
+
+        public IEnumerable<UserCountry> FromCountryListToUserCountryList(IResponse resp)
+        {
+            CountryGetCountriesResponse response = resp as CountryGetCountriesResponse;            
+
+            return response
+                .Countries
+                .Select(s => new UserCountry(s));
         }
     }
 }

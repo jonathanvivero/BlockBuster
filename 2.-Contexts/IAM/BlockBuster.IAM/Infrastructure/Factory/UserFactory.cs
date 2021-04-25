@@ -4,6 +4,7 @@ using BlockBuster.IAM.Domain.UserAggregate.Factories;
 using BlockBuster.IAM.Domain.UserAggregate.ValueObjects;
 using BlockBuster.IAM.Infrastructure.Services.Hashing;
 using BlockBuster.IAM.Infrastructure.Services.User;
+using System;
 
 namespace BlockBuster.IAM.Infrastructure.Factory
 {
@@ -47,5 +48,28 @@ namespace BlockBuster.IAM.Infrastructure.Factory
                 userCountryId,
                 userCountry);
         }
+
+        public User PartialUpdate(
+           User user,
+           string firstName,
+           string lastName,
+           string password
+           )
+        {
+            if (!string.IsNullOrEmpty(firstName))
+                user.UpdateField(new UserFirstName(firstName));
+            
+            if (!string.IsNullOrEmpty(lastName))
+                user.UpdateField(new UserFirstName(firstName));
+            
+            if (!string.IsNullOrEmpty(password))
+                user.UpdateField(_hashing.Hash(password));
+
+            user.UpdateField(new UserUpdatedAt(DateTime.Now));
+
+            return user;
+        }
+
+
     }
 }

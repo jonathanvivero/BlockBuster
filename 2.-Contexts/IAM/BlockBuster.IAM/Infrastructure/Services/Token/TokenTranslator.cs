@@ -16,6 +16,7 @@ namespace BlockBuster.IAM.Infrastructure.Services.Token
             {
                 [TokenResources.PayloadUsedId] = user.Id.GetValue(),
                 [TokenResources.PayloadRole] = user.Role.GetValue(),
+                ["roles"] = user.Role.GetValue(),
                 [TokenResources.PayloadCountryCode] = user.Country.GetValue().Code.GetValue(),
                 [TokenResources.PayloadCountryId] = user.Country.GetValue().Id.GetValue(),
                 [TokenResources.PayloadEmail] = user.Email.GetValue(),

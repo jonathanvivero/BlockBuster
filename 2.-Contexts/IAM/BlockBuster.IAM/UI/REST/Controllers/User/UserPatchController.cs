@@ -1,5 +1,6 @@
 ﻿using BlockBuster.IAM.Application.UseCases.User.PartialUpdate;
 using BlockBuster.IAM.Application.UseCases.User.SignUp;
+using BlockBuster.IAM.Domain.UserAggregate.ValueObjects;
 using BlockBuster.Infrastructure.Persistence.Context;
 using BlockBuster.Shared.Infrastructure.Bus.UseCase;
 using BlockBuster.Shared.UI.REST.Controllers;
@@ -9,10 +10,12 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace BlockBuster.IAM.UI.REST.Controllers.User
 {
+    [Authorize]
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/users")]
     [ApiController]
@@ -22,13 +25,20 @@ namespace BlockBuster.IAM.UI.REST.Controllers.User
             IUseCaseBus useCaseBus,
             IBlockBusterIAMContext context)
            : base(useCaseBus) { }
-
-        [AllowAnonymous]
+        [Authorize(Roles = UserRole.ALL_ROLES)]
         [HttpPatch("{id}", Name = nameof(PartialUpdate))]
-        public IActionResult PartialUpdate()
+        public IActionResult PartialUpdate(string id, [FromBody] JsonPatchDocument<UserPartialUpdateRequest> patchDoc)
         {
-            var request = new UserPartialUpdateRequest(HttpContext.Request.Query);
-            return Dispatch(request);
+            UserPartialUpdateRequest request = new UserPartialUpdateRequest();
+            request.Id = id;
+            request.CurrentUserId = HttpContext
+                .User
+                .Claims
+                .FirstOrDefault(w => w.Type == ClaimTypes.NameIdentifier)
+                .Value;
+
+            patchDoc.ApplyTo(request, ModelState);
+            return this.Dispatch(request);
         }
     }
 }

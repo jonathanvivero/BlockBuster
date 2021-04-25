@@ -178,7 +178,7 @@ namespace BlockBuster.IAM.Domain.UserAggregate.Resources {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a .
+        ///   Busca una cadena traducida similar a Admin.
         /// </summary>
         public static string ROLE_ADMIN {
             get {
@@ -201,6 +201,33 @@ namespace BlockBuster.IAM.Domain.UserAggregate.Resources {
         public static string ValidationFindUserByEmailAndPasswordNotFound {
             get {
                 return ResourceManager.GetString("ValidationFindUserByEmailAndPasswordNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Usuario no encontrado con el Id &apos;{0}&apos;.
+        /// </summary>
+        public static string ValidationFindUserByIdNotFound {
+            get {
+                return ResourceManager.GetString("ValidationFindUserByIdNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a No content to be updated.
+        /// </summary>
+        public static string ValidationPartialUpdateNoContentToBeUpdated {
+            get {
+                return ResourceManager.GetString("ValidationPartialUpdateNoContentToBeUpdated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Usuario no autorizado.
+        /// </summary>
+        public static string ValidationPartialUpdateUserNotAuthorized {
+            get {
+                return ResourceManager.GetString("ValidationPartialUpdateUserNotAuthorized", resourceCulture);
             }
         }
         

@@ -79,6 +79,15 @@ namespace BlockBuster.GEO.Country.Infrastructure.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a Id.
+        /// </summary>
+        public static string FieldId {
+            get {
+                return ResourceManager.GetString("FieldId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a Tax.
         /// </summary>
         public static string FieldTax {

@@ -37,5 +37,12 @@ namespace BlockBuster.IAM.Domain.UserAggregate.Exceptions
                 UserResources.ValidationFindUserByEmailAndPasswordNotFound
             );
         }
+
+        public static UserFoundException FromFindById(string id)
+        {
+            return new UserFoundException(
+                string.Format(UserResources.ValidationFindUserByIdNotFound, id)
+            );
+        }
     }
 }
