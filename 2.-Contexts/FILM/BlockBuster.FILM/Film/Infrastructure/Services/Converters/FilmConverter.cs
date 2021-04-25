@@ -4,6 +4,7 @@ using BlockBuster.FILM.Film.Application.UseCase.DispatchCorrectUseCase;
 using BlockBuster.FILM.Film.Application.UseCase.FindById;
 using BlockBuster.FILM.Film.Application.UseCase.FindByName;
 using BlockBuster.FILM.Film.Application.UseCase.GetAll;
+using BlockBuster.FILM.Film.Application.UseCase.LookUpFilmInExternalApi;
 using BlockBuster.FILM.Film.Domain.FilmAggregate;
 using BlockBuster.Shared.Application.Bus.UseCase;
 using Microsoft.AspNetCore.Http;
@@ -67,5 +68,9 @@ namespace BlockBuster.FILM.Film.Infrastructure.Services.Converters
                 new FilmGetFilmsRequest(query));    
         }
 
+        public LookUpFilmInExternalApiResponse ConvertToLookUpFilmInExternalApiResponse(Domain.FilmAggregate.Film film)
+        {
+            return new LookUpFilmInExternalApiResponse(film);
+        }
     }
 }

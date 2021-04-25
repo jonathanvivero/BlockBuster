@@ -1,15 +1,16 @@
 ﻿using BlockBuster.FILM.Film.Domain.FilmAggregate;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BlockBuster.FILM.Film.Infrastructure.Services.Film
 {
     public class FilmAdapter: IFilmAdapter
     {
+
+        private readonly IFilmFindFromExternalAPIFacade _filmFindFromExternalAPIFacade;
         private readonly IFilmFindCategoryFromCategoryNameFacade _filmFindCategoryFromCategoryName;
-        public FilmAdapter(IFilmFindCategoryFromCategoryNameFacade filmFindCategoryFromCategoryName)
-        {
+        public FilmAdapter(IFilmFindFromExternalAPIFacade filmFindFromExternalAPIFacade,
+            IFilmFindCategoryFromCategoryNameFacade filmFindCategoryFromCategoryName)
+        {         
+            _filmFindFromExternalAPIFacade = filmFindFromExternalAPIFacade;
             _filmFindCategoryFromCategoryName = filmFindCategoryFromCategoryName;
         }
 
@@ -18,5 +19,9 @@ namespace BlockBuster.FILM.Film.Infrastructure.Services.Film
             return _filmFindCategoryFromCategoryName.FindCountryFromCountryCode(name);
         }
 
+        public Domain.FilmAggregate.Film LookUpInExternalApi(string name)
+        {
+            return _filmFindFromExternalAPIFacade.FindFilmInExternalAPI(name, FindCategoryFromCategoryName);
+        }
     }
 }

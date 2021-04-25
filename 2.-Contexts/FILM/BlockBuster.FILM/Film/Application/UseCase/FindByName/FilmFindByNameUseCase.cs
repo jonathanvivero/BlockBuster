@@ -47,6 +47,7 @@ namespace BlockBuster.FILM.Film.Application.UseCase.FindByName
                 );
             var filmName = new FilmName(request.Name);
             var film = _filmRepository.FindByName(filmName);
+
             var cagegoryId = _categoryConverter.Convert(film.CategoryId);
             var category = _categoryRepository.FindById(cagegoryId);
             film.SetCategory(new FilmCategory(category));
