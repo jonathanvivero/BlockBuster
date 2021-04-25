@@ -106,6 +106,15 @@ namespace BlockBuster.FILM.Film.Infrastructure.Resources {
         }
         
         /// <summary>
+        ///   Busca una cadena traducida similar a http://api.movie.craft-code.com:9333/movies?title={0}.
+        /// </summary>
+        public static string FilmExternalApi {
+            get {
+                return ResourceManager.GetString("FilmExternalApi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Busca una cadena traducida similar a id.
         /// </summary>
         public static string QueryFieldId {
@@ -129,6 +138,24 @@ namespace BlockBuster.FILM.Film.Infrastructure.Resources {
         public static string ValidationCategoryNotFound {
             get {
                 return ResourceManager.GetString("ValidationCategoryNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a External Api when looking for the film by name &apos;{0}&apos; returned an error and could not be complented..
+        /// </summary>
+        public static string ValidationExternalApiError {
+            get {
+                return ResourceManager.GetString("ValidationExternalApiError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a Error on creating film from external API: Category &apos;{0}&apos; does not exist in the database..
+        /// </summary>
+        public static string ValidationExternalFilmCategoryNotFound {
+            get {
+                return ResourceManager.GetString("ValidationExternalFilmCategoryNotFound", resourceCulture);
             }
         }
     }

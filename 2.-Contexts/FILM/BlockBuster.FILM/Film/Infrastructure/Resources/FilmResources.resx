@@ -132,6 +132,9 @@
   <data name="FieldName" xml:space="preserve">
     <value>Name</value>
   </data>
+  <data name="FilmExternalApi" xml:space="preserve">
+    <value>http://api.movie.craft-code.com:9333/movies?title={0}</value>
+  </data>
   <data name="QueryFieldId" xml:space="preserve">
     <value>id</value>
   </data>
@@ -140,5 +143,11 @@
   </data>
   <data name="ValidationCategoryNotFound" xml:space="preserve">
     <value>The category for the film {0} with the Id {1} was not found.</value>
+  </data>
+  <data name="ValidationExternalApiError" xml:space="preserve">
+    <value>External Api when looking for the film by name '{0}' returned an error and could not be complented.</value>
+  </data>
+  <data name="ValidationExternalFilmCategoryNotFound" xml:space="preserve">
+    <value>Error on creating film from external API: Category '{0}' does not exist in the database.</value>
   </data>
 </root>

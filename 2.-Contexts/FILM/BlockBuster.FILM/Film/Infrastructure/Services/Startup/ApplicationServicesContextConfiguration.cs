@@ -4,6 +4,7 @@ using BlockBuster.FILM.Film.Application.UseCase.DispatchCorrectUseCase;
 using BlockBuster.FILM.Film.Application.UseCase.FindById;
 using BlockBuster.FILM.Film.Application.UseCase.FindByName;
 using BlockBuster.FILM.Film.Application.UseCase.GetAll;
+using BlockBuster.FILM.Film.Application.UseCase.LookUpFilmInExternalApi;
 using BlockBuster.Shared.UI.ContextStartup;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -25,6 +26,8 @@ namespace BlockBuster.GEO.Country.Infrastructure.Services.Startup
                 .AddScoped<FilmGetFilmsUseCase>()
                 .AddScoped<DispatchCorrectUseCaseUseCase>()
                 .AddScoped<CategoryFindByIdUseCase>()
+                .AddScoped<LookUpFilmInExternalApiUseCase>()
+                
 
                 .AddScoped<FilmCreateRequest>()
                 .AddScoped<FilmFindByIdRequest>()
@@ -32,6 +35,7 @@ namespace BlockBuster.GEO.Country.Infrastructure.Services.Startup
                 .AddScoped<FilmGetFilmsRequest>()
                 .AddScoped<DispatchCorrectUseCaseRequest>()
                 .AddScoped<CategoryFindByIdRequest>()
+                .AddScoped<LookUpFilmInExternalApiRequest>()
 
                 .AddScoped<FilmCreateResponse>()
                 .AddScoped<FilmFindByIdResponse>()
@@ -39,6 +43,7 @@ namespace BlockBuster.GEO.Country.Infrastructure.Services.Startup
                 .AddScoped<FilmGetFilmsResponse>()
                 .AddScoped<DispatchCorrectUseCaseResponse>()
                 .AddScoped<CategoryFindByIdResponse>()
+                .AddScoped<LookUpFilmInExternalApiResponse>()
 
                 ;
         }
