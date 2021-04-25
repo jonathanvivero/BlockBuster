@@ -6,7 +6,7 @@ using BlockBuster.FILM.Category.Domain.FilmAggregate;
 
 namespace BlockBuster.FILM.Category.Infrastructure.Services
 {
-    public class CategoryTranslator
+    public class CategoryTranslator: ICategoryTranslator
     {
         public IDictionary<string, Domain.FilmAggregate.Category> ToCategoryDictionary(IEnumerable<Domain.FilmAggregate.Category> categoryList)
         {

@@ -27,7 +27,7 @@ namespace BlockBuster.Shared.Testing.Application.Bus.UseCase
             query.SetupGet(q => q["page[size]"]).Returns(new StringValues(pageSize.ToString()));
 
             var abstractRequest = new AbstractRequest(query.Object);
-            var pageProps = abstractRequest.Page();
+            var pageProps = abstractRequest.Page;
 
             Assert.AreEqual(pageProps.Keys.Count, 2);
             Assert.IsTrue(pageProps.ContainsKey(number));
@@ -47,7 +47,7 @@ namespace BlockBuster.Shared.Testing.Application.Bus.UseCase
             query.SetupGet(q => q["page[size]"]).Returns(new StringValues(pageSize.ToString()));
 
             var abstractRequest = new AbstractRequest(query.Object);
-            var pageProps = abstractRequest.Page();
+            var pageProps = abstractRequest.Page;
 
             Assert.AreEqual(pageProps.Keys.Count, 2);
             Assert.IsTrue(pageProps.ContainsKey(number));
@@ -67,7 +67,7 @@ namespace BlockBuster.Shared.Testing.Application.Bus.UseCase
             query.SetupGet(q => q["page[number]"]).Returns(new StringValues(pageNumber.ToString()));
 
             var abstractRequest = new AbstractRequest(query.Object);
-            var pageProps = abstractRequest.Page();
+            var pageProps = abstractRequest.Page;
 
             Assert.AreEqual(pageProps.Keys.Count, 2);
             Assert.IsTrue(pageProps.ContainsKey(number));
@@ -86,7 +86,7 @@ namespace BlockBuster.Shared.Testing.Application.Bus.UseCase
             var query = new Mock<IQueryCollection>();
 
             var abstractRequest = new AbstractRequest(query.Object);
-            var pageProps = abstractRequest.Page();
+            var pageProps = abstractRequest.Page;
 
             Assert.AreEqual(pageProps.Keys.Count, 2);
             Assert.IsTrue(pageProps.ContainsKey(number));

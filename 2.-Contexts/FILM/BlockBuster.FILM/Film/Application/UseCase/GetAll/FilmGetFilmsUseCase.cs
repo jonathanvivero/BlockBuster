@@ -11,13 +11,13 @@ namespace BlockBuster.FILM.Film.Application.UseCase.GetAll
     {
         private readonly IFilmRepository _filmRepository;
         private readonly ICategoryRepository _categoryRepository;
-        private readonly CategoryTranslator _categoryTranslator;
+        private readonly ICategoryTranslator _categoryTranslator;
         private readonly FilmConverter _filmConverter;
         private readonly FilmCategoryBinderFacade _filmCategoryBinderFacade;
         public FilmGetFilmsUseCase(IFilmRepository filmRepository,
             ICategoryRepository categoryRepository,
             FilmConverter filmConverter,
-            CategoryTranslator categoryTranslator,
+            ICategoryTranslator categoryTranslator,
             FilmCategoryBinderFacade filmCategoryBinderFacade,
             IBlockBusterFilmContext context)
             :base(context)
@@ -40,7 +40,7 @@ namespace BlockBuster.FILM.Film.Application.UseCase.GetAll
 
             var filmList = _filmCategoryBinderFacade
                 .Bind(
-                    _filmRepository.GetAllFilms(),
+                    _filmRepository.GetAllFilms(request.Page),
                     categoryDict
                 );
 

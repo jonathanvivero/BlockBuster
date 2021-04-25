@@ -19,6 +19,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="Category\Infrastructure\Resources\CategoryResurces.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>CategoryResurces.resx</DependentUpon>
+    </Compile>
     <Compile Update="Film\Infrastructure\Resources\FilmResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -27,6 +32,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="Category\Infrastructure\Resources\CategoryResurces.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CategoryResurces.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Update="Film\Infrastructure\Resources\FilmResources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>FilmResources.Designer.cs</LastGenOutput>
@@ -34,9 +43,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Category\Infrastructure\" />
-    <Folder Include="Category\UI\" />
-    <Folder Include="Film\Domain\FilmAggregate\Exceptions\" />
+    <Folder Include="Category\UI\REST\Controllers\" />
+    <Folder Include="Film\Domain\FilmAggregate\Validators\" />
   </ItemGroup>
   
 </Project>

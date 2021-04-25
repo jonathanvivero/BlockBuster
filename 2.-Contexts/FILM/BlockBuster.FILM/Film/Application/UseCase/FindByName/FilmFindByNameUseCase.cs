@@ -16,7 +16,7 @@ namespace BlockBuster.FILM.Film.Application.UseCase.FindByName
     {
         private readonly IFilmRepository _filmRepository;
         private readonly ICategoryRepository _categoryRepository;
-        private readonly CategoryTranslator _categoryTranslator;
+        private readonly ICategoryTranslator _categoryTranslator;
         private readonly FilmConverter _filmConverter;
         private readonly FilmCategoryBinderFacade _filmCategoryBinderFacade;
         private readonly CategoryConverter _categoryConverter;
@@ -24,7 +24,7 @@ namespace BlockBuster.FILM.Film.Application.UseCase.FindByName
             ICategoryRepository categoryRepository,
             FilmConverter filmConverter,
             CategoryConverter categoryConverter,
-            CategoryTranslator categoryTranslator,
+            ICategoryTranslator categoryTranslator,
             FilmCategoryBinderFacade filmCategoryBinderFacade,
             IBlockBusterFilmContext context)
             : base(context)

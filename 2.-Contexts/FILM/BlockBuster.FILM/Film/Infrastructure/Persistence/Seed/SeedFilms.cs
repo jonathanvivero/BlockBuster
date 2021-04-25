@@ -1,4 +1,5 @@
-﻿using BlockBuster.FILM.Film.Domain.FilmAggregate;
+﻿using BlockBuster.FILM.Category.Domain.FilmAggregate;
+using BlockBuster.FILM.Film.Domain.FilmAggregate;
 using BlockBuster.FILM.Film.Infrastructure.Persistence.Context;
 using BlockBuster.Shared.Infrastructure.Persistence.Seed;
 using System;
@@ -33,9 +34,9 @@ namespace BlockBuster.FILM.Film.Infrastructure.Persistence.Seed
 
         }
 
-        private IList<Domain.FilmAggregate.Category> ListOfCategories()
+        private IList<Category.Domain.FilmAggregate.Category> ListOfCategories()
         {
-            return new List<Domain.FilmAggregate.Category>()
+            return new List<Category.Domain.FilmAggregate.Category>()
             {
                 _categoryFactory.Create(
                     "032ca58c-26e9-41de-a539-3a30a51177ac",
