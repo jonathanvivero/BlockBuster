@@ -5,10 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Country\UI\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="JsonApiDotNetCore" Version="2.5.2" />
     <PackageReference Include="JsonApiSerializer" Version="1.7.4" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
@@ -17,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\1.-Shared\1.-UI\BlockBuster.Shared.UI.ContextStartup\BlockBuster.Shared.UI.ContextStartup.csproj" />
+    <ProjectReference Include="..\..\..\1.-Shared\1.-UI\BlockBuster.Shared.UI\BlockBuster.Shared.UI.csproj" />
     <ProjectReference Include="..\..\..\1.-Shared\2.-Application\BlockBuster.Shared.Application\BlockBuster.Shared.Application.csproj" />
     <ProjectReference Include="..\..\..\1.-Shared\3.-Infrastructure\Persistence\BlockBuster.Shared.Infrastructure.Persistence\BlockBuster.Shared.Infrastructure.Persistence.csproj" />
   </ItemGroup>
@@ -34,6 +31,10 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>CountryResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Country\UI\" />
   </ItemGroup>
 
 </Project>

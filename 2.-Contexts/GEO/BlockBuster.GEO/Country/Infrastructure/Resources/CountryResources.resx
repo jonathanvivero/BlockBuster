@@ -123,6 +123,9 @@
   <data name="FieldCode" xml:space="preserve">
     <value>Code</value>
   </data>
+  <data name="FieldId" xml:space="preserve">
+    <value>Id</value>
+  </data>
   <data name="FieldTax" xml:space="preserve">
     <value>Tax</value>
   </data>

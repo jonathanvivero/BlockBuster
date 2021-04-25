@@ -1,4 +1,5 @@
-﻿using BlockBuster.Shared.Domain.Aggregates;
+﻿using BlockBuster.GEO.Country.Domain.CountryAggregate.Events;
+using BlockBuster.Shared.Domain.Aggregates;
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -37,6 +38,14 @@ namespace BlockBuster.GEO.Country.Domain.CountryAggregate
             CountryUpdatedAt updatedAt)
         {
             var country = new Country(id, code, tax, createdAt, updatedAt);
+
+            country.Record(
+                new CountryCreatedEvent(
+                    id.GetValue().ToString(),
+                    new CountryCreatedEventBody(country)
+                )
+            );
+
             return country;
         }
     }

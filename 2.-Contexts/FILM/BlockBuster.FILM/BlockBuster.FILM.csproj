@@ -1,7 +1,42 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="JsonApiDotNetCore" Version="2.5.2" />
+    <PackageReference Include="JsonApiSerializer" Version="1.7.4" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.1.0" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\1.-Shared\1.-UI\BlockBuster.Shared.UI.ContextStartup\BlockBuster.Shared.UI.ContextStartup.csproj" />
+    <ProjectReference Include="..\..\..\1.-Shared\1.-UI\BlockBuster.Shared.UI\BlockBuster.Shared.UI.csproj" />
+    <ProjectReference Include="..\..\..\1.-Shared\2.-Application\BlockBuster.Shared.Application\BlockBuster.Shared.Application.csproj" />
+    <ProjectReference Include="..\..\..\1.-Shared\3.-Infrastructure\Persistence\BlockBuster.Shared.Infrastructure.Persistence\BlockBuster.Shared.Infrastructure.Persistence.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Film\Infrastructure\Resources\FilmResources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>FilmResources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Film\Infrastructure\Resources\FilmResources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>FilmResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Category\Infrastructure\" />
+    <Folder Include="Category\UI\" />
+    <Folder Include="Film\Domain\FilmAggregate\Exceptions\" />
+  </ItemGroup>
+  
 </Project>

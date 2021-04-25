@@ -2,7 +2,7 @@
 
 namespace BlockBuster.GEO.Country.Domain.CountryAggregate
 {
-    public class CountryId : UUID
+    public class CountryId : UUIDValueObject
     {
         public CountryId(string message) : base(message) { }
     }

@@ -4,14 +4,14 @@ using System.Text.RegularExpressions;
 
 namespace BlockBuster.Shared.Domain.ValueObjects
 {
-    public class UUID : StringValueObject
+    public class UUIDValueObject : StringValueObject
     {
-        public UUID(string value) : base(value)
+        public UUIDValueObject(string value) : base(value)
         {
             if (string.IsNullOrEmpty(value))
                 throw InvalidUUIDException.FromEmpty(DataTypeResources.UUID);
 
-            if (!UUID.Is(value))
+            if (!UUIDValueObject.Is(value))
                 throw InvalidUUIDException.FromValue(DataTypeResources.UUID, value);
         }
 
