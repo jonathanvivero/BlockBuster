@@ -40,7 +40,7 @@ namespace BlockBuster.FILM.Film.Application.UseCase.GetAll
 
             var filmList = _filmCategoryBinderFacade
                 .Bind(
-                    _filmRepository.GetAllFilms(request.Page),
+                    _filmRepository.GetAllFilms(request.Page, request.Filter),
                     categoryDict
                 );
 

@@ -11,17 +11,19 @@ namespace BlockBuster.FILM.Film.Infrastructure.Repositories
 {
     public class FilmRepository : Repository<Domain.FilmAggregate.Film>, IFilmRepository
     {
-        private readonly IServiceScopeFactory serviceScopeFactory;
-
+        private readonly IServiceScopeFactory _serviceScopeFactory;
+        private readonly FilmRepositoryFilterBuilder _filmRepositoryFilterBuilder;
         public FilmRepository(IBlockBusterFilmContext context,
-            IServiceScopeFactory serviceScopeFactory)
+            IServiceScopeFactory serviceScopeFactory,
+            FilmRepositoryFilterBuilder filmRepositoryFilterBuilder)
             : base(context)
         {
-            this.serviceScopeFactory = serviceScopeFactory;
+            _serviceScopeFactory = serviceScopeFactory;
+            _filmRepositoryFilterBuilder = filmRepositoryFilterBuilder;
         }
         public Domain.FilmAggregate.Film FindByName(FilmName name)
         {
-            using (var scope = this.serviceScopeFactory.CreateScope())
+            using (var scope = _serviceScopeFactory.CreateScope())
             {
                 var dbContext = scope.ServiceProvider.GetRequiredService<IBlockBusterFilmContext>();
                 return dbContext
@@ -32,7 +34,7 @@ namespace BlockBuster.FILM.Film.Infrastructure.Repositories
         }
         public Domain.FilmAggregate.Film FindById(FilmId id)
         {
-            using (var scope = this.serviceScopeFactory.CreateScope())
+            using (var scope = this._serviceScopeFactory.CreateScope())
             {
                 var dbContext = scope.ServiceProvider.GetRequiredService<IBlockBusterFilmContext>();
                 return dbContext
@@ -40,19 +42,23 @@ namespace BlockBuster.FILM.Film.Infrastructure.Repositories
                     .FirstOrDefault(w => w.Id.GetValue() == id.GetValue());
             }
         }
-        public IEnumerable<Domain.FilmAggregate.Film> GetAllFilms(IDictionary<string, int> page)
+        public IEnumerable<Domain.FilmAggregate.Film> GetAllFilms(
+            IDictionary<string, int> page,
+            IDictionary<string, string[]> filter)
         {
-            using (var scope = this.serviceScopeFactory.CreateScope())
+            var predicate = _filmRepositoryFilterBuilder.BuildFilter(filter);
+            using (var scope = _serviceScopeFactory.CreateScope())
             {
                 var dbContext = scope.ServiceProvider.GetRequiredService<IBlockBusterFilmContext>();
                 return dbContext.Films
+                    .Where(predicate)
                     .Skip((page["number"] - 1) * page["size"])
                     .Take(page["size"]); ;
             }
         }
         public override void Add(Domain.FilmAggregate.Film film)
         {
-            using (var scope = this.serviceScopeFactory.CreateScope())
+            using (var scope = _serviceScopeFactory.CreateScope())
             {
                 var dbContext = scope.ServiceProvider.GetRequiredService<IBlockBusterFilmContext>();
                 dbContext

@@ -8,7 +8,8 @@ namespace BlockBuster.FILM.Film.Domain.FilmAggregate
     {
         Film FindByName(FilmName name);
         Film FindById(FilmId id);
-        IEnumerable<Film> GetAllFilms(IDictionary<string, int> page);
+        IEnumerable<Film> GetAllFilms(IDictionary<string, int> page,
+            IDictionary<string, string[]> filter);
         void Add(Film film);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using BlockBuster.FILM.Film.Application.UseCase.DispatchCorrectUseCase;
+using BlockBuster.FILM.Film.Application.UseCase.FindByFilter;
 using BlockBuster.FILM.Film.Application.UseCase.GetAll;
 using BlockBuster.FILM.Film.Infrastructure.Persistence.Context;
 using BlockBuster.Shared.Infrastructure.Bus.UseCase;
@@ -26,7 +27,8 @@ namespace BlockBuster.FILM.Country.UI.REST.Controllers
         [HttpGet(Name = nameof(GetFilms))]
         public IActionResult GetFilms()
         {
-            DispatchCorrectUseCaseRequest request = new DispatchCorrectUseCaseRequest(HttpContext.Request.Query);
+            FilmFindByFilterRequest request = new FilmFindByFilterRequest(HttpContext.Request.Query);
+
             return Dispatch(request);
         }
     }

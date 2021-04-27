@@ -26,6 +26,7 @@ namespace BlockBuster.GEO.Country.Infrastructure.Services.Startup
                 .GetServiceCollection()
 
                 .AddScoped<IFilmRepository, FilmRepository>()
+                .AddScoped<FilmRepositoryFilterBuilder>()
                 .AddScoped<ICategoryRepository, CategoryRepository>()
                 .AddScoped<FilmConverter>()
                 .AddScoped<CategoryConverter>()
