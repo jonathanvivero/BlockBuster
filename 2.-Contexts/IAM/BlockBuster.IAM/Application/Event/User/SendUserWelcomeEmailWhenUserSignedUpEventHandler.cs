@@ -32,7 +32,7 @@ namespace BlockBuster.IAM.Application.Events.User
         {
             return new string[]
             {
-                //IAMResources.UserSignedUpEvent
+                IAMResources.UserSignedUpEvent
             };
         }
     }
