@@ -10,6 +10,7 @@ namespace BlockBuster.Shared.Application.Bus.UseCase
         : IUseCase
     {
         protected string _context;
+        
         public UseCaseBase(IBlockBusterContext context) 
         {
             _context = context

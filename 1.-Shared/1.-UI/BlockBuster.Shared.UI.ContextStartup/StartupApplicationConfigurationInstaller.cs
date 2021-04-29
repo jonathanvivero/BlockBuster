@@ -54,8 +54,23 @@ namespace BlockBuster.Shared.UI.ContextStartup
             {
                 useCaseBus.Subscribe((IUseCase)_serviceProvider.GetService(useCase));
             }
-                
+
+            var useCaseValidatorInterfaceType = typeof(IUseCaseValidator);
+            var useCaseValidators = AppDomain.CurrentDomain.GetAssemblies()
+                .SelectMany(s => s.GetTypes())
+                .Where(p => useCaseValidatorInterfaceType.IsAssignableFrom(p)
+                    && !p.IsInterface && !p.IsAbstract
+                    && p.Name != UseCaseResources.UseCaseValidatorInterfaceName);
+
+            foreach (Type useCaseValidator in useCaseValidators)
+            {
+                useCaseBus.Subscribe((IUseCaseValidator)_serviceProvider.GetService(useCaseValidator));
+            }
+
             IDictionary<string, IList<IMiddlewareHandler>> contextMiddlewares =
+                GetContextMiddlewareAlongApp<IStartupContextMiddlewareInstaller>();
+
+            IDictionary<string, IList<IMiddlewareHandler>> Middlewares =
                 GetContextMiddlewareAlongApp<IStartupContextMiddlewareInstaller>();
 
             IList<IMiddlewareHandler> middlewareHandlers = new List<IMiddlewareHandler>()

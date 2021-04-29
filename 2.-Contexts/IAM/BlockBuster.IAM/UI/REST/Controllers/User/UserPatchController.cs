@@ -3,6 +3,7 @@ using BlockBuster.IAM.Application.UseCases.User.SignUp;
 using BlockBuster.IAM.Domain.UserAggregate.ValueObjects;
 using BlockBuster.Infrastructure.Persistence.Context;
 using BlockBuster.Shared.Infrastructure.Bus.UseCase;
+using BlockBuster.Shared.Infrastructure.Security.Authentication;
 using BlockBuster.Shared.UI.REST.Controllers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;

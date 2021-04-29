@@ -14,6 +14,7 @@ namespace BlockBuster.Shared.Infrastructure.Bus.UseCase
          : IUseCaseBus
     {
         private IDictionary<string, UseCaseMiddleware> _useCases;
+        private IDictionary<string, UseCaseValidationMiddleware> _useCaseValidators;
         private IList<IMiddlewareHandler> _middlewareHandlers;
         private IDictionary<string, IList<IMiddlewareHandler>> _contextMiddlewareHandlers;
         private readonly UseCaseBusValidator _useCaseBusValidator;
@@ -23,6 +24,7 @@ namespace BlockBuster.Shared.Infrastructure.Bus.UseCase
             _contextMiddlewareHandlers = new Dictionary<string, IList<IMiddlewareHandler>>();
             _useCaseBusValidator = useCaseBusValidator;
             _useCases = new Dictionary<string, UseCaseMiddleware>();
+            _useCaseValidators = new Dictionary<string, UseCaseValidationMiddleware>();
         }
 
         public void SetMiddlewares(IList<IMiddlewareHandler> middlewareHandlers)
@@ -40,15 +42,21 @@ namespace BlockBuster.Shared.Infrastructure.Bus.UseCase
             string className = useCase.GetType().ToString();
             _useCases.Add(className, new UseCaseMiddleware(useCase));
         }
+        public void Subscribe(IUseCaseValidator useCaseValidator)
+        {
+            string className = useCaseValidator.GetType().ToString();            
+            _useCaseValidators.Add(className, new UseCaseValidationMiddleware(useCaseValidator));
+        }
 
         public IResponse Dispatch(IRequest req)
         {
             IMiddlewareHandler handler;
             string useCaseName = req.GetUseCaseName();
 
-            _useCaseBusValidator.UseCaseExists(_useCases, useCaseName);
+            _useCaseBusValidator.UseCaseExists(_useCases, useCaseName);            
 
             var useCase = _useCases[useCaseName];
+            
             handler = (IMiddlewareHandler)useCase;
 
             var contextName = useCase.GetContextName();
@@ -65,6 +73,14 @@ namespace BlockBuster.Shared.Infrastructure.Bus.UseCase
             {
                 middlewareHandler.SetNext(handler);
                 handler = middlewareHandler;
+            }
+
+            if (_useCaseValidators.ContainsKey(useCaseName)) 
+            {
+                var useCaseValidator = _useCaseValidators[useCaseName];
+                var validatorHandler = (IMiddlewareHandler)useCaseValidator;
+                validatorHandler.SetNext(handler);
+                handler = validatorHandler;
             }
 
             return handler.Handle(req);

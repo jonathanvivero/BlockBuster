@@ -6,8 +6,10 @@ using BlockBuster.Shared.Infrastructure.Bus.Middleware.Exceptions;
 using BlockBuster.Shared.Infrastructure.Bus.UseCase;
 using BlockBuster.Shared.Infrastructure.Bus.Validators;
 using BlockBuster.Shared.Infrastructure.Resources;
+using BlockBuster.Shared.Infrastructure.Security.Authentication;
 using BlockBuster.Shared.Infrastructure.Security.Authentication.JWT;
 using BlockBuster.Shared.UI.ContextStartup;
+using BlockBuster.Shared.UI.REST.Controllers;
 using JsonApiSerializer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
@@ -65,7 +67,8 @@ namespace BlockBuster.Main.StartupBuilder
             _serviceConfigurationInstaller.
                 GetServiceCollection()
                 .AddScoped<IHashing, DefaultHashing>()
-                .AddScoped<IJWTEncoder, JWTEncoder>()
+                .AddScoped<IJWTEncoder, JWTEncoder>()                
+                .AddScoped<IAuthenticationService, AuthenticationService>()
                 .AddScoped<IEventProvider, EventProvider>()
                 .AddScoped<IDomainEventPublisher, DomainEventPublisherSync>()
                 .AddScoped<IEventBus, EventBusSync>()
@@ -99,12 +102,18 @@ namespace BlockBuster.Main.StartupBuilder
             var objectPoolProvider = sp.GetService<ObjectPoolProvider>();
 
             serviceCollection
-                .AddMvcCore()// ((opt) => SetJsonApiSerializerOpotions(opt, loggerFactory, objectPoolProvider))
+                .AddMvcCore(opt => {
+                    var authService = sp.GetService<IAuthenticationService>();
+                    opt.Filters.Add(new AuthActionFilter(authService));
+
+                })// ((opt) => SetJsonApiSerializerOpotions(opt, loggerFactory, objectPoolProvider))
                 .AddVersionedApiExplorer(o => o.GroupNameFormat = "'v'VVV");
 
             serviceCollection
                 .AddMvc() //((opt) => SetJsonApiSerializerOpotions(opt, loggerFactory, objectPoolProvider))                
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            serviceCollection.AddScoped<AuthActionFilter>();
 
             return this;
         }
@@ -112,7 +121,7 @@ namespace BlockBuster.Main.StartupBuilder
         public StartupServiceCollectionInstallerFacade ConfigureApiServices()
         {
             _serviceConfigurationInstaller
-                .GetServiceCollection()
+                .GetServiceCollection()                
                 .AddApiVersioning(config =>
                 {
                     config.ReportApiVersions = true;
@@ -168,32 +177,32 @@ namespace BlockBuster.Main.StartupBuilder
             return this;
         }
 
-        private MvcOptions SetJsonApiSerializerOpotions(MvcOptions opt, ILoggerFactory loggerFactory, ObjectPoolProvider objectPoolProvider)
-        {
-            var serializerSettings = new JsonApiSerializerSettings();
+        //private MvcOptions SetJsonApiSerializerOpotions(MvcOptions opt, ILoggerFactory loggerFactory, ObjectPoolProvider objectPoolProvider)
+        //{
+        //    var serializerSettings = new JsonApiSerializerSettings();
 
-            var jsonApiFormatter = new JsonOutputFormatter(serializerSettings, ArrayPool<Char>.Shared);
-            opt.OutputFormatters.RemoveType<JsonOutputFormatter>();
-            opt.OutputFormatters.Insert(0, jsonApiFormatter);
+        //    var jsonApiFormatter = new JsonOutputFormatter(serializerSettings, ArrayPool<Char>.Shared);
+        //    opt.OutputFormatters.RemoveType<JsonOutputFormatter>();
+        //    opt.OutputFormatters.Insert(0, jsonApiFormatter);
 
-            var logger = loggerFactory.CreateLogger<JsonInputFormatter>();
-            var jsonMvcOptions = new MvcJsonOptions()
-            {
-                AllowInputFormatterExceptionMessages = true
+        //    var logger = loggerFactory.CreateLogger<JsonInputFormatter>();
+        //    var jsonMvcOptions = new MvcJsonOptions()
+        //    {
+        //        AllowInputFormatterExceptionMessages = true
                 
-            };
+        //    };
 
-            var jsonApiInputFormatter = new JsonInputFormatter(
-                logger,
-                serializerSettings,
-                ArrayPool<Char>.Shared,
-                objectPoolProvider,
-                opt, jsonMvcOptions);
+        //    var jsonApiInputFormatter = new JsonInputFormatter(
+        //        logger,
+        //        serializerSettings,
+        //        ArrayPool<Char>.Shared,
+        //        objectPoolProvider,
+        //        opt, jsonMvcOptions);
 
-            opt.InputFormatters.RemoveType<JsonInputFormatter>();
-            opt.InputFormatters.Insert(0, jsonApiInputFormatter);
+        //    opt.InputFormatters.RemoveType<JsonInputFormatter>();
+        //    opt.InputFormatters.Insert(0, jsonApiInputFormatter);
 
-            return opt;
-        }
+        //    return opt;
+        //}
     }
 }

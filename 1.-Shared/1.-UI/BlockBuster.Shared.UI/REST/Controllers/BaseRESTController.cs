@@ -2,18 +2,19 @@
 using BlockBuster.Shared.Application.Bus.UseCase;
 using BlockBuster.Shared.Infrastructure.Bus.Middleware.Exceptions;
 using BlockBuster.Shared.Infrastructure.Bus.UseCase;
-using Microsoft.AspNetCore.Authentication;
+using BlockBuster.Shared.Infrastructure.Security.Authentication;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlockBuster.Shared.UI.REST.Controllers
-{
+{    
+    [ServiceFilter(typeof(AuthActionFilter))]
     public abstract class BaseRESTController : ControllerBase
     {
         private readonly IUseCaseBus _useCaseBus;        
         public BaseRESTController(IUseCaseBus useCaseBus)
         {
             _useCaseBus = useCaseBus;
-        }
+        }        
 
         protected IActionResult Dispatch(IRequest request)
         {            

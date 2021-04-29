@@ -12,6 +12,7 @@ namespace BlockBuster.Shared.Infrastructure.Bus.UseCase
         void SetMiddlewares(IList<IMiddlewareHandler> middlewareHandlers);
         void SetContextMiddlewares(IDictionary<string, IList<IMiddlewareHandler>> contextMiddlewareHandlers);        
         void Subscribe(IUseCase useCase);
+        void Subscribe(IUseCaseValidator useCaseValidator);
         IResponse Dispatch(IRequest req);
 
     }
