@@ -14,5 +14,12 @@ namespace BlockBuster.Shared.Infrastructure.Bus.Extensions
             string[] words = className.Split(new string[] { UseCaseResources.RequestSufix }, StringSplitOptions.None);
             return words[0] + UseCaseResources.UseCaseSufix;
         }
+
+        public static string GetUseCaseValidatorName(this IRequest req)
+        {
+            string className = req.GetType().ToString();
+            string[] words = className.Split(new string[] { UseCaseResources.RequestSufix }, StringSplitOptions.None);
+            return words[0] + UseCaseResources.UseCaseValidatorSufix;
+        }
     }
 }

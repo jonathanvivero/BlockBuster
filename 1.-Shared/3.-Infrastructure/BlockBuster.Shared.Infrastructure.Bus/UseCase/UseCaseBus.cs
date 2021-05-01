@@ -52,11 +52,11 @@ namespace BlockBuster.Shared.Infrastructure.Bus.UseCase
         {
             IMiddlewareHandler handler;
             string useCaseName = req.GetUseCaseName();
+            string useCaseValidatorName = req.GetUseCaseValidatorName();
 
-            _useCaseBusValidator.UseCaseExists(_useCases, useCaseName);            
+            _useCaseBusValidator.UseCaseExists(_useCases, useCaseName);
 
-            var useCase = _useCases[useCaseName];
-            
+            var useCase = _useCases[useCaseName];            
             handler = (IMiddlewareHandler)useCase;
 
             var contextName = useCase.GetContextName();
@@ -75,9 +75,9 @@ namespace BlockBuster.Shared.Infrastructure.Bus.UseCase
                 handler = middlewareHandler;
             }
 
-            if (_useCaseValidators.ContainsKey(useCaseName)) 
+            if (_useCaseValidators.ContainsKey(useCaseValidatorName)) 
             {
-                var useCaseValidator = _useCaseValidators[useCaseName];
+                var useCaseValidator = _useCaseValidators[useCaseValidatorName];
                 var validatorHandler = (IMiddlewareHandler)useCaseValidator;
                 validatorHandler.SetNext(handler);
                 handler = validatorHandler;
@@ -85,33 +85,5 @@ namespace BlockBuster.Shared.Infrastructure.Bus.UseCase
 
             return handler.Handle(req);
         }
-
-        public IResponse Dispatch<TContext>(IRequest req, TContext context)
-            where TContext : IBlockBusterContext
-        {
-            IMiddlewareHandler handler;
-            string useCaseName = req.GetUseCaseName();
-
-            _useCaseBusValidator.UseCaseExists(_useCases, useCaseName);
-
-            handler = _useCases[useCaseName];
-
-            foreach (IMiddlewareHandler middlewareHandler in _middlewareHandlers)
-            {
-                middlewareHandler.SetNext(handler);
-                handler = middlewareHandler;
-            }
-
-            foreach (IMiddlewareHandler middlewareHandler in _middlewareHandlers)
-            {
-                middlewareHandler.SetNext(handler);
-                handler = middlewareHandler;
-            }
-
-            return handler.Handle(req);
-        }
-
-
-
     }
 }

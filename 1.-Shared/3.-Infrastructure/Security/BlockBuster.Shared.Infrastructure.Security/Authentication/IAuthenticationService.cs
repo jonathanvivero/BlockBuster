@@ -7,7 +7,8 @@ namespace BlockBuster.Shared.Infrastructure.Security.Authentication
     public interface IAuthenticationService
     {
 
-        void Set(int number);
-        int Get();
+        void SetNameIdentifier(string nameIdentifier);
+        string GetNameIdentifier();
+
     }
 }

@@ -32,7 +32,6 @@ namespace BlockBuster.IAM.Application.UseCases.User.GetUsers
         }
         public override IResponse Execute(IRequest req)
         {
-            Console.WriteLine(_authenticationService.Get());
             UserGetUsersRequest request = req as UserGetUsersRequest;
             var userList = _userRepository.GetUsers(request.Page);
             var countries = _userAdapter.GetUserCountries();

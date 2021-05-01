@@ -31,13 +31,7 @@ namespace BlockBuster.IAM.UI.REST.Controllers.User
         public IActionResult PartialUpdate(string id, [FromBody] JsonPatchDocument<UserPartialUpdateRequest> patchDoc)
         {
             UserPartialUpdateRequest request = new UserPartialUpdateRequest();
-            request.Id = id;
-            request.CurrentUserId = HttpContext
-                .User
-                .Claims
-                .FirstOrDefault(w => w.Type == ClaimTypes.NameIdentifier)
-                .Value;
-
+            request.Id = id;            
             patchDoc.ApplyTo(request, ModelState);
             return this.Dispatch(request);
         }

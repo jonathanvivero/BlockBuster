@@ -95,5 +95,14 @@ namespace BlockBuster.Shared.Infrastructure.Resources {
                 return ResourceManager.GetString("UseCaseValidatorInterfaceName", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a UseCaseValidator.
+        /// </summary>
+        public static string UseCaseValidatorSufix {
+            get {
+                return ResourceManager.GetString("UseCaseValidatorSufix", resourceCulture);
+            }
+        }
     }
 }

@@ -42,7 +42,7 @@ namespace BlockBuster.IAM.Application.UseCases.User.PartialUpdate
             UserPartialUpdateRequest request = req as UserPartialUpdateRequest;
 
             _userPartialUpdateUserIsAuthorizeValidator.ValidateContentNotEmpty(request.FirstName, request.LastName, request.Password);
-            _userPartialUpdateUserIsAuthorizeValidator.ValidateUserIsAuthorized(request.CurrentUserId, request.Id);
+            
 
             var userId = new UserId(request.Id);
             var user = _userRepository.FindUserById(userId);

@@ -15,7 +15,11 @@ namespace BlockBuster.Shared.Infrastructure.Bus.Middleware
         }
 
         public override IResponse Handle(IRequest request)
-            => _useCaseValidator.Validate(request);
+        { 
+            _useCaseValidator.Validate(request);
+
+            return base.Handle(request);
+        }
 
     }
 }

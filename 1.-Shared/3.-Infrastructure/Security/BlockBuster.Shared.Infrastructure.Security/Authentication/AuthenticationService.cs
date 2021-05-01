@@ -6,10 +6,21 @@ namespace BlockBuster.Shared.Infrastructure.Security.Authentication
 {
     public class AuthenticationService : IAuthenticationService
     {
-        private int _n;
-        public void Set(int number)
-            => _n = number;
-        public int Get()
-            => _n;
+        private string _nameIdentifier;
+
+        public AuthenticationService()
+        {
+            _nameIdentifier = null;
+        }
+
+        public void SetNameIdentifier(string nameIdentifier)
+        { 
+            _nameIdentifier = nameIdentifier;
+        }
+        public string GetNameIdentifier()
+        { 
+            return _nameIdentifier;
+        }
+
     }
 }

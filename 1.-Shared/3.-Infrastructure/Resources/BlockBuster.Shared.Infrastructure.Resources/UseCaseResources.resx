@@ -129,4 +129,7 @@
   <data name="UseCaseValidatorInterfaceName" xml:space="preserve">
     <value>IUseCaseValidator</value>
   </data>
+  <data name="UseCaseValidatorSufix" xml:space="preserve">
+    <value>UseCaseValidator</value>
+  </data>
 </root>

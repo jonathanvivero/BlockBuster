@@ -11,7 +11,6 @@ namespace BlockBuster.IAM.Application.UseCases.User.PartialUpdate
     public class UserPartialUpdateRequest : IRequest
     {
         public string Id { get; set; }
-        public string CurrentUserId { get; set; }
         public string Password { get; set; }
         public string FirstName {get;set;}        
         public string LastName {get;set;}        

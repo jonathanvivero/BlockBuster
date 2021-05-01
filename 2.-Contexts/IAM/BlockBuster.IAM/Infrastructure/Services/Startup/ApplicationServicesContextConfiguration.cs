@@ -33,6 +33,8 @@ namespace BlockBuster.IAM.Infrastructure.Services.Startup
 
                 .AddScoped<SendUserWelcomeEmailWhenUserSignedUpEventHandler>()
 
+                .AddScoped<UserPartialUpdateUseCaseValidator>() 
+
                 .AddScoped<UserSignUpRequest>()
                 .AddScoped<TokenCreateRequest>()
                 .AddScoped<SendUserWelcomeEmailRequest>()

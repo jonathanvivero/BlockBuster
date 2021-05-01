@@ -68,20 +68,20 @@ namespace BlockBuster.Main.StartupBuilder
                 GetServiceCollection()
                 .AddScoped<IHashing, DefaultHashing>()
                 .AddScoped<IJWTEncoder, JWTEncoder>()                
-                .AddScoped<IAuthenticationService, AuthenticationService>()
                 .AddScoped<IEventProvider, EventProvider>()
                 .AddScoped<IDomainEventPublisher, DomainEventPublisherSync>()
                 .AddScoped<IEventBus, EventBusSync>()
                 .AddScoped<UseCaseMiddleware>()
                 .AddScoped<EventDispatcherSyncMiddleware>()
                 .AddScoped<ExceptionMiddleware>();
+                
 
             _serviceConfigurationInstaller.
                 GetServiceCollection()
                 .AddSingleton<UseCaseBusValidator>()
                 .AddSingleton<IUseCaseBus, UseCaseBus>()
+                .AddSingleton<IAuthenticationService, AuthenticationService>()
                 ;
-                //.AddSingleton<TransactionMiddleware>();
 
             _serviceConfigurationInstaller.
                 InstallServicesAlongApp<IStartupInfrastructureServicesContextInstaller>();

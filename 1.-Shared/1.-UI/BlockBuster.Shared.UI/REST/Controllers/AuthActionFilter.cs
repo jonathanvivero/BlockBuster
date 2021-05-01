@@ -18,16 +18,18 @@ namespace BlockBuster.Shared.UI.REST.Controllers
         public void OnActionExecuting(ActionExecutingContext context)
         {
             Claim claim = null;
-            _authenticationService.Set(211);
+            
             var userClaims = context
                 .HttpContext
                 .User
                 .Claims;
+            
             if (userClaims.Any())
                 claim = userClaims.FirstOrDefault(w => w.Type == ClaimTypes.NameIdentifier);
+
             if (claim != null)
-                Console.WriteLine(claim.Value);
-                
+                _authenticationService.SetNameIdentifier(claim.Value);
+
         }
         public void OnActionExecuted(ActionExecutedContext context)
         {
