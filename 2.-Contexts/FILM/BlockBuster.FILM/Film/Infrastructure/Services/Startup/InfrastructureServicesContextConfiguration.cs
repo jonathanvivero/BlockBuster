@@ -32,8 +32,8 @@ namespace BlockBuster.GEO.Country.Infrastructure.Services.Startup
                 .AddScoped<CategoryConverter>()
 
                 .AddScoped<IFilmFindByFilterLookUpInExternalApiAdapter, FilmFindByFilterLookUpInExternalApiAdapter>()
-                .AddScoped<IFilmFindByFilterFindCategoryNameFacade, FilmFindCategoryFromCategoryNameFacade>()
-                .AddScoped<IFilmFindByFilterLookUpInExternalApiFacade, FilmFindByFilterLookUpInExternalApiFacade>()                
+                .AddScoped<IFilmFindByFilterLookUpInExternalApiFacade, FilmFindByFilterLookUpInExternalApiFacade>()
+                .AddScoped<IFilmFindByFilterFindCategoryNameFacade, FilmFindByFilterFindCategoryNameFacade>()                
                 .AddScoped<IFilmTranslator, FilmTranslator>()
                 .AddScoped<FilmCategoryBinderFacade>()
                 .AddScoped<ICategoryTranslator, CategoryTranslator>()

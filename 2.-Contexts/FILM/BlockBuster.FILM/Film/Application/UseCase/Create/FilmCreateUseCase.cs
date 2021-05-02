@@ -14,7 +14,7 @@ namespace BlockBuster.FILM.Film.Application.UseCase.Create
     {
         private readonly IFilmFactory _filmFactory;
         private readonly FilmConverter _filmConverter;
-        private readonly IFilmFindByFilterLookUpInExternalApiAdapter _filmAdapter;
+        private readonly IFilmFindByFilterFindCategoryNameFacade _filmFindByFilterFindCategoryNameFacade;
         private readonly IFilmRepository _filmRepository;
         private readonly IEventProvider _eventProvider;
 
@@ -22,7 +22,7 @@ namespace BlockBuster.FILM.Film.Application.UseCase.Create
             FilmConverter filmConverter,
             IFilmRepository filmRepository,
             IEventProvider eventProvider,
-            IFilmFindByFilterLookUpInExternalApiAdapter filmAdapter,
+            IFilmFindByFilterFindCategoryNameFacade filmFindByFilterFindCategoryNameFacade,
             IBlockBusterFilmContext context)
             :base(context)
         {
@@ -30,13 +30,13 @@ namespace BlockBuster.FILM.Film.Application.UseCase.Create
             _filmConverter = filmConverter;
             _filmRepository = filmRepository;
             _eventProvider = eventProvider;
-            _filmAdapter = filmAdapter;
+            _filmFindByFilterFindCategoryNameFacade = filmFindByFilterFindCategoryNameFacade;
         }
         public override IResponse Execute(IRequest req)
         {
             FilmCreateRequest request = req as FilmCreateRequest;
 
-            FilmCategory category = _filmAdapter.FindCategoryFromCategoryName(request.Category.Name);
+            FilmCategory category = _filmFindByFilterFindCategoryNameFacade.FindCategoryFromCategoryName(request.Category.Name);
 
             var film = _filmFactory.Create(
                 request.Id,
