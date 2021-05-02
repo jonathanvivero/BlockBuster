@@ -9,34 +9,37 @@ using System.Text;
 
 namespace BlockBuster.FILM.Film.Infrastructure.Services.Film
 {
-    public class FilmFindFromExternalAPIFacade : IFilmFindFromExternalAPIFacade
+    public class FilmFindByFilterLookUpInExternalApiFacade : IFilmFindByFilterLookUpInExternalApiFacade
     {
         private readonly IFilmFactory _filmFactory;
         private readonly FilmFromExternalAPIValidator _filmFromExternalAPIValidator;
-        private readonly IFilmFindCategoryFromCategoryNameFacade _filmFindCategoryFromCategoryName;
+        private readonly IFilmFindByFilterFindCategoryNameFacade _filmFindCategoryFromCategoryName;        
 
-        public FilmFindFromExternalAPIFacade(IFilmFactory filmFactory,
+        public FilmFindByFilterLookUpInExternalApiFacade(IFilmFactory filmFactory,
             FilmFromExternalAPIValidator filmFromExternalAPIValidator,
-            IFilmFindCategoryFromCategoryNameFacade filmFindCategoryFromCategoryName)
+            IFilmFindByFilterFindCategoryNameFacade filmFindCategoryFromCategoryName)
         {
-
+            _filmFindCategoryFromCategoryName = filmFindCategoryFromCategoryName;
+            _filmFromExternalAPIValidator = filmFromExternalAPIValidator;
+            _filmFactory = filmFactory;
         }
 
-        public Domain.FilmAggregate.Film FindFilmInExternalAPI(
-            string name,
-            Func<string, FilmCategory> findCategoryByName
-            )
+        public Domain.FilmAggregate.Film FindFilmInExternalAPI(string name)
         {
-            var client = new RestClient(
+            RestRequest request;
+            RestClient client;
+            IRestResponse response;
+
+            request = new RestRequest(Method.GET);
+            client = new RestClient(
                 string.Format(FilmResources.FilmExternalApi, name)
             );
-            var request = new RestRequest(Method.GET);
-            IRestResponse response = client.Execute(request);
+            response = client.Execute(request);
 
             _filmFromExternalAPIValidator.ValidateExternalResponseStatus(response, name);
 
             FilmDTO filmDto = JsonConvert.DeserializeObject<FilmDTO>(response.Content);
-            var filmCategory = findCategoryByName(filmDto.Category.Name);
+            var filmCategory = _filmFindCategoryFromCategoryName.FindCategoryFromCategoryName(filmDto.Category.Name);
 
             _filmFromExternalAPIValidator.ValidateExternalFilmCategory(filmCategory, filmDto.Category.Name);
 

@@ -4,12 +4,12 @@ using BlockBuster.FILM.Film.Domain.FilmAggregate;
 
 namespace BlockBuster.FILM.Film.Infrastructure.Services.Film
 {
-    public class FilmFindCategoryFromCategoryNameFacade : IFilmFindCategoryFromCategoryNameFacade
+    public class FilmFindByFilterFindCategoryNameFacade : IFilmFindByFilterFindCategoryNameFacade
     {
         private readonly ICategoryRepository _categoryRepository;
         private readonly IFilmTranslator _filmTranslator;
         private readonly CategoryExistenceValidator _categoryExistenceValidator;
-        public FilmFindCategoryFromCategoryNameFacade(
+        public FilmFindByFilterFindCategoryNameFacade (
             ICategoryRepository categoryRepository,
             IFilmTranslator filmTranslator,
             CategoryExistenceValidator categoryExistenceValidator)
@@ -19,7 +19,7 @@ namespace BlockBuster.FILM.Film.Infrastructure.Services.Film
             _categoryExistenceValidator = categoryExistenceValidator;
         }
 
-        public FilmCategory FindCountryFromCountryCode(string name)
+        public FilmCategory FindCategoryFromCategoryName(string name)
         {
             var categoryName = new CategoryName(name);
             var category = _categoryRepository.FindByName(categoryName);

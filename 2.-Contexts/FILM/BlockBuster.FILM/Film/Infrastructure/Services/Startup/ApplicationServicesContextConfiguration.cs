@@ -25,7 +25,7 @@ namespace BlockBuster.GEO.Country.Infrastructure.Services.Startup
                 .AddScoped<FilmFindByIdUseCase>()
                 .AddScoped<FilmFindByNameUseCase>()
                 .AddScoped<FilmGetFilmsUseCase>()
-                .AddScoped<FilmFindByFilterUseCase>()
+                .AddScoped<FilmFindByFilterUseCaseProxy>()
                 .AddScoped<DispatchCorrectUseCaseUseCase>()
                 .AddScoped<CategoryFindByIdUseCase>()
                 .AddScoped<LookUpFilmInExternalApiUseCase>()

@@ -2,8 +2,9 @@
 
 namespace BlockBuster.FILM.Film.Infrastructure.Services.Film
 {
-    public interface IFilmFindCategoryFromCategoryNameFacade
+    
+    public interface IFilmFindByFilterFindCategoryNameFacade
     {
-        FilmCategory FindCountryFromCountryCode(string name);
+        FilmCategory FindCategoryFromCategoryName(string name);
     }
 }

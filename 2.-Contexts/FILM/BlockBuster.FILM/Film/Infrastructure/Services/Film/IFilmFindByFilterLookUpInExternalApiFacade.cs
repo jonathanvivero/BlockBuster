@@ -5,8 +5,8 @@ using System.Text;
 
 namespace BlockBuster.FILM.Film.Infrastructure.Services.Film
 {
-    public interface IFilmFindFromExternalAPIFacade
+    public interface IFilmFindByFilterLookUpInExternalApiFacade
     {
-        Domain.FilmAggregate.Film FindFilmInExternalAPI(string name, Func<string, FilmCategory> findCategoryByName);
+        Domain.FilmAggregate.Film FindFilmInExternalAPI(string name);
     }
 }

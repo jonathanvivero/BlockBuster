@@ -14,7 +14,7 @@ namespace BlockBuster.FILM.Film.Application.UseCase.Create
     {
         private readonly IFilmFactory _filmFactory;
         private readonly FilmConverter _filmConverter;
-        private readonly IFilmAdapter _filmAdapter;
+        private readonly IFilmFindByFilterLookUpInExternalApiAdapter _filmAdapter;
         private readonly IFilmRepository _filmRepository;
         private readonly IEventProvider _eventProvider;
 
@@ -22,7 +22,7 @@ namespace BlockBuster.FILM.Film.Application.UseCase.Create
             FilmConverter filmConverter,
             IFilmRepository filmRepository,
             IEventProvider eventProvider,
-            IFilmAdapter filmAdapter,
+            IFilmFindByFilterLookUpInExternalApiAdapter filmAdapter,
             IBlockBusterFilmContext context)
             :base(context)
         {

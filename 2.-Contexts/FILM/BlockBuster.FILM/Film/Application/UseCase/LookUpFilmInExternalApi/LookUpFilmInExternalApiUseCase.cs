@@ -14,7 +14,7 @@ namespace BlockBuster.FILM.Film.Application.UseCase.LookUpFilmInExternalApi
     public class LookUpFilmInExternalApiUseCase: UseCaseBase
     {
         private readonly FilmConverter _filmConverter;
-        private readonly IFilmAdapter _filmAdapter;
+        private readonly IFilmFindByFilterLookUpInExternalApiAdapter _filmFindByFilterLookUpInExternalApiAdapter;
         private readonly CategoryConverter _categoryConverter;
         private readonly IUseCaseBus _useCaseBus;
 
@@ -22,11 +22,11 @@ namespace BlockBuster.FILM.Film.Application.UseCase.LookUpFilmInExternalApi
             FilmConverter filmConverter,
             CategoryConverter categoryConverter,
             IUseCaseBus useCaseBus,
-            IFilmAdapter filmAdapter,
+            IFilmFindByFilterLookUpInExternalApiAdapter filmFindByFilterLookUpInExternalApiAdapter,
             IBlockBusterFilmContext context)
             : base(context)
         {
-            _filmAdapter = filmAdapter;
+            _filmFindByFilterLookUpInExternalApiAdapter = filmFindByFilterLookUpInExternalApiAdapter;
             _filmConverter = filmConverter;
             _categoryConverter = categoryConverter;
             _useCaseBus = useCaseBus;
@@ -40,7 +40,7 @@ namespace BlockBuster.FILM.Film.Application.UseCase.LookUpFilmInExternalApi
                 return _filmConverter.ConvertToLookUpFilmInExternalApiResponse(request.Film);
 
             var filmResponse = _filmConverter.ConvertToLookUpFilmInExternalApiResponse(                
-                _filmAdapter.LookUpInExternalApi(request.Name)
+                _filmFindByFilterLookUpInExternalApiAdapter.LookUpInExternalApi(request.Name)
             );
 
             var film = filmResponse.Film;
